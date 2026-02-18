@@ -1,14 +1,230 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+// ====================================
+// MODELS - STAGE 0
+// ====================================
+
+// User Model
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(255)
+  email         String    @unique @db.VarChar(255)
+  passwordHash  String    @map("password_hash") @db.VarChar(255)
+  isActive      Boolean   @default(true) @map("is_active")
+  lastLoginAt   DateTime? @map("last_login_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  userRoles    UserRole[]
+  userBranches UserBranch[]
+  auditLogs    AuditLog[]
+
+  @@map("users")
+}
+
+// Role Model
+model Role {
+  id          Int    @id @default(autoincrement())
+  name        String @unique @db.VarChar(100)
+  description String? @db.Text
+
+  // Relations
+  rolePermissions RolePermission[]
+  userRoles       UserRole[]
+
+  @@map("roles")
+}
+
+// Permission Model
+model Permission {
+  id          Int     @id @default(autoincrement())
+  key         String  @unique @db.VarChar(100)
+  description String? @db.Text
+
+  // Relations
+  rolePermissions RolePermission[]
+
+  @@map("permissions")
+}
+
+// RolePermission - Pivot Table
+model RolePermission {
+  roleId       Int @map("role_id")
+  permissionId Int @map("permission_id")
+
+  // Relations
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+// UserRole - Pivot Table
+model UserRole {
+  userId Int @map("user_id")
+  roleId Int @map("role_id")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+  @@map("user_roles")
+}
+
+// Branch Model
+model Branch {
+  id       Int     @id @default(autoincrement())
+  name     String  @db.VarChar(255)
+  code     String  @unique @db.VarChar(50)
+  address  String? @db.Text
+  phone    String? @db.VarChar(50)
+  timezone String  @default("UTC") @db.VarChar(50)
+  isActive Boolean @default(true) @map("is_active")
+
+  // Relations
+  userBranches UserBranch[]
+  warehouses   Warehouse[]
+  sequences    Sequence[]
+  settings     Setting[]
+  auditLogs    AuditLog[]
+
+  @@map("branches")
+}
+
+// UserBranch - Pivot Table
+model UserBranch {
+  userId    Int     @map("user_id")
+  branchId  Int     @map("branch_id")
+  isDefault Boolean @default(false) @map("is_default")
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  branch Branch @relation(fields: [branchId], references: [id], onDelete: Cascade)
+
+  @@id([userId, branchId])
+  @@map("user_branches")
+}
+
+// Warehouse Model
+model Warehouse {
+  id       Int     @id @default(autoincrement())
+  branchId Int     @map("branch_id")
+  name     String  @db.VarChar(255)
+  code     String  @unique @db.VarChar(50)
+  isActive Boolean @default(true) @map("is_active")
+
+  // Relations
+  branch    Branch     @relation(fields: [branchId], references: [id], onDelete: Restrict)
+  locations Location[]
+
+  @@map("warehouses")
+}
+
+// Location Model - Self-referential
+model Location {
+  id          Int     @id @default(autoincrement())
+  warehouseId Int     @map("warehouse_id")
+  name        String  @db.VarChar(255)
+  code        String  @unique @db.VarChar(50)
+  type        String  @db.VarChar(50) // e.g., 'zone', 'aisle', 'rack', 'bin'
+  parentId    Int?    @map("parent_id")
+  isActive    Boolean @default(true) @map("is_active")
+
+  // Relations
+  warehouse Warehouse  @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  parent    Location?  @relation("LocationHierarchy", fields: [parentId], references: [id], onDelete: Restrict)
+  children  Location[] @relation("LocationHierarchy")
+
+  @@map("locations")
+}
+
+// PaymentMethod Model
+model PaymentMethod {
+  id                Int     @id @default(autoincrement())
+  name              String  @db.VarChar(100)
+  type              String  @db.VarChar(50) // e.g., 'cash', 'card', 'transfer'
+  requiresReference Boolean @default(false) @map("requires_reference")
+  isActive          Boolean @default(true) @map("is_active")
+
+  @@map("payment_methods")
+}
+
+// Tax Model (Optional)
+model Tax {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(100)
+  rate       Decimal  @db.Decimal(5, 2) // e.g., 16.00 for 16%
+  isIncluded Boolean  @default(false) @map("is_included")
+  isActive   Boolean  @default(true) @map("is_active")
+
+  @@map("taxes")
+}
+
+// Sequence Model
+model Sequence {
+  id         Int    @id @default(autoincrement())
+  branchId   Int    @map("branch_id")
+  key        String @db.VarChar(50) // e.g., 'invoice', 'receipt', 'purchase_order'
+  prefix     String @db.VarChar(20)
+  nextNumber Int    @default(1) @map("next_number")
+  padding    Int    @default(6) // Number of digits to pad
+
+  // Relations
+  branch Branch @relation(fields: [branchId], references: [id], onDelete: Restrict)
+
+  @@unique([branchId, key])
+  @@map("sequences")
+}
+
+// Setting Model
+model Setting {
+  id        Int     @id @default(autoincrement())
+  scope     String  @db.VarChar(50) // 'global', 'branch'
+  branchId  Int?    @map("branch_id")
+  key       String  @db.VarChar(100)
+  valueJson Json    @map("value_json") @db.JsonB
+
+  // Relations
+  branch Branch? @relation(fields: [branchId], references: [id], onDelete: Cascade)
+
+  @@unique([scope, branchId, key])
+  @@map("settings")
+}
+
+// AuditLog Model
+model AuditLog {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now()) @map("created_at")
+  userId      Int?     @map("user_id")
+  branchId    Int?     @map("branch_id")
+  action      String   @db.VarChar(50) // e.g., 'LOGIN', 'CREATE', 'UPDATE', 'DELETE', 'STATUS_CHANGE'
+  entity      String   @db.VarChar(100) // e.g., 'User', 'Role', 'Branch'
+  entityId    Int?     @map("entity_id")
+  message     String   @db.Text
+  ip          String?  @db.VarChar(45)
+  userAgent   String?  @map("user_agent") @db.Text
+  payloadJson Json?    @map("payload_json") @db.JsonB
+
+  // Relations
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+  branch Branch? @relation(fields: [branchId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([branchId])
+  @@index([action])
+  @@index([entity])
+  @@index([createdAt])
+  @@map("audit_logs")
 }
