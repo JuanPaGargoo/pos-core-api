@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { HealthModule } from './health/health.module';
 import { AuthModule } from './auth/auth.module';
+import { CommonModule } from './common/common.module';
 import { validate } from './config/env.validation';
 
 @Module({
@@ -15,6 +16,7 @@ import { validate } from './config/env.validation';
       envFilePath: '.env',
     }),
     PrismaModule,
+    CommonModule,
     HealthModule,
     AuthModule,
   ],
