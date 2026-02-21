@@ -20,7 +20,8 @@ import {
 interface AuthenticatedRequest extends Request {
   user: {
     id: number;
-    email: string;
+    email: string | null;
+    username: string | null;
     name: string;
   };
 }
@@ -34,7 +35,7 @@ export class AuthController {
   // POST /auth/login
   // ──────────────────────────────────────────────
   @Post('auth/login')
-  @ApiOperation({ summary: 'Iniciar sesión con email y contraseña' })
+  @ApiOperation({ summary: 'Iniciar sesión con email o username y contraseña' })
   @ApiResponse({
     status: 200,
     description: 'Login exitoso. Retorna access token y refresh token.',
@@ -43,7 +44,7 @@ export class AuthController {
   @ApiResponse({ status: 401, description: 'Credenciales inválidas' })
   async login(@Body() loginDto: LoginDto) {
     const tokens = await this.authService.login(
-      loginDto.email,
+      loginDto.identifier,
       loginDto.password,
     );
 

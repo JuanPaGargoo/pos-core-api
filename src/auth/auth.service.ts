@@ -6,7 +6,8 @@ import { PrismaService } from '../prisma/prisma.service';
 
 export interface JwtPayload {
   sub: number; // user id
-  email: string;
+  email?: string;
+  username?: string;
 }
 
 export interface AuthTokens {
@@ -17,7 +18,8 @@ export interface AuthTokens {
 export interface UserWithPermissions {
   id: number;
   name: string;
-  email: string;
+  email: string | null;
+  username: string | null;
   isActive: boolean;
   lastLoginAt: Date | null;
   roles: {
@@ -45,11 +47,15 @@ export class AuthService {
   ) {}
 
   /**
-   * Validate user credentials and return user if valid
+   * Validate user credentials and return user if valid.
+   * The identifier can be either an email or a username.
    */
-  async validateUser(email: string, password: string) {
-    const user = await this.prisma.user.findUnique({
-      where: { email },
+  async validateUser(identifier: string, password: string) {
+    // Determine if the identifier looks like an email
+    const isEmail = identifier.includes('@');
+
+    const user = await this.prisma.user.findFirst({
+      where: isEmail ? { email: identifier } : { username: identifier },
     });
 
     if (!user) {
@@ -73,10 +79,11 @@ export class AuthService {
   }
 
   /**
-   * Login user and generate tokens
+   * Login user and generate tokens.
+   * identifier can be an email or a username.
    */
-  async login(email: string, password: string): Promise<AuthTokens> {
-    const user = await this.validateUser(email, password);
+  async login(identifier: string, password: string): Promise<AuthTokens> {
+    const user = await this.validateUser(identifier, password);
 
     // Update last login timestamp
     await this.prisma.user.update({
@@ -85,7 +92,11 @@ export class AuthService {
     });
 
     // Generate tokens
-    const tokens = await this.generateTokens(user.id, user.email);
+    const tokens = await this.generateTokens(
+      user.id,
+      user.email,
+      user.username,
+    );
 
     // Store refresh token
     this.refreshTokens.set(tokens.refreshToken, user.id);
@@ -122,7 +133,11 @@ export class AuthService {
       this.refreshTokens.delete(refreshToken);
 
       // Generate new tokens
-      const tokens = await this.generateTokens(user.id, user.email);
+      const tokens = await this.generateTokens(
+        user.id,
+        user.email,
+        user.username,
+      );
 
       // Store new refresh token
       this.refreshTokens.set(tokens.refreshToken, user.id);
@@ -168,6 +183,7 @@ export class AuthService {
       id: user.id,
       name: user.name,
       email: user.email,
+      username: user.username,
       isActive: user.isActive,
       lastLoginAt: user.lastLoginAt,
       roles: user.userRoles.map((ur) => ({
@@ -234,11 +250,13 @@ export class AuthService {
    */
   private async generateTokens(
     userId: number,
-    email: string,
+    email: string | null,
+    username: string | null,
   ): Promise<AuthTokens> {
-    const payload = {
+    const payload: JwtPayload = {
       sub: userId,
-      email,
+      ...(email ? { email } : {}),
+      ...(username ? { username } : {}),
     };
 
     const [accessToken, refreshToken] = await Promise.all([

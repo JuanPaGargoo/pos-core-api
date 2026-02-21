@@ -54,8 +54,11 @@ class MeDataDto {
   @ApiProperty({ example: 'Admin' })
   name: string;
 
-  @ApiProperty({ example: 'admin@local' })
-  email: string;
+  @ApiProperty({ example: 'admin@local', nullable: true, required: false })
+  email: string | null;
+
+  @ApiProperty({ example: 'admin', nullable: true, required: false })
+  username: string | null;
 
   @ApiProperty({ example: true })
   isActive: boolean;
