@@ -7,6 +7,7 @@ import { HealthModule } from './health/health.module';
 import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './common/common.module';
 import { RolesModule } from './roles/roles.module';
+import { UsersModule } from './users/users.module';
 import { validate } from './config/env.validation';
 
 @Module({
@@ -21,6 +22,7 @@ import { validate } from './config/env.validation';
     HealthModule,
     AuthModule,
     RolesModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
