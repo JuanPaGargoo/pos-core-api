@@ -14,6 +14,7 @@ import { LocationsModule } from './locations/locations.module';
 import { PaymentMethodsModule } from './payment-methods/payment-methods.module';
 import { SettingsModule } from './settings/settings.module';
 import { SequencesModule } from './sequences/sequences.module';
+import { AuditLogsModule } from './audit-logs/audit-logs.module';
 import { validate } from './config/env.validation';
 
 @Module({
@@ -25,6 +26,7 @@ import { validate } from './config/env.validation';
     }),
     PrismaModule,
     CommonModule,
+    AuditLogsModule,
     HealthModule,
     AuthModule,
     RolesModule,
