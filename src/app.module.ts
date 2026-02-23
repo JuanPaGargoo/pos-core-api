@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import { BranchesModule } from './branches/branches.module';
 import { WarehousesModule } from './warehouses/warehouses.module';
 import { LocationsModule } from './locations/locations.module';
+import { PaymentMethodsModule } from './payment-methods/payment-methods.module';
 import { validate } from './config/env.validation';
 
 @Module({
@@ -29,6 +30,7 @@ import { validate } from './config/env.validation';
     BranchesModule,
     WarehousesModule,
     LocationsModule,
+    PaymentMethodsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
