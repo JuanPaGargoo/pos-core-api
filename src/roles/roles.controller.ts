@@ -7,7 +7,6 @@ import {
   Post,
   Put,
   Query,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -16,10 +15,10 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Request } from 'express';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { PermissionsGuard } from '../common/guards/permissions.guard';
+import { Audit } from '../common/decorators/audit.decorator';
 import { RequirePermission } from '../common/decorators/require-permission.decorator';
+import { PermissionsGuard } from '../common/guards/permissions.guard';
 import { RolesService } from './roles.service';
 import {
   AssignPermissionsDto,
@@ -27,14 +26,6 @@ import {
   PaginationQueryDto,
   UpdateRoleDto,
 } from './dto';
-
-interface AuthenticatedRequest extends Request {
-  user: {
-    id: number;
-    email: string | null;
-    username: string | null;
-  };
-}
 
 @ApiTags('Roles y Permisos')
 @ApiBearerAuth()
@@ -61,19 +52,12 @@ export class RolesController {
   // ──────────────────────────────────────────────
   @Post('roles')
   @RequirePermission('roles.create')
+  @Audit('CREATE', 'Role')
   @ApiOperation({ summary: 'Crear un nuevo rol' })
   @ApiResponse({ status: 201, description: 'Rol creado exitosamente' })
   @ApiResponse({ status: 409, description: 'Ya existe un rol con ese nombre' })
-  async createRole(
-    @Body() dto: CreateRoleDto,
-    @Req() req: AuthenticatedRequest,
-  ) {
-    const role = await this.rolesService.createRole(dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
-
+  async createRole(@Body() dto: CreateRoleDto) {
+    const role = await this.rolesService.createRole(dto);
     return { data: role, meta: {} };
   }
 
@@ -82,6 +66,7 @@ export class RolesController {
   // ──────────────────────────────────────────────
   @Put('roles/:id')
   @RequirePermission('roles.update')
+  @Audit('UPDATE', 'Role')
   @ApiOperation({ summary: 'Actualizar un rol' })
   @ApiResponse({ status: 200, description: 'Rol actualizado exitosamente' })
   @ApiResponse({ status: 404, description: 'Rol no encontrado' })
@@ -89,14 +74,8 @@ export class RolesController {
   async updateRole(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateRoleDto,
-    @Req() req: AuthenticatedRequest,
   ) {
-    const role = await this.rolesService.updateRole(id, dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
-
+    const role = await this.rolesService.updateRole(id, dto);
     return { data: role, meta: {} };
   }
 
@@ -105,6 +84,7 @@ export class RolesController {
   // ──────────────────────────────────────────────
   @Put('roles/:id/permissions')
   @RequirePermission('roles.assign_permissions')
+  @Audit('PERMISSION_CHANGE', 'Role')
   @ApiOperation({
     summary: 'Asignar permisos a un rol (reemplaza los actuales)',
   })
@@ -113,14 +93,8 @@ export class RolesController {
   async assignPermissions(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: AssignPermissionsDto,
-    @Req() req: AuthenticatedRequest,
   ) {
-    const result = await this.rolesService.assignPermissions(id, dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
-
+    const result = await this.rolesService.assignPermissions(id, dto);
     return { data: result, meta: {} };
   }
 

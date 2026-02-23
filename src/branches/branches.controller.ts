@@ -7,7 +7,6 @@ import {
   Post,
   Put,
   Query,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -16,20 +15,12 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Request } from 'express';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { PermissionsGuard } from '../common/guards/permissions.guard';
+import { Audit } from '../common/decorators/audit.decorator';
 import { RequirePermission } from '../common/decorators/require-permission.decorator';
+import { PermissionsGuard } from '../common/guards/permissions.guard';
 import { BranchesService } from './branches.service';
 import { CreateBranchDto, PaginationQueryDto, UpdateBranchDto } from './dto';
-
-interface AuthenticatedRequest extends Request {
-  user: {
-    id: number;
-    email: string | null;
-    username: string | null;
-  };
-}
 
 @ApiTags('Sucursales')
 @ApiBearerAuth()
@@ -56,17 +47,14 @@ export class BranchesController {
   // ──────────────────────────────────────────────
   @Post()
   @RequirePermission('branches.create')
+  @Audit('CREATE', 'Branch')
   @ApiOperation({ summary: 'Crear una nueva sucursal' })
   @ApiResponse({ status: 201, description: 'Sucursal creada exitosamente' })
   @ApiResponse({ status: 409, description: 'Código de sucursal ya en uso' })
   @ApiResponse({ status: 401, description: 'No autenticado' })
   @ApiResponse({ status: 403, description: 'Sin permiso' })
-  create(@Body() dto: CreateBranchDto, @Req() req: AuthenticatedRequest) {
-    return this.branchesService.createBranch(dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
+  create(@Body() dto: CreateBranchDto) {
+    return this.branchesService.createBranch(dto);
   }
 
   // ──────────────────────────────────────────────
@@ -74,6 +62,7 @@ export class BranchesController {
   // ──────────────────────────────────────────────
   @Put(':id')
   @RequirePermission('branches.update')
+  @Audit('UPDATE', 'Branch')
   @ApiOperation({ summary: 'Actualizar una sucursal existente' })
   @ApiResponse({
     status: 200,
@@ -83,15 +72,7 @@ export class BranchesController {
   @ApiResponse({ status: 409, description: 'Código de sucursal ya en uso' })
   @ApiResponse({ status: 401, description: 'No autenticado' })
   @ApiResponse({ status: 403, description: 'Sin permiso' })
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() dto: UpdateBranchDto,
-    @Req() req: AuthenticatedRequest,
-  ) {
-    return this.branchesService.updateBranch(id, dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
+  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateBranchDto) {
+    return this.branchesService.updateBranch(id, dto);
   }
 }

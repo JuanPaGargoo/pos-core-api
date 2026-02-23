@@ -7,12 +7,6 @@ import { Prisma, Setting } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { QuerySettingsDto, UpsertSettingDto } from './dto';
 
-export interface AuditContext {
-  userId?: number;
-  ip?: string;
-  userAgent?: string;
-}
-
 function mapSetting(s: Setting) {
   return {
     id: s.id,
@@ -91,7 +85,7 @@ export class SettingsService {
   // ──────────────────────────────────────────────
   // PUT /settings — upsert a single setting
   // ──────────────────────────────────────────────
-  async upsertSetting(dto: UpsertSettingDto, ctx: AuditContext) {
+  async upsertSetting(dto: UpsertSettingDto) {
     if (dto.scope === 'branch' && dto.branchId === undefined) {
       throw new BadRequestException(
         'El campo branchId es requerido cuando scope es "branch"',
@@ -141,25 +135,6 @@ export class SettingsService {
         },
       });
     }
-
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        branchId: setting.branchId,
-        action: 'UPDATE',
-        entity: 'Setting',
-        entityId: setting.id,
-        message: `Setting "${setting.key}" (scope: ${setting.scope}${setting.branchId ? `, branch: ${setting.branchId}` : ''}) actualizado`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: {
-          scope: setting.scope,
-          branchId: setting.branchId,
-          key: setting.key,
-          valueJson: setting.valueJson,
-        },
-      },
-    });
 
     return { data: mapSetting(setting), meta: {} };
   }

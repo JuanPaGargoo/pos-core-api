@@ -1,32 +1,16 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Put,
-  Query,
-  Req,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Put, Query, UseGuards } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiOperation,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Request } from 'express';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { PermissionsGuard } from '../common/guards/permissions.guard';
+import { Audit } from '../common/decorators/audit.decorator';
 import { RequirePermission } from '../common/decorators/require-permission.decorator';
+import { PermissionsGuard } from '../common/guards/permissions.guard';
 import { SettingsService } from './settings.service';
 import { QuerySettingsDto, UpsertSettingDto } from './dto';
-
-interface AuthenticatedRequest extends Request {
-  user: {
-    id: number;
-    email: string | null;
-    username: string | null;
-  };
-}
 
 @ApiTags('Settings')
 @ApiBearerAuth()
@@ -57,6 +41,7 @@ export class SettingsController {
   // ──────────────────────────────────────────────
   @Put()
   @RequirePermission('settings.update')
+  @Audit('UPDATE', 'Setting')
   @ApiOperation({
     summary:
       'Crear o actualizar un setting (upsert). Identifica por scope + branchId + key.',
@@ -69,11 +54,7 @@ export class SettingsController {
   @ApiResponse({ status: 404, description: 'Sucursal no encontrada' })
   @ApiResponse({ status: 401, description: 'No autenticado' })
   @ApiResponse({ status: 403, description: 'Sin permiso' })
-  upsert(@Body() dto: UpsertSettingDto, @Req() req: AuthenticatedRequest) {
-    return this.settingsService.upsertSetting(dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
+  upsert(@Body() dto: UpsertSettingDto) {
+    return this.settingsService.upsertSetting(dto);
   }
 }

@@ -23,12 +23,6 @@ import {
   UpdateUserDto,
 } from './dto';
 
-export interface AuditContext {
-  userId?: number;
-  ip?: string;
-  userAgent?: string;
-}
-
 const BCRYPT_SALT_ROUNDS = 10;
 
 type UserWithRelations = User & {
@@ -111,7 +105,7 @@ export class UsersService {
   // ──────────────────────────────────────────────
   // POST /users — create user
   // ──────────────────────────────────────────────
-  async createUser(dto: CreateUserDto, ctx: AuditContext) {
+  async createUser(dto: CreateUserDto) {
     // Check uniqueness of username and email
     if (dto.username) {
       const byUsername = await this.prisma.user.findUnique({
@@ -147,23 +141,6 @@ export class UsersService {
       include: USER_INCLUDE,
     });
 
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        action: 'CREATE',
-        entity: 'User',
-        entityId: user.id,
-        message: `Usuario "${user.name}" creado`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: {
-          name: user.name,
-          username: user.username,
-          email: user.email,
-        },
-      },
-    });
-
     return mapUser(user);
   }
 
@@ -186,7 +163,7 @@ export class UsersService {
   // ──────────────────────────────────────────────
   // PUT /users/:id — update user
   // ──────────────────────────────────────────────
-  async updateUser(id: number, dto: UpdateUserDto, ctx: AuditContext) {
+  async updateUser(id: number, dto: UpdateUserDto) {
     const user = await this.prisma.user.findUnique({ where: { id } });
 
     if (!user) {
@@ -228,26 +205,13 @@ export class UsersService {
       include: USER_INCLUDE,
     });
 
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        action: 'UPDATE',
-        entity: 'User',
-        entityId: updated.id,
-        message: `Usuario "${updated.name}" actualizado`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: { previous: user, updated: dto } as any,
-      },
-    });
-
     return mapUser(updated);
   }
 
   // ──────────────────────────────────────────────
   // PATCH /users/:id/status — toggle is_active
   // ──────────────────────────────────────────────
-  async changeStatus(id: number, dto: ChangeStatusDto, ctx: AuditContext) {
+  async changeStatus(id: number, dto: ChangeStatusDto) {
     const user = await this.prisma.user.findUnique({ where: { id } });
 
     if (!user) {
@@ -260,26 +224,13 @@ export class UsersService {
       include: USER_INCLUDE,
     });
 
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        action: 'STATUS_CHANGE',
-        entity: 'User',
-        entityId: updated.id,
-        message: `Usuario "${updated.name}" ${dto.isActive ? 'activado' : 'desactivado'}`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: { isActive: dto.isActive },
-      },
-    });
-
     return mapUser(updated);
   }
 
   // ──────────────────────────────────────────────
   // PUT /users/:id/roles — assign roles (replace)
   // ──────────────────────────────────────────────
-  async assignRoles(id: number, dto: AssignRolesDto, ctx: AuditContext) {
+  async assignRoles(id: number, dto: AssignRolesDto) {
     const user = await this.prisma.user.findUnique({ where: { id } });
 
     if (!user) {
@@ -307,22 +258,6 @@ export class UsersService {
       }),
     ]);
 
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        action: 'PERMISSION_CHANGE',
-        entity: 'User',
-        entityId: id,
-        message: `Roles del usuario "${user.name}" actualizados`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: {
-          roleIds: dto.roleIds,
-          roleNames: roles.map((r) => r.name),
-        },
-      },
-    });
-
     const updated = await this.prisma.user.findUnique({
       where: { id },
       include: USER_INCLUDE,
@@ -334,7 +269,7 @@ export class UsersService {
   // ──────────────────────────────────────────────
   // PUT /users/:id/branches — assign branches (replace)
   // ──────────────────────────────────────────────
-  async assignBranches(id: number, dto: AssignBranchesDto, ctx: AuditContext) {
+  async assignBranches(id: number, dto: AssignBranchesDto) {
     const user = await this.prisma.user.findUnique({ where: { id } });
 
     if (!user) {
@@ -367,22 +302,6 @@ export class UsersService {
         })),
       }),
     ]);
-
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        action: 'UPDATE',
-        entity: 'User',
-        entityId: id,
-        message: `Sucursales del usuario "${user.name}" actualizadas`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: {
-          branches: dto.branches,
-          branchNames: branches.map((b) => b.name),
-        } as any,
-      },
-    });
 
     const updated = await this.prisma.user.findUnique({
       where: { id },

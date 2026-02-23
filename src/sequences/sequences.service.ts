@@ -3,12 +3,6 @@ import { Sequence } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { PaginationQueryDto, UpdateSequenceDto } from './dto';
 
-export interface AuditContext {
-  userId?: number;
-  ip?: string;
-  userAgent?: string;
-}
-
 interface SequenceRow {
   id: number;
   prefix: string;
@@ -60,7 +54,7 @@ export class SequencesService {
   // ──────────────────────────────────────────────
   // PUT /sequences/:id — update sequence config
   // ──────────────────────────────────────────────
-  async updateSequence(id: number, dto: UpdateSequenceDto, ctx: AuditContext) {
+  async updateSequence(id: number, dto: UpdateSequenceDto) {
     const sequence = await this.prisma.sequence.findUnique({ where: { id } });
     if (!sequence) {
       throw new NotFoundException(`Secuencia con id ${id} no encontrada`);
@@ -72,20 +66,6 @@ export class SequencesService {
         ...(dto.prefix !== undefined && { prefix: dto.prefix }),
         ...(dto.nextNumber !== undefined && { nextNumber: dto.nextNumber }),
         ...(dto.padding !== undefined && { padding: dto.padding }),
-      },
-    });
-
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        branchId: updated.branchId,
-        action: 'UPDATE',
-        entity: 'Sequence',
-        entityId: updated.id,
-        message: `Secuencia "${updated.key}" de sucursal ${updated.branchId} actualizada`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: { ...dto },
       },
     });
 

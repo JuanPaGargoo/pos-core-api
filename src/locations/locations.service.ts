@@ -12,12 +12,6 @@ import {
   UpdateLocationDto,
 } from './dto';
 
-export interface AuditContext {
-  userId?: number;
-  ip?: string;
-  userAgent?: string;
-}
-
 function mapLocation(l: Location) {
   return {
     id: l.id,
@@ -65,7 +59,7 @@ export class LocationsService {
   // ──────────────────────────────────────────────
   // POST /locations — create location
   // ──────────────────────────────────────────────
-  async createLocation(dto: CreateLocationDto, ctx: AuditContext) {
+  async createLocation(dto: CreateLocationDto) {
     // Validate warehouse exists
     const warehouse = await this.prisma.warehouse.findUnique({
       where: { id: dto.warehouseId },
@@ -114,32 +108,13 @@ export class LocationsService {
       },
     });
 
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        action: 'CREATE',
-        entity: 'Location',
-        entityId: location.id,
-        message: `Ubicación "${location.name}" (${location.code}) creada en almacén ${location.warehouseId}`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: {
-          warehouseId: location.warehouseId,
-          name: location.name,
-          code: location.code,
-          type: location.type,
-          parentId: location.parentId,
-        },
-      },
-    });
-
     return { data: mapLocation(location), meta: {} };
   }
 
   // ──────────────────────────────────────────────
   // PUT /locations/:id — update location
   // ──────────────────────────────────────────────
-  async updateLocation(id: number, dto: UpdateLocationDto, ctx: AuditContext) {
+  async updateLocation(id: number, dto: UpdateLocationDto) {
     const location = await this.prisma.location.findUnique({ where: { id } });
     if (!location) {
       throw new NotFoundException(`Ubicación con id ${id} no encontrada`);
@@ -187,19 +162,6 @@ export class LocationsService {
         ...(dto.type !== undefined && { type: dto.type }),
         ...('parentId' in dto && { parentId: dto.parentId ?? null }),
         ...(dto.isActive !== undefined && { isActive: dto.isActive }),
-      },
-    });
-
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        action: 'UPDATE',
-        entity: 'Location',
-        entityId: updated.id,
-        message: `Ubicación "${updated.name}" (${updated.code}) actualizada`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: { ...dto },
       },
     });
 

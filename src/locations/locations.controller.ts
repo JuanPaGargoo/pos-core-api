@@ -7,7 +7,6 @@ import {
   Post,
   Put,
   Query,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -16,24 +15,16 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Request } from 'express';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { PermissionsGuard } from '../common/guards/permissions.guard';
+import { Audit } from '../common/decorators/audit.decorator';
 import { RequirePermission } from '../common/decorators/require-permission.decorator';
+import { PermissionsGuard } from '../common/guards/permissions.guard';
 import { LocationsService } from './locations.service';
 import {
   CreateLocationDto,
   PaginationQueryDto,
   UpdateLocationDto,
 } from './dto';
-
-interface AuthenticatedRequest extends Request {
-  user: {
-    id: number;
-    email: string | null;
-    username: string | null;
-  };
-}
 
 @ApiTags('Ubicaciones')
 @ApiBearerAuth()
@@ -63,6 +54,7 @@ export class LocationsController {
   // ──────────────────────────────────────────────
   @Post()
   @RequirePermission('locations.create')
+  @Audit('CREATE', 'Location')
   @ApiOperation({ summary: 'Crear una nueva ubicación asociada a un almacén' })
   @ApiResponse({ status: 201, description: 'Ubicación creada exitosamente' })
   @ApiResponse({
@@ -76,12 +68,8 @@ export class LocationsController {
   @ApiResponse({ status: 409, description: 'Código de ubicación ya en uso' })
   @ApiResponse({ status: 401, description: 'No autenticado' })
   @ApiResponse({ status: 403, description: 'Sin permiso' })
-  create(@Body() dto: CreateLocationDto, @Req() req: AuthenticatedRequest) {
-    return this.locationsService.createLocation(dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
+  create(@Body() dto: CreateLocationDto) {
+    return this.locationsService.createLocation(dto);
   }
 
   // ──────────────────────────────────────────────
@@ -89,6 +77,7 @@ export class LocationsController {
   // ──────────────────────────────────────────────
   @Put(':id')
   @RequirePermission('locations.update')
+  @Audit('UPDATE', 'Location')
   @ApiOperation({ summary: 'Actualizar una ubicación existente' })
   @ApiResponse({
     status: 200,
@@ -105,12 +94,7 @@ export class LocationsController {
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateLocationDto,
-    @Req() req: AuthenticatedRequest,
   ) {
-    return this.locationsService.updateLocation(id, dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
+    return this.locationsService.updateLocation(id, dto);
   }
 }

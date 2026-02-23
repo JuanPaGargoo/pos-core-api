@@ -6,7 +6,6 @@ import {
   ParseIntPipe,
   Put,
   Query,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -15,20 +14,12 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Request } from 'express';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { PermissionsGuard } from '../common/guards/permissions.guard';
+import { Audit } from '../common/decorators/audit.decorator';
 import { RequirePermission } from '../common/decorators/require-permission.decorator';
+import { PermissionsGuard } from '../common/guards/permissions.guard';
 import { SequencesService } from './sequences.service';
 import { PaginationQueryDto, UpdateSequenceDto } from './dto';
-
-interface AuthenticatedRequest extends Request {
-  user: {
-    id: number;
-    email: string | null;
-    username: string | null;
-  };
-}
 
 @ApiTags('Secuencias')
 @ApiBearerAuth()
@@ -55,6 +46,7 @@ export class SequencesController {
   // ──────────────────────────────────────────────
   @Put(':id')
   @RequirePermission('sequences.update')
+  @Audit('UPDATE', 'Sequence')
   @ApiOperation({
     summary:
       'Actualizar configuración de una secuencia (prefix, nextNumber, padding)',
@@ -69,12 +61,7 @@ export class SequencesController {
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateSequenceDto,
-    @Req() req: AuthenticatedRequest,
   ) {
-    return this.sequencesService.updateSequence(id, dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
+    return this.sequencesService.updateSequence(id, dto);
   }
 }

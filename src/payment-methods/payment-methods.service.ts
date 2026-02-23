@@ -12,12 +12,6 @@ import {
   UpdatePaymentMethodDto,
 } from './dto';
 
-export interface AuditContext {
-  userId?: number;
-  ip?: string;
-  userAgent?: string;
-}
-
 function mapPaymentMethod(pm: PaymentMethod) {
   return {
     id: pm.id,
@@ -58,7 +52,7 @@ export class PaymentMethodsService {
   // ──────────────────────────────────────────────
   // POST /payment-methods — create
   // ──────────────────────────────────────────────
-  async createPaymentMethod(dto: CreatePaymentMethodDto, ctx: AuditContext) {
+  async createPaymentMethod(dto: CreatePaymentMethodDto) {
     const existing = await this.prisma.paymentMethod.findFirst({
       where: { name: dto.name },
     });
@@ -77,34 +71,13 @@ export class PaymentMethodsService {
       },
     });
 
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        action: 'CREATE',
-        entity: 'PaymentMethod',
-        entityId: pm.id,
-        message: `Método de pago "${pm.name}" (${pm.type}) creado`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: {
-          name: pm.name,
-          type: pm.type,
-          requiresReference: pm.requiresReference,
-        },
-      },
-    });
-
     return { data: mapPaymentMethod(pm), meta: {} };
   }
 
   // ──────────────────────────────────────────────
   // PUT /payment-methods/:id — update
   // ──────────────────────────────────────────────
-  async updatePaymentMethod(
-    id: number,
-    dto: UpdatePaymentMethodDto,
-    ctx: AuditContext,
-  ) {
+  async updatePaymentMethod(id: number, dto: UpdatePaymentMethodDto) {
     const pm = await this.prisma.paymentMethod.findUnique({ where: { id } });
     if (!pm) {
       throw new NotFoundException(`Método de pago con id ${id} no encontrado`);
@@ -132,26 +105,13 @@ export class PaymentMethodsService {
       },
     });
 
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        action: 'UPDATE',
-        entity: 'PaymentMethod',
-        entityId: updated.id,
-        message: `Método de pago "${updated.name}" actualizado`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: { ...dto },
-      },
-    });
-
     return { data: mapPaymentMethod(updated), meta: {} };
   }
 
   // ──────────────────────────────────────────────
   // PATCH /payment-methods/:id/status — toggle active
   // ──────────────────────────────────────────────
-  async changeStatus(id: number, dto: ChangeStatusDto, ctx: AuditContext) {
+  async changeStatus(id: number, dto: ChangeStatusDto) {
     const pm = await this.prisma.paymentMethod.findUnique({ where: { id } });
     if (!pm) {
       throw new NotFoundException(`Método de pago con id ${id} no encontrado`);
@@ -160,19 +120,6 @@ export class PaymentMethodsService {
     const updated = await this.prisma.paymentMethod.update({
       where: { id },
       data: { isActive: dto.isActive },
-    });
-
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        action: 'STATUS_CHANGE',
-        entity: 'PaymentMethod',
-        entityId: updated.id,
-        message: `Método de pago "${updated.name}" ${dto.isActive ? 'activado' : 'desactivado'}`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: { isActive: dto.isActive },
-      },
     });
 
     return { data: mapPaymentMethod(updated), meta: {} };

@@ -11,12 +11,6 @@ import {
   UpdateWarehouseDto,
 } from './dto';
 
-export interface AuditContext {
-  userId?: number;
-  ip?: string;
-  userAgent?: string;
-}
-
 function mapWarehouse(w: Warehouse) {
   return {
     id: w.id,
@@ -60,7 +54,7 @@ export class WarehousesService {
   // ──────────────────────────────────────────────
   // POST /warehouses — create warehouse
   // ──────────────────────────────────────────────
-  async createWarehouse(dto: CreateWarehouseDto, ctx: AuditContext) {
+  async createWarehouse(dto: CreateWarehouseDto) {
     // Validate branch exists
     const branch = await this.prisma.branch.findUnique({
       where: { id: dto.branchId },
@@ -90,35 +84,13 @@ export class WarehousesService {
       },
     });
 
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        branchId: warehouse.branchId,
-        action: 'CREATE',
-        entity: 'Warehouse',
-        entityId: warehouse.id,
-        message: `Almacén "${warehouse.name}" (${warehouse.code}) creado en sucursal ${warehouse.branchId}`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: {
-          branchId: warehouse.branchId,
-          name: warehouse.name,
-          code: warehouse.code,
-        },
-      },
-    });
-
     return { data: mapWarehouse(warehouse), meta: {} };
   }
 
   // ──────────────────────────────────────────────
   // PUT /warehouses/:id — update warehouse
   // ──────────────────────────────────────────────
-  async updateWarehouse(
-    id: number,
-    dto: UpdateWarehouseDto,
-    ctx: AuditContext,
-  ) {
+  async updateWarehouse(id: number, dto: UpdateWarehouseDto) {
     const warehouse = await this.prisma.warehouse.findUnique({ where: { id } });
 
     if (!warehouse) {
@@ -143,20 +115,6 @@ export class WarehousesService {
         ...(dto.name !== undefined && { name: dto.name }),
         ...(dto.code !== undefined && { code: dto.code }),
         ...(dto.isActive !== undefined && { isActive: dto.isActive }),
-      },
-    });
-
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        branchId: updated.branchId,
-        action: 'UPDATE',
-        entity: 'Warehouse',
-        entityId: updated.id,
-        message: `Almacén "${updated.name}" (${updated.code}) actualizado`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: { ...dto },
       },
     });
 

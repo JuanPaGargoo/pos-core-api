@@ -7,12 +7,6 @@ import { Branch } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateBranchDto, PaginationQueryDto, UpdateBranchDto } from './dto';
 
-export interface AuditContext {
-  userId?: number;
-  ip?: string;
-  userAgent?: string;
-}
-
 function mapBranch(branch: Branch) {
   return {
     id: branch.id,
@@ -55,7 +49,7 @@ export class BranchesService {
   // ──────────────────────────────────────────────
   // POST /branches — create branch
   // ──────────────────────────────────────────────
-  async createBranch(dto: CreateBranchDto, ctx: AuditContext) {
+  async createBranch(dto: CreateBranchDto) {
     const existing = await this.prisma.branch.findUnique({
       where: { code: dto.code },
     });
@@ -77,31 +71,13 @@ export class BranchesService {
       },
     });
 
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        branchId: branch.id,
-        action: 'CREATE',
-        entity: 'Branch',
-        entityId: branch.id,
-        message: `Sucursal "${branch.name}" (${branch.code}) creada`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: {
-          name: branch.name,
-          code: branch.code,
-          timezone: branch.timezone,
-        },
-      },
-    });
-
     return { data: mapBranch(branch), meta: {} };
   }
 
   // ──────────────────────────────────────────────
   // PUT /branches/:id — update branch
   // ──────────────────────────────────────────────
-  async updateBranch(id: number, dto: UpdateBranchDto, ctx: AuditContext) {
+  async updateBranch(id: number, dto: UpdateBranchDto) {
     const branch = await this.prisma.branch.findUnique({ where: { id } });
 
     if (!branch) {
@@ -129,20 +105,6 @@ export class BranchesService {
         ...(dto.phone !== undefined && { phone: dto.phone }),
         ...(dto.timezone !== undefined && { timezone: dto.timezone }),
         ...(dto.isActive !== undefined && { isActive: dto.isActive }),
-      },
-    });
-
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        branchId: updated.id,
-        action: 'UPDATE',
-        entity: 'Branch',
-        entityId: updated.id,
-        message: `Sucursal "${updated.name}" (${updated.code}) actualizada`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: dto as any,
       },
     });
 

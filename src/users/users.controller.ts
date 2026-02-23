@@ -8,7 +8,6 @@ import {
   Post,
   Put,
   Query,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -17,10 +16,10 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Request } from 'express';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { PermissionsGuard } from '../common/guards/permissions.guard';
+import { Audit } from '../common/decorators/audit.decorator';
 import { RequirePermission } from '../common/decorators/require-permission.decorator';
+import { PermissionsGuard } from '../common/guards/permissions.guard';
 import { UsersService } from './users.service';
 import {
   AssignBranchesDto,
@@ -30,14 +29,6 @@ import {
   PaginationQueryDto,
   UpdateUserDto,
 } from './dto';
-
-interface AuthenticatedRequest extends Request {
-  user: {
-    id: number;
-    email: string | null;
-    username: string | null;
-  };
-}
 
 @ApiTags('Usuarios')
 @ApiBearerAuth()
@@ -64,19 +55,12 @@ export class UsersController {
   // ──────────────────────────────────────────────
   @Post()
   @RequirePermission('users.create')
+  @Audit('CREATE', 'User')
   @ApiOperation({ summary: 'Crear un nuevo usuario' })
   @ApiResponse({ status: 201, description: 'Usuario creado exitosamente' })
   @ApiResponse({ status: 409, description: 'Username o email ya en uso' })
-  async createUser(
-    @Body() dto: CreateUserDto,
-    @Req() req: AuthenticatedRequest,
-  ) {
-    const user = await this.usersService.createUser(dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
-
+  async createUser(@Body() dto: CreateUserDto) {
+    const user = await this.usersService.createUser(dto);
     return { data: user, meta: {} };
   }
 
@@ -98,6 +82,7 @@ export class UsersController {
   // ──────────────────────────────────────────────
   @Put(':id')
   @RequirePermission('users.update')
+  @Audit('UPDATE', 'User')
   @ApiOperation({ summary: 'Actualizar datos de un usuario' })
   @ApiResponse({ status: 200, description: 'Usuario actualizado' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado' })
@@ -105,14 +90,8 @@ export class UsersController {
   async updateUser(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateUserDto,
-    @Req() req: AuthenticatedRequest,
   ) {
-    const user = await this.usersService.updateUser(id, dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
-
+    const user = await this.usersService.updateUser(id, dto);
     return { data: user, meta: {} };
   }
 
@@ -121,20 +100,15 @@ export class UsersController {
   // ──────────────────────────────────────────────
   @Patch(':id/status')
   @RequirePermission('users.change_status')
+  @Audit('STATUS_CHANGE', 'User')
   @ApiOperation({ summary: 'Activar o desactivar un usuario (soft delete)' })
   @ApiResponse({ status: 200, description: 'Estado del usuario actualizado' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado' })
   async changeStatus(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: ChangeStatusDto,
-    @Req() req: AuthenticatedRequest,
   ) {
-    const user = await this.usersService.changeStatus(id, dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
-
+    const user = await this.usersService.changeStatus(id, dto);
     return { data: user, meta: {} };
   }
 
@@ -143,6 +117,7 @@ export class UsersController {
   // ──────────────────────────────────────────────
   @Put(':id/roles')
   @RequirePermission('users.assign_roles')
+  @Audit('PERMISSION_CHANGE', 'User')
   @ApiOperation({
     summary: 'Asignar roles a un usuario (reemplaza los actuales)',
   })
@@ -151,14 +126,8 @@ export class UsersController {
   async assignRoles(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: AssignRolesDto,
-    @Req() req: AuthenticatedRequest,
   ) {
-    const user = await this.usersService.assignRoles(id, dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
-
+    const user = await this.usersService.assignRoles(id, dto);
     return { data: user, meta: {} };
   }
 
@@ -167,6 +136,7 @@ export class UsersController {
   // ──────────────────────────────────────────────
   @Put(':id/branches')
   @RequirePermission('users.assign_branches')
+  @Audit('UPDATE', 'User')
   @ApiOperation({
     summary: 'Asignar sucursales a un usuario (reemplaza las actuales)',
   })
@@ -181,14 +151,8 @@ export class UsersController {
   async assignBranches(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: AssignBranchesDto,
-    @Req() req: AuthenticatedRequest,
   ) {
-    const user = await this.usersService.assignBranches(id, dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
-
+    const user = await this.usersService.assignBranches(id, dto);
     return { data: user, meta: {} };
   }
 }

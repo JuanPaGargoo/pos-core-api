@@ -8,7 +8,6 @@ import {
   Post,
   Put,
   Query,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -17,10 +16,10 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Request } from 'express';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { PermissionsGuard } from '../common/guards/permissions.guard';
+import { Audit } from '../common/decorators/audit.decorator';
 import { RequirePermission } from '../common/decorators/require-permission.decorator';
+import { PermissionsGuard } from '../common/guards/permissions.guard';
 import { PaymentMethodsService } from './payment-methods.service';
 import {
   ChangeStatusDto,
@@ -28,14 +27,6 @@ import {
   PaginationQueryDto,
   UpdatePaymentMethodDto,
 } from './dto';
-
-interface AuthenticatedRequest extends Request {
-  user: {
-    id: number;
-    email: string | null;
-    username: string | null;
-  };
-}
 
 @ApiTags('Métodos de Pago')
 @ApiBearerAuth()
@@ -65,6 +56,7 @@ export class PaymentMethodsController {
   // ──────────────────────────────────────────────
   @Post()
   @RequirePermission('payment-methods.create')
+  @Audit('CREATE', 'PaymentMethod')
   @ApiOperation({ summary: 'Crear un nuevo método de pago' })
   @ApiResponse({
     status: 201,
@@ -73,15 +65,8 @@ export class PaymentMethodsController {
   @ApiResponse({ status: 409, description: 'Nombre ya en uso' })
   @ApiResponse({ status: 401, description: 'No autenticado' })
   @ApiResponse({ status: 403, description: 'Sin permiso' })
-  create(
-    @Body() dto: CreatePaymentMethodDto,
-    @Req() req: AuthenticatedRequest,
-  ) {
-    return this.paymentMethodsService.createPaymentMethod(dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
+  create(@Body() dto: CreatePaymentMethodDto) {
+    return this.paymentMethodsService.createPaymentMethod(dto);
   }
 
   // ──────────────────────────────────────────────
@@ -89,6 +74,7 @@ export class PaymentMethodsController {
   // ──────────────────────────────────────────────
   @Put(':id')
   @RequirePermission('payment-methods.update')
+  @Audit('UPDATE', 'PaymentMethod')
   @ApiOperation({ summary: 'Actualizar un método de pago existente' })
   @ApiResponse({
     status: 200,
@@ -101,13 +87,8 @@ export class PaymentMethodsController {
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdatePaymentMethodDto,
-    @Req() req: AuthenticatedRequest,
   ) {
-    return this.paymentMethodsService.updatePaymentMethod(id, dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
+    return this.paymentMethodsService.updatePaymentMethod(id, dto);
   }
 
   // ──────────────────────────────────────────────
@@ -115,6 +96,7 @@ export class PaymentMethodsController {
   // ──────────────────────────────────────────────
   @Patch(':id/status')
   @RequirePermission('payment-methods.update')
+  @Audit('STATUS_CHANGE', 'PaymentMethod')
   @ApiOperation({ summary: 'Activar o desactivar un método de pago' })
   @ApiResponse({ status: 200, description: 'Estado actualizado exitosamente' })
   @ApiResponse({ status: 404, description: 'Método de pago no encontrado' })
@@ -123,12 +105,7 @@ export class PaymentMethodsController {
   changeStatus(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: ChangeStatusDto,
-    @Req() req: AuthenticatedRequest,
   ) {
-    return this.paymentMethodsService.changeStatus(id, dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
+    return this.paymentMethodsService.changeStatus(id, dto);
   }
 }

@@ -7,7 +7,6 @@ import {
   Post,
   Put,
   Query,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -16,24 +15,16 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Request } from 'express';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { PermissionsGuard } from '../common/guards/permissions.guard';
+import { Audit } from '../common/decorators/audit.decorator';
 import { RequirePermission } from '../common/decorators/require-permission.decorator';
+import { PermissionsGuard } from '../common/guards/permissions.guard';
 import { WarehousesService } from './warehouses.service';
 import {
   CreateWarehouseDto,
   PaginationQueryDto,
   UpdateWarehouseDto,
 } from './dto';
-
-interface AuthenticatedRequest extends Request {
-  user: {
-    id: number;
-    email: string | null;
-    username: string | null;
-  };
-}
 
 @ApiTags('Almacenes')
 @ApiBearerAuth()
@@ -62,6 +53,7 @@ export class WarehousesController {
   // ──────────────────────────────────────────────
   @Post()
   @RequirePermission('warehouses.create')
+  @Audit('CREATE', 'Warehouse')
   @ApiOperation({ summary: 'Crear un nuevo almacén asociado a una sucursal' })
   @ApiResponse({ status: 201, description: 'Almacén creado exitosamente' })
   @ApiResponse({ status: 404, description: 'Sucursal no encontrada' })
@@ -71,12 +63,8 @@ export class WarehousesController {
   })
   @ApiResponse({ status: 401, description: 'No autenticado' })
   @ApiResponse({ status: 403, description: 'Sin permiso' })
-  create(@Body() dto: CreateWarehouseDto, @Req() req: AuthenticatedRequest) {
-    return this.warehousesService.createWarehouse(dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
+  create(@Body() dto: CreateWarehouseDto) {
+    return this.warehousesService.createWarehouse(dto);
   }
 
   // ──────────────────────────────────────────────
@@ -84,6 +72,7 @@ export class WarehousesController {
   // ──────────────────────────────────────────────
   @Put(':id')
   @RequirePermission('warehouses.update')
+  @Audit('UPDATE', 'Warehouse')
   @ApiOperation({ summary: 'Actualizar un almacén existente' })
   @ApiResponse({ status: 200, description: 'Almacén actualizado exitosamente' })
   @ApiResponse({ status: 404, description: 'Almacén no encontrado' })
@@ -96,12 +85,7 @@ export class WarehousesController {
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateWarehouseDto,
-    @Req() req: AuthenticatedRequest,
   ) {
-    return this.warehousesService.updateWarehouse(id, dto, {
-      userId: req.user.id,
-      ip: req.ip,
-      userAgent: req.headers['user-agent'],
-    });
+    return this.warehousesService.updateWarehouse(id, dto);
   }
 }

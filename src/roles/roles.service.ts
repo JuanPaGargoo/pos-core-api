@@ -11,12 +11,6 @@ import {
   PaginationQueryDto,
 } from './dto';
 
-export interface AuditContext {
-  userId?: number;
-  ip?: string;
-  userAgent?: string;
-}
-
 @Injectable()
 export class RolesService {
   constructor(private readonly prisma: PrismaService) {}
@@ -63,7 +57,7 @@ export class RolesService {
   // ──────────────────────────────────────────────
   // POST /roles — create role
   // ──────────────────────────────────────────────
-  async createRole(dto: CreateRoleDto, ctx: AuditContext) {
+  async createRole(dto: CreateRoleDto) {
     const existing = await this.prisma.role.findUnique({
       where: { name: dto.name },
     });
@@ -78,27 +72,13 @@ export class RolesService {
       data: { name: dto.name, description: dto.description },
     });
 
-    // Audit log
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        action: 'CREATE',
-        entity: 'Role',
-        entityId: role.id,
-        message: `Rol "${role.name}" creado`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: { name: role.name, description: role.description },
-      },
-    });
-
     return role;
   }
 
   // ──────────────────────────────────────────────
   // PUT /roles/:id — update role
   // ──────────────────────────────────────────────
-  async updateRole(id: number, dto: UpdateRoleDto, ctx: AuditContext) {
+  async updateRole(id: number, dto: UpdateRoleDto) {
     const role = await this.prisma.role.findUnique({ where: { id } });
 
     if (!role) {
@@ -124,31 +104,13 @@ export class RolesService {
       },
     });
 
-    // Audit log
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        action: 'UPDATE',
-        entity: 'Role',
-        entityId: updated.id,
-        message: `Rol "${updated.name}" actualizado`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: { previous: role, updated: dto } as any,
-      },
-    });
-
     return updated;
   }
 
   // ──────────────────────────────────────────────
   // PUT /roles/:id/permissions — assign permissions
   // ──────────────────────────────────────────────
-  async assignPermissions(
-    id: number,
-    dto: AssignPermissionsDto,
-    ctx: AuditContext,
-  ) {
+  async assignPermissions(id: number, dto: AssignPermissionsDto) {
     const role = await this.prisma.role.findUnique({ where: { id } });
 
     if (!role) {
@@ -178,23 +140,6 @@ export class RolesService {
         })),
       }),
     ]);
-
-    // Audit log
-    await this.prisma.auditLog.create({
-      data: {
-        userId: ctx.userId,
-        action: 'PERMISSION_CHANGE',
-        entity: 'Role',
-        entityId: id,
-        message: `Permisos del rol "${role.name}" actualizados`,
-        ip: ctx.ip,
-        userAgent: ctx.userAgent,
-        payloadJson: {
-          permissionIds: dto.permissionIds,
-          permissionKeys: permissions.map((p) => p.key),
-        },
-      },
-    });
 
     // Return updated role with permissions
     const updated = await this.prisma.role.findUnique({
