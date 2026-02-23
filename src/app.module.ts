@@ -13,6 +13,7 @@ import { WarehousesModule } from './warehouses/warehouses.module';
 import { LocationsModule } from './locations/locations.module';
 import { PaymentMethodsModule } from './payment-methods/payment-methods.module';
 import { SettingsModule } from './settings/settings.module';
+import { SequencesModule } from './sequences/sequences.module';
 import { validate } from './config/env.validation';
 
 @Module({
@@ -33,6 +34,7 @@ import { validate } from './config/env.validation';
     LocationsModule,
     PaymentMethodsModule,
     SettingsModule,
+    SequencesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
