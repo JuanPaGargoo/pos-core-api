@@ -12,6 +12,7 @@ import { BranchesModule } from './branches/branches.module';
 import { WarehousesModule } from './warehouses/warehouses.module';
 import { LocationsModule } from './locations/locations.module';
 import { PaymentMethodsModule } from './payment-methods/payment-methods.module';
+import { SettingsModule } from './settings/settings.module';
 import { validate } from './config/env.validation';
 
 @Module({
@@ -31,6 +32,7 @@ import { validate } from './config/env.validation';
     WarehousesModule,
     LocationsModule,
     PaymentMethodsModule,
+    SettingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
