@@ -34,7 +34,7 @@ export class TransformResponseInterceptor<T> implements NestInterceptor<
         if (
           response !== null &&
           typeof response === 'object' &&
-          'data' in (response as object)
+          'data' in response
         ) {
           return response as StandardResponse<T>;
         }

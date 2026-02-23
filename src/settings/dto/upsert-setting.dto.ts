@@ -1,4 +1,5 @@
 import {
+  IsDefined,
   IsIn,
   IsInt,
   IsNotEmpty,
@@ -46,5 +47,6 @@ export class UpsertSettingDto {
     description: 'Valor del setting como JSON flexible',
     example: 'America/Mexico_City',
   })
+  @IsDefined()
   valueJson: unknown;
 }
