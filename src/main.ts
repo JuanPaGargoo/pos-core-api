@@ -1,12 +1,24 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import helmet from 'helmet';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Enable global validation pipe
+  // Security headers
+  app.use(helmet());
+
+  // CORS — en producción, configura origins específicos
+  app.enableCors({
+    origin: process.env.CORS_ORIGIN || '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+
+  // Enable global validation pipe — whitelist strips unknown props,
+  // forbidNonWhitelisted rejects them, transform auto-converts types
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -39,6 +51,10 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(process.env.PORT ?? 3000);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+
+  console.log(`🚀 Application running on port ${port}`);
+  console.log(`📖 Swagger docs: http://localhost:${port}/api`);
 }
 void bootstrap();

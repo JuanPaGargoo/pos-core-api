@@ -5,6 +5,7 @@ import {
   ApiResponse,
   ApiBearerAuth,
 } from '@nestjs/swagger';
+import { Throttle, ThrottlerGuard } from '@nestjs/throttler';
 import { Request } from 'express';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
@@ -35,6 +36,8 @@ export class AuthController {
   // POST /auth/login
   // ──────────────────────────────────────────────
   @Post('auth/login')
+  @UseGuards(ThrottlerGuard)
+  @Throttle({ default: { ttl: 60_000, limit: 5 } }) // 5 intentos por minuto por IP
   @ApiOperation({ summary: 'Iniciar sesión con email o username y contraseña' })
   @ApiResponse({
     status: 200,
@@ -42,6 +45,7 @@ export class AuthController {
     type: AuthResponseDto,
   })
   @ApiResponse({ status: 401, description: 'Credenciales inválidas' })
+  @ApiResponse({ status: 429, description: 'Demasiados intentos de login' })
   async login(@Body() loginDto: LoginDto) {
     const tokens = await this.authService.login(
       loginDto.identifier,

@@ -1,4 +1,12 @@
-import { IsString, IsInt, IsEnum, IsNotEmpty, Min, Max } from 'class-validator';
+import {
+  IsString,
+  IsInt,
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  Min,
+  Max,
+} from 'class-validator';
 import { plainToInstance } from 'class-transformer';
 import { validateSync } from 'class-validator';
 
@@ -42,6 +50,10 @@ export class EnvironmentVariables {
 
   @IsString()
   API_VERSION: string = '1.0.0';
+
+  @IsString()
+  @IsOptional()
+  CORS_ORIGIN?: string;
 }
 
 export function validate(config: Record<string, unknown>) {
