@@ -22,7 +22,7 @@ import { RequirePermission } from '../common/decorators/require-permission.decor
 import { PermissionsGuard } from '../common/guards/permissions.guard';
 import { PaymentMethodsService } from './payment-methods.service';
 import {
-  ChangeStatusDto,
+  ChangePaymentMethodStatusDto,
   CreatePaymentMethodDto,
   PaginationQueryDto,
   UpdatePaymentMethodDto,
@@ -104,7 +104,7 @@ export class PaymentMethodsController {
   @ApiResponse({ status: 403, description: 'Sin permiso' })
   changeStatus(
     @Param('id', ParseIntPipe) id: number,
-    @Body() dto: ChangeStatusDto,
+    @Body() dto: ChangePaymentMethodStatusDto,
   ) {
     return this.paymentMethodsService.changeStatus(id, dto);
   }

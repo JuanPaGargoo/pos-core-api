@@ -24,7 +24,7 @@ import { UsersService } from './users.service';
 import {
   AssignBranchesDto,
   AssignRolesDto,
-  ChangeStatusDto,
+  ChangeUserStatusDto,
   CreateUserDto,
   PaginationQueryDto,
   UpdateUserDto,
@@ -103,7 +103,7 @@ export class UsersController {
   @ApiResponse({ status: 404, description: 'Usuario no encontrado' })
   async changeStatus(
     @Param('id', ParseIntPipe) id: number,
-    @Body() dto: ChangeStatusDto,
+    @Body() dto: ChangeUserStatusDto,
   ) {
     return this.usersService.changeStatus(id, dto);
   }

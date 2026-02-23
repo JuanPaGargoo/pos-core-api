@@ -6,7 +6,7 @@ import {
 import { PaymentMethod } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import {
-  ChangeStatusDto,
+  ChangePaymentMethodStatusDto,
   CreatePaymentMethodDto,
   PaginationQueryDto,
   UpdatePaymentMethodDto,
@@ -111,7 +111,7 @@ export class PaymentMethodsService {
   // ──────────────────────────────────────────────
   // PATCH /payment-methods/:id/status — toggle active
   // ──────────────────────────────────────────────
-  async changeStatus(id: number, dto: ChangeStatusDto) {
+  async changeStatus(id: number, dto: ChangePaymentMethodStatusDto) {
     const pm = await this.prisma.paymentMethod.findUnique({ where: { id } });
     if (!pm) {
       throw new NotFoundException(`Método de pago con id ${id} no encontrado`);

@@ -17,7 +17,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import {
   AssignBranchesDto,
   AssignRolesDto,
-  ChangeStatusDto,
+  ChangeUserStatusDto,
   CreateUserDto,
   PaginationQueryDto,
   UpdateUserDto,
@@ -211,7 +211,7 @@ export class UsersService {
   // ──────────────────────────────────────────────
   // PATCH /users/:id/status — toggle is_active
   // ──────────────────────────────────────────────
-  async changeStatus(id: number, dto: ChangeStatusDto) {
+  async changeStatus(id: number, dto: ChangeUserStatusDto) {
     const user = await this.prisma.user.findUnique({ where: { id } });
 
     if (!user) {
