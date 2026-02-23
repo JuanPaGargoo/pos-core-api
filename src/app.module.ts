@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './common/common.module';
 import { RolesModule } from './roles/roles.module';
 import { UsersModule } from './users/users.module';
+import { BranchesModule } from './branches/branches.module';
 import { validate } from './config/env.validation';
 
 @Module({
@@ -23,6 +24,7 @@ import { validate } from './config/env.validation';
     AuthModule,
     RolesModule,
     UsersModule,
+    BranchesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
