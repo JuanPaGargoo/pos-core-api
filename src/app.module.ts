@@ -10,6 +10,7 @@ import { RolesModule } from './roles/roles.module';
 import { UsersModule } from './users/users.module';
 import { BranchesModule } from './branches/branches.module';
 import { WarehousesModule } from './warehouses/warehouses.module';
+import { LocationsModule } from './locations/locations.module';
 import { validate } from './config/env.validation';
 
 @Module({
@@ -27,6 +28,7 @@ import { validate } from './config/env.validation';
     UsersModule,
     BranchesModule,
     WarehousesModule,
+    LocationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
