@@ -60,8 +60,7 @@ export class UsersController {
   @ApiResponse({ status: 201, description: 'Usuario creado exitosamente' })
   @ApiResponse({ status: 409, description: 'Username o email ya en uso' })
   async createUser(@Body() dto: CreateUserDto) {
-    const user = await this.usersService.createUser(dto);
-    return { data: user, meta: {} };
+    return this.usersService.createUser(dto);
   }
 
   // ──────────────────────────────────────────────
@@ -73,8 +72,7 @@ export class UsersController {
   @ApiResponse({ status: 200, description: 'Datos del usuario' })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado' })
   async getUserById(@Param('id', ParseIntPipe) id: number) {
-    const user = await this.usersService.getUserById(id);
-    return { data: user, meta: {} };
+    return this.usersService.getUserById(id);
   }
 
   // ──────────────────────────────────────────────
@@ -91,8 +89,7 @@ export class UsersController {
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateUserDto,
   ) {
-    const user = await this.usersService.updateUser(id, dto);
-    return { data: user, meta: {} };
+    return this.usersService.updateUser(id, dto);
   }
 
   // ──────────────────────────────────────────────
@@ -108,8 +105,7 @@ export class UsersController {
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: ChangeStatusDto,
   ) {
-    const user = await this.usersService.changeStatus(id, dto);
-    return { data: user, meta: {} };
+    return this.usersService.changeStatus(id, dto);
   }
 
   // ──────────────────────────────────────────────
@@ -127,8 +123,7 @@ export class UsersController {
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: AssignRolesDto,
   ) {
-    const user = await this.usersService.assignRoles(id, dto);
-    return { data: user, meta: {} };
+    return this.usersService.assignRoles(id, dto);
   }
 
   // ──────────────────────────────────────────────
@@ -152,7 +147,6 @@ export class UsersController {
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: AssignBranchesDto,
   ) {
-    const user = await this.usersService.assignBranches(id, dto);
-    return { data: user, meta: {} };
+    return this.usersService.assignBranches(id, dto);
   }
 }

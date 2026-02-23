@@ -57,8 +57,7 @@ export class RolesController {
   @ApiResponse({ status: 201, description: 'Rol creado exitosamente' })
   @ApiResponse({ status: 409, description: 'Ya existe un rol con ese nombre' })
   async createRole(@Body() dto: CreateRoleDto) {
-    const role = await this.rolesService.createRole(dto);
-    return { data: role, meta: {} };
+    return this.rolesService.createRole(dto);
   }
 
   // ──────────────────────────────────────────────
@@ -75,8 +74,7 @@ export class RolesController {
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateRoleDto,
   ) {
-    const role = await this.rolesService.updateRole(id, dto);
-    return { data: role, meta: {} };
+    return this.rolesService.updateRole(id, dto);
   }
 
   // ──────────────────────────────────────────────
@@ -94,8 +92,7 @@ export class RolesController {
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: AssignPermissionsDto,
   ) {
-    const result = await this.rolesService.assignPermissions(id, dto);
-    return { data: result, meta: {} };
+    return this.rolesService.assignPermissions(id, dto);
   }
 
   // ──────────────────────────────────────────────

@@ -52,10 +52,7 @@ export class AuthController {
       loginDto.password,
     );
 
-    return {
-      data: tokens,
-      meta: {},
-    };
+    return tokens;
   }
 
   // ──────────────────────────────────────────────
@@ -75,10 +72,7 @@ export class AuthController {
   async refresh(@Body() refreshTokenDto: RefreshTokenDto) {
     const tokens = await this.authService.refresh(refreshTokenDto.refreshToken);
 
-    return {
-      data: tokens,
-      meta: {},
-    };
+    return tokens;
   }
 
   // ──────────────────────────────────────────────
@@ -97,10 +91,7 @@ export class AuthController {
   logout(@Body() refreshTokenDto: RefreshTokenDto) {
     this.authService.logout(refreshTokenDto.refreshToken);
 
-    return {
-      data: { message: 'Sesión cerrada exitosamente' },
-      meta: {},
-    };
+    return { message: 'Sesión cerrada exitosamente' };
   }
 
   // ──────────────────────────────────────────────
@@ -119,10 +110,7 @@ export class AuthController {
   async getMe(@Req() req: AuthenticatedRequest) {
     const user = await this.authService.getMe(req.user.id);
 
-    return {
-      data: user,
-      meta: {},
-    };
+    return user;
   }
 
   // ──────────────────────────────────────────────
@@ -141,9 +129,6 @@ export class AuthController {
   async getPermissions(@Req() req: AuthenticatedRequest) {
     const permissions = await this.authService.getUserPermissions(req.user.id);
 
-    return {
-      data: permissions,
-      meta: {},
-    };
+    return permissions;
   }
 }

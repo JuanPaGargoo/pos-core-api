@@ -1,15 +1,18 @@
 import { Global, Module } from '@nestjs/common';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { PermissionsGuard } from './guards/permissions.guard';
 import { AuditInterceptor } from './interceptors/audit.interceptor';
+import { TransformResponseInterceptor } from './interceptors/transform-response.interceptor';
+import { HttpExceptionFilter } from './filters/http-exception.filter';
 
 /**
- * Global module that provides shared guards, decorators, and utilities
- * available across the entire application.
+ * Global module that provides shared guards, interceptors and filters
+ * available across the entire application via NestJS DI.
  *
- * Exports:
- * - PermissionsGuard — RBAC guard, use with @RequirePermission() decorator
- * - AuditInterceptor — global interceptor, fires for @Audit() decorated handlers
+ * - PermissionsGuard             — RBAC guard, use with @RequirePermission()
+ * - AuditInterceptor             — fires for @Audit() decorated handlers
+ * - TransformResponseInterceptor — wraps all responses in { data, meta }
+ * - HttpExceptionFilter          — formats all errors as { error: { code, message, details } }
  */
 @Global()
 @Module({
@@ -18,6 +21,14 @@ import { AuditInterceptor } from './interceptors/audit.interceptor';
     {
       provide: APP_INTERCEPTOR,
       useClass: AuditInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TransformResponseInterceptor,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
     },
   ],
   exports: [PermissionsGuard],
