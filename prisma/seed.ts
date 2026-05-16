@@ -55,6 +55,63 @@ const ALL_PERMISSIONS: { key: string; description: string }[] = [
   { key: 'settings.update', description: 'Actualizar configuraciones' },
   // audit-logs
   { key: 'audit-logs.read', description: 'Ver logs de auditoría' },
+  // categories
+  { key: 'categories.create', description: 'Crear categorías' },
+  { key: 'categories.read', description: 'Ver categorías' },
+  { key: 'categories.update', description: 'Actualizar categorías' },
+  // units
+  { key: 'units.create', description: 'Crear unidades de medida' },
+  { key: 'units.read', description: 'Ver unidades de medida' },
+  { key: 'units.update', description: 'Actualizar unidades de medida' },
+  // price-lists
+  { key: 'price-lists.create', description: 'Crear listas de precios' },
+  { key: 'price-lists.read', description: 'Ver listas de precios' },
+  { key: 'price-lists.update', description: 'Actualizar listas de precios' },
+  // products
+  { key: 'products.create', description: 'Crear productos' },
+  { key: 'products.read', description: 'Ver productos' },
+  { key: 'products.update', description: 'Actualizar productos' },
+  // inventory
+  { key: 'inventory.read', description: 'Ver inventario y movimientos' },
+  {
+    key: 'inventory.adjust',
+    description: 'Ajustar y traspasar inventario',
+  },
+  // sales
+  { key: 'sales.create', description: 'Registrar ventas' },
+  { key: 'sales.read', description: 'Ver ventas' },
+  { key: 'sales.cancel', description: 'Cancelar ventas' },
+  // cash-sessions
+  { key: 'cash-sessions.read', description: 'Ver cortes de caja' },
+  { key: 'cash-sessions.open', description: 'Abrir caja' },
+  { key: 'cash-sessions.close', description: 'Cerrar caja' },
+  // suppliers
+  { key: 'suppliers.create', description: 'Crear proveedores' },
+  { key: 'suppliers.read', description: 'Ver proveedores' },
+  { key: 'suppliers.update', description: 'Actualizar proveedores' },
+  // purchases
+  { key: 'purchases.create', description: 'Registrar compras' },
+  { key: 'purchases.read', description: 'Ver compras' },
+  { key: 'purchases.receive', description: 'Recibir y cancelar compras' },
+  // customers
+  { key: 'customers.create', description: 'Crear clientes' },
+  { key: 'customers.read', description: 'Ver clientes' },
+  { key: 'customers.update', description: 'Actualizar clientes' },
+  { key: 'customers.credit', description: 'Gestionar crédito y abonos' },
+  // returns
+  { key: 'returns.create', description: 'Registrar devoluciones' },
+  { key: 'returns.read', description: 'Ver devoluciones' },
+  // promotions
+  { key: 'promotions.create', description: 'Crear promociones' },
+  { key: 'promotions.read', description: 'Ver promociones' },
+  { key: 'promotions.update', description: 'Actualizar promociones' },
+  // pos-sync (offline)
+  {
+    key: 'pos.sync',
+    description: 'Sincronizar el punto de venta offline',
+  },
+  // reports
+  { key: 'reports.read', description: 'Ver reportes' },
 ];
 
 // ============================================================
@@ -94,6 +151,43 @@ const ROLES: { name: string; description: string; permissionKeys: string[] }[] =
         'settings.read',
         'settings.update',
         'audit-logs.read',
+        'categories.create',
+        'categories.read',
+        'categories.update',
+        'units.create',
+        'units.read',
+        'units.update',
+        'price-lists.create',
+        'price-lists.read',
+        'price-lists.update',
+        'products.create',
+        'products.read',
+        'products.update',
+        'inventory.read',
+        'inventory.adjust',
+        'sales.create',
+        'sales.read',
+        'sales.cancel',
+        'cash-sessions.read',
+        'cash-sessions.open',
+        'cash-sessions.close',
+        'suppliers.create',
+        'suppliers.read',
+        'suppliers.update',
+        'purchases.create',
+        'purchases.read',
+        'purchases.receive',
+        'customers.create',
+        'customers.read',
+        'customers.update',
+        'customers.credit',
+        'returns.create',
+        'returns.read',
+        'promotions.create',
+        'promotions.read',
+        'promotions.update',
+        'pos.sync',
+        'reports.read',
       ],
     },
     {
@@ -104,6 +198,24 @@ const ROLES: { name: string; description: string; permissionKeys: string[] }[] =
         'payment-methods.read',
         'sequences.read',
         'settings.read',
+        'categories.read',
+        'units.read',
+        'price-lists.read',
+        'products.read',
+        'inventory.read',
+        'sales.create',
+        'sales.read',
+        'cash-sessions.read',
+        'cash-sessions.open',
+        'cash-sessions.close',
+        'customers.create',
+        'customers.read',
+        'customers.credit',
+        'returns.create',
+        'returns.read',
+        'promotions.read',
+        'pos.sync',
+        'reports.read',
       ],
     },
     {
@@ -117,6 +229,18 @@ const ROLES: { name: string; description: string; permissionKeys: string[] }[] =
         'locations.create',
         'locations.update',
         'settings.read',
+        'categories.read',
+        'units.read',
+        'products.read',
+        'inventory.read',
+        'inventory.adjust',
+        'suppliers.create',
+        'suppliers.read',
+        'suppliers.update',
+        'purchases.create',
+        'purchases.read',
+        'purchases.receive',
+        'reports.read',
       ],
     },
   ];
@@ -128,6 +252,25 @@ const PAYMENT_METHODS = [
   { name: 'Efectivo', type: 'cash', requiresReference: false },
   { name: 'Tarjeta', type: 'card', requiresReference: true },
   { name: 'Transferencia', type: 'transfer', requiresReference: true },
+];
+
+// ============================================================
+// 3b. UNITS of measure base
+// ============================================================
+const UNITS = [
+  { name: 'Pieza', abbreviation: 'pza', allowsDecimal: false },
+  { name: 'Kilogramo', abbreviation: 'kg', allowsDecimal: true },
+  { name: 'Gramo', abbreviation: 'g', allowsDecimal: true },
+  { name: 'Litro', abbreviation: 'L', allowsDecimal: true },
+  { name: 'Caja', abbreviation: 'caja', allowsDecimal: false },
+];
+
+// ============================================================
+// 3c. PRICE LISTS base
+// ============================================================
+const PRICE_LISTS = [
+  { name: 'Público', isDefault: true },
+  { name: 'Mayoreo', isDefault: false },
 ];
 
 // ============================================================
@@ -172,6 +315,21 @@ const BASE_SETTINGS: {
     key: 'inventory.defaultWarehouseStrategy',
     valueJson: 'FIFO',
     description: 'Estrategia de salida de inventario (FIFO/LIFO)',
+  },
+  {
+    key: 'loyalty.enabled',
+    valueJson: false,
+    description: 'Programa de puntos de lealtad activo',
+  },
+  {
+    key: 'loyalty.pointsPerCurrency',
+    valueJson: 1,
+    description: 'Puntos otorgados por cada unidad de moneda gastada',
+  },
+  {
+    key: 'loyalty.currencyPerPoint',
+    valueJson: 0.1,
+    description: 'Valor en moneda de cada punto al canjear',
   },
 ];
 
@@ -256,6 +414,71 @@ async function main() {
     `  ✅ Admin user created: username=admin, email=admin@gmail.com, password=admin123`,
   );
 
+  // ---- Default branch + warehouse --------------------------
+  console.log('Seeding default branch and warehouse…');
+  let branch = await prisma.branch.findUnique({ where: { code: 'MATRIZ' } });
+  if (!branch) {
+    branch = await prisma.branch.create({
+      data: {
+        name: 'Matriz',
+        code: 'MATRIZ',
+        timezone: 'America/Mexico_City',
+      },
+    });
+  }
+
+  let warehouse = await prisma.warehouse.findUnique({
+    where: { code: 'ALM-01' },
+  });
+  if (!warehouse) {
+    warehouse = await prisma.warehouse.create({
+      data: {
+        branchId: branch.id,
+        name: 'Almacén Principal',
+        code: 'ALM-01',
+      },
+    });
+  }
+
+  // Assign the admin user to the default branch
+  await prisma.userBranch.upsert({
+    where: {
+      userId_branchId: { userId: adminUser.id, branchId: branch.id },
+    },
+    update: { isDefault: true },
+    create: { userId: adminUser.id, branchId: branch.id, isDefault: true },
+  });
+  console.log(
+    `  ✅ Branch "Matriz" + warehouse "Almacén Principal" ready (admin assigned)`,
+  );
+
+  // ---- Sequences (folios) per branch -----------------------
+  console.log('Seeding sequences…');
+  const SEQUENCES = [
+    { key: 'sale', prefix: 'V-', padding: 6 },
+    { key: 'cash_session', prefix: 'C-', padding: 4 },
+    { key: 'purchase_order', prefix: 'OC-', padding: 5 },
+    { key: 'credit_note', prefix: 'NC-', padding: 5 },
+  ];
+  const allBranches = await prisma.branch.findMany({ select: { id: true } });
+  let seqCount = 0;
+  for (const b of allBranches) {
+    for (const s of SEQUENCES) {
+      await prisma.sequence.upsert({
+        where: { branchId_key: { branchId: b.id, key: s.key } },
+        update: {},
+        create: {
+          branchId: b.id,
+          key: s.key,
+          prefix: s.prefix,
+          padding: s.padding,
+        },
+      });
+      seqCount += 1;
+    }
+  }
+  console.log(`  ✅ ${seqCount} sequences upserted`);
+
   // ---- Payment Methods -------------------------------------
   console.log('Seeding payment methods…');
   for (const pm of PAYMENT_METHODS) {
@@ -270,6 +493,38 @@ async function main() {
     });
   }
   console.log(`  ✅ ${PAYMENT_METHODS.length} payment methods upserted`);
+
+  // ---- Units of measure ------------------------------------
+  console.log('Seeding units…');
+  for (const u of UNITS) {
+    const existing = await prisma.unit.findFirst({ where: { name: u.name } });
+    if (existing) {
+      await prisma.unit.update({
+        where: { id: existing.id },
+        data: { abbreviation: u.abbreviation, allowsDecimal: u.allowsDecimal },
+      });
+    } else {
+      await prisma.unit.create({ data: u });
+    }
+  }
+  console.log(`  ✅ ${UNITS.length} units upserted`);
+
+  // ---- Price lists -----------------------------------------
+  console.log('Seeding price lists…');
+  for (const pl of PRICE_LISTS) {
+    const existing = await prisma.priceList.findFirst({
+      where: { name: pl.name },
+    });
+    if (existing) {
+      await prisma.priceList.update({
+        where: { id: existing.id },
+        data: { isDefault: pl.isDefault },
+      });
+    } else {
+      await prisma.priceList.create({ data: pl });
+    }
+  }
+  console.log(`  ✅ ${PRICE_LISTS.length} price lists upserted`);
 
   // ---- Settings (global scope) -----------------------------
   console.log('Seeding global settings…');

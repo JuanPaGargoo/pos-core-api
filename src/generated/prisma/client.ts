@@ -106,3 +106,108 @@ export type Setting = Prisma.SettingModel
  * 
  */
 export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model Category
+ * 
+ */
+export type Category = Prisma.CategoryModel
+/**
+ * Model Unit
+ * 
+ */
+export type Unit = Prisma.UnitModel
+/**
+ * Model Product
+ * 
+ */
+export type Product = Prisma.ProductModel
+/**
+ * Model ProductBarcode
+ * 
+ */
+export type ProductBarcode = Prisma.ProductBarcodeModel
+/**
+ * Model PriceList
+ * 
+ */
+export type PriceList = Prisma.PriceListModel
+/**
+ * Model ProductPrice
+ * 
+ */
+export type ProductPrice = Prisma.ProductPriceModel
+/**
+ * Model StockLevel
+ * 
+ */
+export type StockLevel = Prisma.StockLevelModel
+/**
+ * Model StockMovement
+ * 
+ */
+export type StockMovement = Prisma.StockMovementModel
+/**
+ * Model CashSession
+ * 
+ */
+export type CashSession = Prisma.CashSessionModel
+/**
+ * Model CashMovement
+ * 
+ */
+export type CashMovement = Prisma.CashMovementModel
+/**
+ * Model Sale
+ * 
+ */
+export type Sale = Prisma.SaleModel
+/**
+ * Model SaleItem
+ * 
+ */
+export type SaleItem = Prisma.SaleItemModel
+/**
+ * Model SalePayment
+ * 
+ */
+export type SalePayment = Prisma.SalePaymentModel
+/**
+ * Model Supplier
+ * 
+ */
+export type Supplier = Prisma.SupplierModel
+/**
+ * Model Purchase
+ * 
+ */
+export type Purchase = Prisma.PurchaseModel
+/**
+ * Model PurchaseItem
+ * 
+ */
+export type PurchaseItem = Prisma.PurchaseItemModel
+/**
+ * Model Customer
+ * 
+ */
+export type Customer = Prisma.CustomerModel
+/**
+ * Model CustomerCreditEntry
+ * 
+ */
+export type CustomerCreditEntry = Prisma.CustomerCreditEntryModel
+/**
+ * Model SaleReturn
+ * 
+ */
+export type SaleReturn = Prisma.SaleReturnModel
+/**
+ * Model SaleReturnItem
+ * 
+ */
+export type SaleReturnItem = Prisma.SaleReturnItemModel
+/**
+ * Model Promotion
+ * 
+ */
+export type Promotion = Prisma.PromotionModel

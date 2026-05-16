@@ -219,6 +219,7 @@ export type TaxWhereInput = {
   rate?: Prisma.DecimalFilter<"Tax"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: Prisma.BoolFilter<"Tax"> | boolean
   isActive?: Prisma.BoolFilter<"Tax"> | boolean
+  products?: Prisma.ProductListRelationFilter
 }
 
 export type TaxOrderByWithRelationInput = {
@@ -227,6 +228,7 @@ export type TaxOrderByWithRelationInput = {
   rate?: Prisma.SortOrder
   isIncluded?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  products?: Prisma.ProductOrderByRelationAggregateInput
 }
 
 export type TaxWhereUniqueInput = Prisma.AtLeast<{
@@ -238,6 +240,7 @@ export type TaxWhereUniqueInput = Prisma.AtLeast<{
   rate?: Prisma.DecimalFilter<"Tax"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: Prisma.BoolFilter<"Tax"> | boolean
   isActive?: Prisma.BoolFilter<"Tax"> | boolean
+  products?: Prisma.ProductListRelationFilter
 }, "id">
 
 export type TaxOrderByWithAggregationInput = {
@@ -269,6 +272,7 @@ export type TaxCreateInput = {
   rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: boolean
   isActive?: boolean
+  products?: Prisma.ProductCreateNestedManyWithoutTaxInput
 }
 
 export type TaxUncheckedCreateInput = {
@@ -277,6 +281,7 @@ export type TaxUncheckedCreateInput = {
   rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: boolean
   isActive?: boolean
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTaxInput
 }
 
 export type TaxUpdateInput = {
@@ -284,6 +289,7 @@ export type TaxUpdateInput = {
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  products?: Prisma.ProductUpdateManyWithoutTaxNestedInput
 }
 
 export type TaxUncheckedUpdateInput = {
@@ -292,6 +298,7 @@ export type TaxUncheckedUpdateInput = {
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  products?: Prisma.ProductUncheckedUpdateManyWithoutTaxNestedInput
 }
 
 export type TaxCreateManyInput = {
@@ -351,6 +358,11 @@ export type TaxSumOrderByAggregateInput = {
   rate?: Prisma.SortOrder
 }
 
+export type TaxNullableScalarRelationFilter = {
+  is?: Prisma.TaxWhereInput | null
+  isNot?: Prisma.TaxWhereInput | null
+}
+
 export type DecimalFieldUpdateOperationsInput = {
   set?: runtime.Decimal | runtime.DecimalJsLike | number | string
   increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -359,6 +371,97 @@ export type DecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type TaxCreateNestedOneWithoutProductsInput = {
+  create?: Prisma.XOR<Prisma.TaxCreateWithoutProductsInput, Prisma.TaxUncheckedCreateWithoutProductsInput>
+  connectOrCreate?: Prisma.TaxCreateOrConnectWithoutProductsInput
+  connect?: Prisma.TaxWhereUniqueInput
+}
+
+export type TaxUpdateOneWithoutProductsNestedInput = {
+  create?: Prisma.XOR<Prisma.TaxCreateWithoutProductsInput, Prisma.TaxUncheckedCreateWithoutProductsInput>
+  connectOrCreate?: Prisma.TaxCreateOrConnectWithoutProductsInput
+  upsert?: Prisma.TaxUpsertWithoutProductsInput
+  disconnect?: Prisma.TaxWhereInput | boolean
+  delete?: Prisma.TaxWhereInput | boolean
+  connect?: Prisma.TaxWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TaxUpdateToOneWithWhereWithoutProductsInput, Prisma.TaxUpdateWithoutProductsInput>, Prisma.TaxUncheckedUpdateWithoutProductsInput>
+}
+
+export type TaxCreateWithoutProductsInput = {
+  name: string
+  rate: runtime.Decimal | runtime.DecimalJsLike | number | string
+  isIncluded?: boolean
+  isActive?: boolean
+}
+
+export type TaxUncheckedCreateWithoutProductsInput = {
+  id?: number
+  name: string
+  rate: runtime.Decimal | runtime.DecimalJsLike | number | string
+  isIncluded?: boolean
+  isActive?: boolean
+}
+
+export type TaxCreateOrConnectWithoutProductsInput = {
+  where: Prisma.TaxWhereUniqueInput
+  create: Prisma.XOR<Prisma.TaxCreateWithoutProductsInput, Prisma.TaxUncheckedCreateWithoutProductsInput>
+}
+
+export type TaxUpsertWithoutProductsInput = {
+  update: Prisma.XOR<Prisma.TaxUpdateWithoutProductsInput, Prisma.TaxUncheckedUpdateWithoutProductsInput>
+  create: Prisma.XOR<Prisma.TaxCreateWithoutProductsInput, Prisma.TaxUncheckedCreateWithoutProductsInput>
+  where?: Prisma.TaxWhereInput
+}
+
+export type TaxUpdateToOneWithWhereWithoutProductsInput = {
+  where?: Prisma.TaxWhereInput
+  data: Prisma.XOR<Prisma.TaxUpdateWithoutProductsInput, Prisma.TaxUncheckedUpdateWithoutProductsInput>
+}
+
+export type TaxUpdateWithoutProductsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  isIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type TaxUncheckedUpdateWithoutProductsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  isIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+
+/**
+ * Count Type TaxCountOutputType
+ */
+
+export type TaxCountOutputType = {
+  products: number
+}
+
+export type TaxCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  products?: boolean | TaxCountOutputTypeCountProductsArgs
+}
+
+/**
+ * TaxCountOutputType without action
+ */
+export type TaxCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TaxCountOutputType
+   */
+  select?: Prisma.TaxCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * TaxCountOutputType without action
+ */
+export type TaxCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductWhereInput
+}
 
 
 export type TaxSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -367,6 +470,8 @@ export type TaxSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   rate?: boolean
   isIncluded?: boolean
   isActive?: boolean
+  products?: boolean | Prisma.Tax$productsArgs<ExtArgs>
+  _count?: boolean | Prisma.TaxCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tax"]>
 
 export type TaxSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -394,10 +499,18 @@ export type TaxSelectScalar = {
 }
 
 export type TaxOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "rate" | "isIncluded" | "isActive", ExtArgs["result"]["tax"]>
+export type TaxInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  products?: boolean | Prisma.Tax$productsArgs<ExtArgs>
+  _count?: boolean | Prisma.TaxCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type TaxIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type TaxIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $TaxPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Tax"
-  objects: {}
+  objects: {
+    products: Prisma.$ProductPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
@@ -798,6 +911,7 @@ readonly fields: TaxFieldRefs;
  */
 export interface Prisma__TaxClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  products<T extends Prisma.Tax$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tax$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -849,6 +963,10 @@ export type TaxFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    */
   omit?: Prisma.TaxOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaxInclude<ExtArgs> | null
+  /**
    * Filter, which Tax to fetch.
    */
   where: Prisma.TaxWhereUniqueInput
@@ -867,6 +985,10 @@ export type TaxFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.TaxOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaxInclude<ExtArgs> | null
+  /**
    * Filter, which Tax to fetch.
    */
   where: Prisma.TaxWhereUniqueInput
@@ -884,6 +1006,10 @@ export type TaxFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Tax
    */
   omit?: Prisma.TaxOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaxInclude<ExtArgs> | null
   /**
    * Filter, which Tax to fetch.
    */
@@ -933,6 +1059,10 @@ export type TaxFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   omit?: Prisma.TaxOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaxInclude<ExtArgs> | null
+  /**
    * Filter, which Tax to fetch.
    */
   where?: Prisma.TaxWhereInput
@@ -981,6 +1111,10 @@ export type TaxFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   omit?: Prisma.TaxOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaxInclude<ExtArgs> | null
+  /**
    * Filter, which Taxes to fetch.
    */
   where?: Prisma.TaxWhereInput
@@ -1023,6 +1157,10 @@ export type TaxCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs 
    * Omit specific fields from the Tax
    */
   omit?: Prisma.TaxOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaxInclude<ExtArgs> | null
   /**
    * The data needed to create a Tax.
    */
@@ -1071,6 +1209,10 @@ export type TaxUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs 
    * Omit specific fields from the Tax
    */
   omit?: Prisma.TaxOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaxInclude<ExtArgs> | null
   /**
    * The data needed to update a Tax.
    */
@@ -1138,6 +1280,10 @@ export type TaxUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs 
    */
   omit?: Prisma.TaxOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaxInclude<ExtArgs> | null
+  /**
    * The filter to search for the Tax to update in case it exists.
    */
   where: Prisma.TaxWhereUniqueInput
@@ -1164,6 +1310,10 @@ export type TaxDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs 
    */
   omit?: Prisma.TaxOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaxInclude<ExtArgs> | null
+  /**
    * Filter which Tax to delete.
    */
   where: Prisma.TaxWhereUniqueInput
@@ -1184,6 +1334,30 @@ export type TaxDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
+ * Tax.products
+ */
+export type Tax$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Product
+   */
+  select?: Prisma.ProductSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Product
+   */
+  omit?: Prisma.ProductOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductInclude<ExtArgs> | null
+  where?: Prisma.ProductWhereInput
+  orderBy?: Prisma.ProductOrderByWithRelationInput | Prisma.ProductOrderByWithRelationInput[]
+  cursor?: Prisma.ProductWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
+}
+
+/**
  * Tax without action
  */
 export type TaxDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1195,4 +1369,8 @@ export type TaxDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the Tax
    */
   omit?: Prisma.TaxOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TaxInclude<ExtArgs> | null
 }
