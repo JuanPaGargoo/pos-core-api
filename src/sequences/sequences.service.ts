@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Sequence } from '../generated/prisma/client';
+import { Prisma, Sequence } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { PaginationQueryDto, UpdateSequenceDto } from './dto';
 
@@ -78,11 +78,19 @@ export class SequencesService {
   // Locks the sequence row, reads the current next_number, increments it,
   // and returns the formatted folio: prefix + zero-padded number.
   // Safe for concurrent usage — no two callers will get the same number.
+  //
+  // Pass an existing transaction client (`tx`) to assign the folio inside the
+  // caller's transaction (e.g. when creating a sale); otherwise it opens its
+  // own transaction.
   // ──────────────────────────────────────────────
-  async getNextNumber(branchId: number, key: string): Promise<string> {
-    return this.prisma.$transaction(async (tx) => {
+  async getNextNumber(
+    branchId: number,
+    key: string,
+    tx?: Prisma.TransactionClient,
+  ): Promise<string> {
+    const run = async (client: Prisma.TransactionClient): Promise<string> => {
       // Lock the row with SELECT FOR UPDATE to prevent concurrent collisions
-      const rows = await tx.$queryRaw<SequenceRow[]>`
+      const rows = await client.$queryRaw<SequenceRow[]>`
         SELECT id, prefix, next_number, padding
         FROM sequences
         WHERE branch_id = ${branchId} AND key = ${key}
@@ -99,7 +107,7 @@ export class SequencesService {
       const currentNumber = Number(seq.next_number);
 
       // Increment next_number
-      await tx.$executeRaw`
+      await client.$executeRaw`
         UPDATE sequences
         SET next_number = next_number + 1
         WHERE id = ${seq.id}
@@ -108,6 +116,8 @@ export class SequencesService {
       // Format: prefix + zero-padded number
       const padded = String(currentNumber).padStart(Number(seq.padding), '0');
       return `${seq.prefix}${padded}`;
-    });
+    };
+
+    return tx ? run(tx) : this.prisma.$transaction(run);
   }
 }
