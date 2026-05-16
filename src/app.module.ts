@@ -16,6 +16,20 @@ import { PaymentMethodsModule } from './payment-methods/payment-methods.module';
 import { SettingsModule } from './settings/settings.module';
 import { SequencesModule } from './sequences/sequences.module';
 import { AuditLogsModule } from './audit-logs/audit-logs.module';
+import { UnitsModule } from './units/units.module';
+import { CategoriesModule } from './categories/categories.module';
+import { PriceListsModule } from './price-lists/price-lists.module';
+import { ProductsModule } from './products/products.module';
+import { InventoryModule } from './inventory/inventory.module';
+import { CashSessionsModule } from './cash-sessions/cash-sessions.module';
+import { SalesModule } from './sales/sales.module';
+import { SuppliersModule } from './suppliers/suppliers.module';
+import { PurchasesModule } from './purchases/purchases.module';
+import { CustomersModule } from './customers/customers.module';
+import { ReturnsModule } from './returns/returns.module';
+import { PromotionsModule } from './promotions/promotions.module';
+import { PosSyncModule } from './pos-sync/pos-sync.module';
+import { ReportsModule } from './reports/reports.module';
 import { validate } from './config/env.validation';
 
 @Module({
@@ -45,6 +59,20 @@ import { validate } from './config/env.validation';
     PaymentMethodsModule,
     SettingsModule,
     SequencesModule,
+    UnitsModule,
+    CategoriesModule,
+    PriceListsModule,
+    ProductsModule,
+    InventoryModule,
+    CashSessionsModule,
+    SalesModule,
+    SuppliersModule,
+    PurchasesModule,
+    CustomersModule,
+    ReturnsModule,
+    PromotionsModule,
+    PosSyncModule,
+    ReportsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
