@@ -26,6 +26,14 @@ export class ReportsController {
     return this.reportsService.salesSummary(query);
   }
 
+  @Get('sales-series')
+  @RequirePermission('reports.read')
+  @ApiOperation({ summary: 'Serie diaria de ventas en el periodo' })
+  @ApiResponse({ status: 200, description: 'Totales por día' })
+  salesSeries(@Query() query: ReportQueryDto) {
+    return this.reportsService.salesSeries(query);
+  }
+
   @Get('top-products')
   @RequirePermission('reports.read')
   @ApiOperation({ summary: 'Productos más vendidos' })

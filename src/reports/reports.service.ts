@@ -22,6 +22,44 @@ export class ReportsService {
     return where;
   }
 
+  // ── GET /reports/sales-series ─────────────────────────────
+  /** Daily sales totals across the window — one point per day, zeros filled. */
+  async salesSeries(query: ReportQueryDto) {
+    const where = this.saleWhere(query);
+    const sales = await this.prisma.sale.findMany({
+      where,
+      select: { soldAt: true, total: true },
+    });
+
+    const byDay = new Map<string, { total: number; count: number }>();
+    for (const s of sales) {
+      const day = s.soldAt.toISOString().slice(0, 10);
+      const cur = byDay.get(day) ?? { total: 0, count: 0 };
+      cur.total += num(s.total);
+      cur.count += 1;
+      byDay.set(day, cur);
+    }
+
+    const series: { date: string; total: number; count: number }[] = [];
+    if (query.from && query.to) {
+      const cursor = new Date(query.from);
+      const end = new Date(query.to);
+      // Guard against pathological ranges.
+      for (let i = 0; cursor <= end && i < 400; i += 1) {
+        const day = cursor.toISOString().slice(0, 10);
+        const v = byDay.get(day) ?? { total: 0, count: 0 };
+        series.push({ date: day, total: round(v.total), count: v.count });
+        cursor.setDate(cursor.getDate() + 1);
+      }
+    } else {
+      for (const [day, v] of [...byDay.entries()].sort()) {
+        series.push({ date: day, total: round(v.total), count: v.count });
+      }
+    }
+
+    return { data: series, meta: {} };
+  }
+
   // ── GET /reports/sales-summary ────────────────────────────
   async salesSummary(query: ReportQueryDto) {
     const where = this.saleWhere(query);
