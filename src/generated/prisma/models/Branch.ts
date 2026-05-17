@@ -27,10 +27,14 @@ export type AggregateBranch = {
 
 export type BranchAvgAggregateOutputType = {
   id: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type BranchSumAggregateOutputType = {
   id: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type BranchMinAggregateOutputType = {
@@ -41,6 +45,10 @@ export type BranchMinAggregateOutputType = {
   phone: string | null
   timezone: string | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type BranchMaxAggregateOutputType = {
@@ -51,6 +59,10 @@ export type BranchMaxAggregateOutputType = {
   phone: string | null
   timezone: string | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type BranchCountAggregateOutputType = {
@@ -61,16 +73,24 @@ export type BranchCountAggregateOutputType = {
   phone: number
   timezone: number
   isActive: number
+  createdAt: number
+  updatedAt: number
+  createdById: number
+  updatedById: number
   _all: number
 }
 
 
 export type BranchAvgAggregateInputType = {
   id?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type BranchSumAggregateInputType = {
   id?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type BranchMinAggregateInputType = {
@@ -81,6 +101,10 @@ export type BranchMinAggregateInputType = {
   phone?: true
   timezone?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type BranchMaxAggregateInputType = {
@@ -91,6 +115,10 @@ export type BranchMaxAggregateInputType = {
   phone?: true
   timezone?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type BranchCountAggregateInputType = {
@@ -101,6 +129,10 @@ export type BranchCountAggregateInputType = {
   phone?: true
   timezone?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
   _all?: true
 }
 
@@ -198,6 +230,10 @@ export type BranchGroupByOutputType = {
   phone: string | null
   timezone: string
   isActive: boolean
+  createdAt: Date
+  updatedAt: Date
+  createdById: number | null
+  updatedById: number | null
   _count: BranchCountAggregateOutputType | null
   _avg: BranchAvgAggregateOutputType | null
   _sum: BranchSumAggregateOutputType | null
@@ -231,6 +267,10 @@ export type BranchWhereInput = {
   phone?: Prisma.StringNullableFilter<"Branch"> | string | null
   timezone?: Prisma.StringFilter<"Branch"> | string
   isActive?: Prisma.BoolFilter<"Branch"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Branch"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Branch"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Branch"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Branch"> | number | null
   userBranches?: Prisma.UserBranchListRelationFilter
   warehouses?: Prisma.WarehouseListRelationFilter
   sequences?: Prisma.SequenceListRelationFilter
@@ -254,6 +294,10 @@ export type BranchOrderByWithRelationInput = {
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   timezone?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   userBranches?: Prisma.UserBranchOrderByRelationAggregateInput
   warehouses?: Prisma.WarehouseOrderByRelationAggregateInput
   sequences?: Prisma.SequenceOrderByRelationAggregateInput
@@ -280,6 +324,10 @@ export type BranchWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringNullableFilter<"Branch"> | string | null
   timezone?: Prisma.StringFilter<"Branch"> | string
   isActive?: Prisma.BoolFilter<"Branch"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Branch"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Branch"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Branch"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Branch"> | number | null
   userBranches?: Prisma.UserBranchListRelationFilter
   warehouses?: Prisma.WarehouseListRelationFilter
   sequences?: Prisma.SequenceListRelationFilter
@@ -303,6 +351,10 @@ export type BranchOrderByWithAggregationInput = {
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   timezone?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.BranchCountOrderByAggregateInput
   _avg?: Prisma.BranchAvgOrderByAggregateInput
   _max?: Prisma.BranchMaxOrderByAggregateInput
@@ -321,6 +373,10 @@ export type BranchScalarWhereWithAggregatesInput = {
   phone?: Prisma.StringNullableWithAggregatesFilter<"Branch"> | string | null
   timezone?: Prisma.StringWithAggregatesFilter<"Branch"> | string
   isActive?: Prisma.BoolWithAggregatesFilter<"Branch"> | boolean
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Branch"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Branch"> | Date | string
+  createdById?: Prisma.IntNullableWithAggregatesFilter<"Branch"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"Branch"> | number | null
 }
 
 export type BranchCreateInput = {
@@ -330,6 +386,10 @@ export type BranchCreateInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceCreateNestedManyWithoutBranchInput
@@ -353,6 +413,10 @@ export type BranchUncheckedCreateInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceUncheckedCreateNestedManyWithoutBranchInput
@@ -375,6 +439,10 @@ export type BranchUpdateInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUpdateManyWithoutBranchNestedInput
@@ -398,6 +466,10 @@ export type BranchUncheckedUpdateInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUncheckedUpdateManyWithoutBranchNestedInput
@@ -421,6 +493,10 @@ export type BranchCreateManyInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type BranchUpdateManyMutationInput = {
@@ -430,6 +506,10 @@ export type BranchUpdateManyMutationInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type BranchUncheckedUpdateManyInput = {
@@ -440,6 +520,10 @@ export type BranchUncheckedUpdateManyInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type BranchCountOrderByAggregateInput = {
@@ -450,10 +534,16 @@ export type BranchCountOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type BranchAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type BranchMaxOrderByAggregateInput = {
@@ -464,6 +554,10 @@ export type BranchMaxOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type BranchMinOrderByAggregateInput = {
@@ -474,10 +568,16 @@ export type BranchMinOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type BranchSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type BranchScalarRelationFilter = {
@@ -685,6 +785,10 @@ export type BranchCreateWithoutUserBranchesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceCreateNestedManyWithoutBranchInput
   settings?: Prisma.SettingCreateNestedManyWithoutBranchInput
@@ -707,6 +811,10 @@ export type BranchUncheckedCreateWithoutUserBranchesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceUncheckedCreateNestedManyWithoutBranchInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutBranchInput
@@ -744,6 +852,10 @@ export type BranchUpdateWithoutUserBranchesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   warehouses?: Prisma.WarehouseUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUpdateManyWithoutBranchNestedInput
   settings?: Prisma.SettingUpdateManyWithoutBranchNestedInput
@@ -766,6 +878,10 @@ export type BranchUncheckedUpdateWithoutUserBranchesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUncheckedUpdateManyWithoutBranchNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutBranchNestedInput
@@ -787,6 +903,10 @@ export type BranchCreateWithoutWarehousesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceCreateNestedManyWithoutBranchInput
   settings?: Prisma.SettingCreateNestedManyWithoutBranchInput
@@ -809,6 +929,10 @@ export type BranchUncheckedCreateWithoutWarehousesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceUncheckedCreateNestedManyWithoutBranchInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutBranchInput
@@ -846,6 +970,10 @@ export type BranchUpdateWithoutWarehousesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUpdateManyWithoutBranchNestedInput
   settings?: Prisma.SettingUpdateManyWithoutBranchNestedInput
@@ -868,6 +996,10 @@ export type BranchUncheckedUpdateWithoutWarehousesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUncheckedUpdateManyWithoutBranchNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutBranchNestedInput
@@ -889,6 +1021,10 @@ export type BranchCreateWithoutSequencesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutBranchInput
   settings?: Prisma.SettingCreateNestedManyWithoutBranchInput
@@ -911,6 +1047,10 @@ export type BranchUncheckedCreateWithoutSequencesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutBranchInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutBranchInput
@@ -948,6 +1088,10 @@ export type BranchUpdateWithoutSequencesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutBranchNestedInput
   settings?: Prisma.SettingUpdateManyWithoutBranchNestedInput
@@ -970,6 +1114,10 @@ export type BranchUncheckedUpdateWithoutSequencesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutBranchNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutBranchNestedInput
@@ -991,6 +1139,10 @@ export type BranchCreateWithoutSettingsInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceCreateNestedManyWithoutBranchInput
@@ -1013,6 +1165,10 @@ export type BranchUncheckedCreateWithoutSettingsInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceUncheckedCreateNestedManyWithoutBranchInput
@@ -1050,6 +1206,10 @@ export type BranchUpdateWithoutSettingsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUpdateManyWithoutBranchNestedInput
@@ -1072,6 +1232,10 @@ export type BranchUncheckedUpdateWithoutSettingsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUncheckedUpdateManyWithoutBranchNestedInput
@@ -1093,6 +1257,10 @@ export type BranchCreateWithoutAuditLogsInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceCreateNestedManyWithoutBranchInput
@@ -1115,6 +1283,10 @@ export type BranchUncheckedCreateWithoutAuditLogsInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceUncheckedCreateNestedManyWithoutBranchInput
@@ -1152,6 +1324,10 @@ export type BranchUpdateWithoutAuditLogsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUpdateManyWithoutBranchNestedInput
@@ -1174,6 +1350,10 @@ export type BranchUncheckedUpdateWithoutAuditLogsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUncheckedUpdateManyWithoutBranchNestedInput
@@ -1195,6 +1375,10 @@ export type BranchCreateWithoutProductPricesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceCreateNestedManyWithoutBranchInput
@@ -1217,6 +1401,10 @@ export type BranchUncheckedCreateWithoutProductPricesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceUncheckedCreateNestedManyWithoutBranchInput
@@ -1254,6 +1442,10 @@ export type BranchUpdateWithoutProductPricesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUpdateManyWithoutBranchNestedInput
@@ -1276,6 +1468,10 @@ export type BranchUncheckedUpdateWithoutProductPricesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUncheckedUpdateManyWithoutBranchNestedInput
@@ -1297,6 +1493,10 @@ export type BranchCreateWithoutStockLevelsInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceCreateNestedManyWithoutBranchInput
@@ -1319,6 +1519,10 @@ export type BranchUncheckedCreateWithoutStockLevelsInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceUncheckedCreateNestedManyWithoutBranchInput
@@ -1356,6 +1560,10 @@ export type BranchUpdateWithoutStockLevelsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUpdateManyWithoutBranchNestedInput
@@ -1378,6 +1586,10 @@ export type BranchUncheckedUpdateWithoutStockLevelsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUncheckedUpdateManyWithoutBranchNestedInput
@@ -1399,6 +1611,10 @@ export type BranchCreateWithoutStockMovementsInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceCreateNestedManyWithoutBranchInput
@@ -1421,6 +1637,10 @@ export type BranchUncheckedCreateWithoutStockMovementsInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceUncheckedCreateNestedManyWithoutBranchInput
@@ -1458,6 +1678,10 @@ export type BranchUpdateWithoutStockMovementsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUpdateManyWithoutBranchNestedInput
@@ -1480,6 +1704,10 @@ export type BranchUncheckedUpdateWithoutStockMovementsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUncheckedUpdateManyWithoutBranchNestedInput
@@ -1501,6 +1729,10 @@ export type BranchCreateWithoutCashSessionsInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceCreateNestedManyWithoutBranchInput
@@ -1523,6 +1755,10 @@ export type BranchUncheckedCreateWithoutCashSessionsInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceUncheckedCreateNestedManyWithoutBranchInput
@@ -1560,6 +1796,10 @@ export type BranchUpdateWithoutCashSessionsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUpdateManyWithoutBranchNestedInput
@@ -1582,6 +1822,10 @@ export type BranchUncheckedUpdateWithoutCashSessionsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUncheckedUpdateManyWithoutBranchNestedInput
@@ -1603,6 +1847,10 @@ export type BranchCreateWithoutSalesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceCreateNestedManyWithoutBranchInput
@@ -1625,6 +1873,10 @@ export type BranchUncheckedCreateWithoutSalesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceUncheckedCreateNestedManyWithoutBranchInput
@@ -1662,6 +1914,10 @@ export type BranchUpdateWithoutSalesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUpdateManyWithoutBranchNestedInput
@@ -1684,6 +1940,10 @@ export type BranchUncheckedUpdateWithoutSalesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUncheckedUpdateManyWithoutBranchNestedInput
@@ -1705,6 +1965,10 @@ export type BranchCreateWithoutPurchasesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceCreateNestedManyWithoutBranchInput
@@ -1727,6 +1991,10 @@ export type BranchUncheckedCreateWithoutPurchasesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceUncheckedCreateNestedManyWithoutBranchInput
@@ -1764,6 +2032,10 @@ export type BranchUpdateWithoutPurchasesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUpdateManyWithoutBranchNestedInput
@@ -1786,6 +2058,10 @@ export type BranchUncheckedUpdateWithoutPurchasesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUncheckedUpdateManyWithoutBranchNestedInput
@@ -1807,6 +2083,10 @@ export type BranchCreateWithoutCustomerCreditEntriesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceCreateNestedManyWithoutBranchInput
@@ -1829,6 +2109,10 @@ export type BranchUncheckedCreateWithoutCustomerCreditEntriesInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceUncheckedCreateNestedManyWithoutBranchInput
@@ -1866,6 +2150,10 @@ export type BranchUpdateWithoutCustomerCreditEntriesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUpdateManyWithoutBranchNestedInput
@@ -1888,6 +2176,10 @@ export type BranchUncheckedUpdateWithoutCustomerCreditEntriesInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUncheckedUpdateManyWithoutBranchNestedInput
@@ -1909,6 +2201,10 @@ export type BranchCreateWithoutSaleReturnsInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceCreateNestedManyWithoutBranchInput
@@ -1931,6 +2227,10 @@ export type BranchUncheckedCreateWithoutSaleReturnsInput = {
   phone?: string | null
   timezone?: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutBranchInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutBranchInput
   sequences?: Prisma.SequenceUncheckedCreateNestedManyWithoutBranchInput
@@ -1968,6 +2268,10 @@ export type BranchUpdateWithoutSaleReturnsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUpdateManyWithoutBranchNestedInput
@@ -1990,6 +2294,10 @@ export type BranchUncheckedUpdateWithoutSaleReturnsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutBranchNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutBranchNestedInput
   sequences?: Prisma.SequenceUncheckedUpdateManyWithoutBranchNestedInput
@@ -2151,6 +2459,10 @@ export type BranchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   phone?: boolean
   timezone?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   userBranches?: boolean | Prisma.Branch$userBranchesArgs<ExtArgs>
   warehouses?: boolean | Prisma.Branch$warehousesArgs<ExtArgs>
   sequences?: boolean | Prisma.Branch$sequencesArgs<ExtArgs>
@@ -2175,6 +2487,10 @@ export type BranchSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   phone?: boolean
   timezone?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }, ExtArgs["result"]["branch"]>
 
 export type BranchSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2185,6 +2501,10 @@ export type BranchSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   phone?: boolean
   timezone?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }, ExtArgs["result"]["branch"]>
 
 export type BranchSelectScalar = {
@@ -2195,9 +2515,13 @@ export type BranchSelectScalar = {
   phone?: boolean
   timezone?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }
 
-export type BranchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "address" | "phone" | "timezone" | "isActive", ExtArgs["result"]["branch"]>
+export type BranchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "address" | "phone" | "timezone" | "isActive" | "createdAt" | "updatedAt" | "createdById" | "updatedById", ExtArgs["result"]["branch"]>
 export type BranchInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   userBranches?: boolean | Prisma.Branch$userBranchesArgs<ExtArgs>
   warehouses?: boolean | Prisma.Branch$warehousesArgs<ExtArgs>
@@ -2242,6 +2566,10 @@ export type $BranchPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     phone: string | null
     timezone: string
     isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    createdById: number | null
+    updatedById: number | null
   }, ExtArgs["result"]["branch"]>
   composites: {}
 }
@@ -2685,6 +3013,10 @@ export interface BranchFieldRefs {
   readonly phone: Prisma.FieldRef<"Branch", 'String'>
   readonly timezone: Prisma.FieldRef<"Branch", 'String'>
   readonly isActive: Prisma.FieldRef<"Branch", 'Boolean'>
+  readonly createdAt: Prisma.FieldRef<"Branch", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Branch", 'DateTime'>
+  readonly createdById: Prisma.FieldRef<"Branch", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"Branch", 'Int'>
 }
     
 

@@ -27,10 +27,14 @@ export type AggregateUnit = {
 
 export type UnitAvgAggregateOutputType = {
   id: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type UnitSumAggregateOutputType = {
   id: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type UnitMinAggregateOutputType = {
@@ -38,6 +42,10 @@ export type UnitMinAggregateOutputType = {
   name: string | null
   abbreviation: string | null
   allowsDecimal: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type UnitMaxAggregateOutputType = {
@@ -45,6 +53,10 @@ export type UnitMaxAggregateOutputType = {
   name: string | null
   abbreviation: string | null
   allowsDecimal: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type UnitCountAggregateOutputType = {
@@ -52,16 +64,24 @@ export type UnitCountAggregateOutputType = {
   name: number
   abbreviation: number
   allowsDecimal: number
+  createdAt: number
+  updatedAt: number
+  createdById: number
+  updatedById: number
   _all: number
 }
 
 
 export type UnitAvgAggregateInputType = {
   id?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type UnitSumAggregateInputType = {
   id?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type UnitMinAggregateInputType = {
@@ -69,6 +89,10 @@ export type UnitMinAggregateInputType = {
   name?: true
   abbreviation?: true
   allowsDecimal?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type UnitMaxAggregateInputType = {
@@ -76,6 +100,10 @@ export type UnitMaxAggregateInputType = {
   name?: true
   abbreviation?: true
   allowsDecimal?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type UnitCountAggregateInputType = {
@@ -83,6 +111,10 @@ export type UnitCountAggregateInputType = {
   name?: true
   abbreviation?: true
   allowsDecimal?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
   _all?: true
 }
 
@@ -177,6 +209,10 @@ export type UnitGroupByOutputType = {
   name: string
   abbreviation: string
   allowsDecimal: boolean
+  createdAt: Date
+  updatedAt: Date
+  createdById: number | null
+  updatedById: number | null
   _count: UnitCountAggregateOutputType | null
   _avg: UnitAvgAggregateOutputType | null
   _sum: UnitSumAggregateOutputType | null
@@ -207,6 +243,10 @@ export type UnitWhereInput = {
   name?: Prisma.StringFilter<"Unit"> | string
   abbreviation?: Prisma.StringFilter<"Unit"> | string
   allowsDecimal?: Prisma.BoolFilter<"Unit"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Unit"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Unit"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Unit"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Unit"> | number | null
   products?: Prisma.ProductListRelationFilter
 }
 
@@ -215,6 +255,10 @@ export type UnitOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   abbreviation?: Prisma.SortOrder
   allowsDecimal?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   products?: Prisma.ProductOrderByRelationAggregateInput
 }
 
@@ -226,6 +270,10 @@ export type UnitWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Unit"> | string
   abbreviation?: Prisma.StringFilter<"Unit"> | string
   allowsDecimal?: Prisma.BoolFilter<"Unit"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Unit"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Unit"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Unit"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Unit"> | number | null
   products?: Prisma.ProductListRelationFilter
 }, "id">
 
@@ -234,6 +282,10 @@ export type UnitOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   abbreviation?: Prisma.SortOrder
   allowsDecimal?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UnitCountOrderByAggregateInput
   _avg?: Prisma.UnitAvgOrderByAggregateInput
   _max?: Prisma.UnitMaxOrderByAggregateInput
@@ -249,12 +301,20 @@ export type UnitScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Unit"> | string
   abbreviation?: Prisma.StringWithAggregatesFilter<"Unit"> | string
   allowsDecimal?: Prisma.BoolWithAggregatesFilter<"Unit"> | boolean
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Unit"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Unit"> | Date | string
+  createdById?: Prisma.IntNullableWithAggregatesFilter<"Unit"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"Unit"> | number | null
 }
 
 export type UnitCreateInput = {
   name: string
   abbreviation: string
   allowsDecimal?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   products?: Prisma.ProductCreateNestedManyWithoutUnitInput
 }
 
@@ -263,6 +323,10 @@ export type UnitUncheckedCreateInput = {
   name: string
   abbreviation: string
   allowsDecimal?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutUnitInput
 }
 
@@ -270,6 +334,10 @@ export type UnitUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   abbreviation?: Prisma.StringFieldUpdateOperationsInput | string
   allowsDecimal?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   products?: Prisma.ProductUpdateManyWithoutUnitNestedInput
 }
 
@@ -278,6 +346,10 @@ export type UnitUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   abbreviation?: Prisma.StringFieldUpdateOperationsInput | string
   allowsDecimal?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   products?: Prisma.ProductUncheckedUpdateManyWithoutUnitNestedInput
 }
 
@@ -286,12 +358,20 @@ export type UnitCreateManyInput = {
   name: string
   abbreviation: string
   allowsDecimal?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type UnitUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   abbreviation?: Prisma.StringFieldUpdateOperationsInput | string
   allowsDecimal?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type UnitUncheckedUpdateManyInput = {
@@ -299,6 +379,10 @@ export type UnitUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   abbreviation?: Prisma.StringFieldUpdateOperationsInput | string
   allowsDecimal?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type UnitCountOrderByAggregateInput = {
@@ -306,10 +390,16 @@ export type UnitCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   abbreviation?: Prisma.SortOrder
   allowsDecimal?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type UnitAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type UnitMaxOrderByAggregateInput = {
@@ -317,6 +407,10 @@ export type UnitMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   abbreviation?: Prisma.SortOrder
   allowsDecimal?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type UnitMinOrderByAggregateInput = {
@@ -324,10 +418,16 @@ export type UnitMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   abbreviation?: Prisma.SortOrder
   allowsDecimal?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type UnitSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type UnitScalarRelationFilter = {
@@ -353,6 +453,10 @@ export type UnitCreateWithoutProductsInput = {
   name: string
   abbreviation: string
   allowsDecimal?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type UnitUncheckedCreateWithoutProductsInput = {
@@ -360,6 +464,10 @@ export type UnitUncheckedCreateWithoutProductsInput = {
   name: string
   abbreviation: string
   allowsDecimal?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type UnitCreateOrConnectWithoutProductsInput = {
@@ -382,6 +490,10 @@ export type UnitUpdateWithoutProductsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   abbreviation?: Prisma.StringFieldUpdateOperationsInput | string
   allowsDecimal?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type UnitUncheckedUpdateWithoutProductsInput = {
@@ -389,6 +501,10 @@ export type UnitUncheckedUpdateWithoutProductsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   abbreviation?: Prisma.StringFieldUpdateOperationsInput | string
   allowsDecimal?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -427,6 +543,10 @@ export type UnitSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   name?: boolean
   abbreviation?: boolean
   allowsDecimal?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   products?: boolean | Prisma.Unit$productsArgs<ExtArgs>
   _count?: boolean | Prisma.UnitCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["unit"]>
@@ -436,6 +556,10 @@ export type UnitSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   abbreviation?: boolean
   allowsDecimal?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }, ExtArgs["result"]["unit"]>
 
 export type UnitSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -443,6 +567,10 @@ export type UnitSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   abbreviation?: boolean
   allowsDecimal?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }, ExtArgs["result"]["unit"]>
 
 export type UnitSelectScalar = {
@@ -450,9 +578,13 @@ export type UnitSelectScalar = {
   name?: boolean
   abbreviation?: boolean
   allowsDecimal?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }
 
-export type UnitOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "abbreviation" | "allowsDecimal", ExtArgs["result"]["unit"]>
+export type UnitOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "abbreviation" | "allowsDecimal" | "createdAt" | "updatedAt" | "createdById" | "updatedById", ExtArgs["result"]["unit"]>
 export type UnitInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   products?: boolean | Prisma.Unit$productsArgs<ExtArgs>
   _count?: boolean | Prisma.UnitCountOutputTypeDefaultArgs<ExtArgs>
@@ -470,6 +602,10 @@ export type $UnitPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     name: string
     abbreviation: string
     allowsDecimal: boolean
+    createdAt: Date
+    updatedAt: Date
+    createdById: number | null
+    updatedById: number | null
   }, ExtArgs["result"]["unit"]>
   composites: {}
 }
@@ -898,6 +1034,10 @@ export interface UnitFieldRefs {
   readonly name: Prisma.FieldRef<"Unit", 'String'>
   readonly abbreviation: Prisma.FieldRef<"Unit", 'String'>
   readonly allowsDecimal: Prisma.FieldRef<"Unit", 'Boolean'>
+  readonly createdAt: Prisma.FieldRef<"Unit", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Unit", 'DateTime'>
+  readonly createdById: Prisma.FieldRef<"Unit", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"Unit", 'Int'>
 }
     
 

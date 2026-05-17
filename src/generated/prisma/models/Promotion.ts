@@ -32,6 +32,8 @@ export type PromotionAvgAggregateOutputType = {
   payQty: number | null
   productId: number | null
   categoryId: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type PromotionSumAggregateOutputType = {
@@ -41,6 +43,8 @@ export type PromotionSumAggregateOutputType = {
   payQty: number | null
   productId: number | null
   categoryId: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type PromotionMinAggregateOutputType = {
@@ -56,6 +60,10 @@ export type PromotionMinAggregateOutputType = {
   startsAt: Date | null
   endsAt: Date | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type PromotionMaxAggregateOutputType = {
@@ -71,6 +79,10 @@ export type PromotionMaxAggregateOutputType = {
   startsAt: Date | null
   endsAt: Date | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type PromotionCountAggregateOutputType = {
@@ -86,6 +98,10 @@ export type PromotionCountAggregateOutputType = {
   startsAt: number
   endsAt: number
   isActive: number
+  createdAt: number
+  updatedAt: number
+  createdById: number
+  updatedById: number
   _all: number
 }
 
@@ -97,6 +113,8 @@ export type PromotionAvgAggregateInputType = {
   payQty?: true
   productId?: true
   categoryId?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type PromotionSumAggregateInputType = {
@@ -106,6 +124,8 @@ export type PromotionSumAggregateInputType = {
   payQty?: true
   productId?: true
   categoryId?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type PromotionMinAggregateInputType = {
@@ -121,6 +141,10 @@ export type PromotionMinAggregateInputType = {
   startsAt?: true
   endsAt?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type PromotionMaxAggregateInputType = {
@@ -136,6 +160,10 @@ export type PromotionMaxAggregateInputType = {
   startsAt?: true
   endsAt?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type PromotionCountAggregateInputType = {
@@ -151,6 +179,10 @@ export type PromotionCountAggregateInputType = {
   startsAt?: true
   endsAt?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
   _all?: true
 }
 
@@ -253,6 +285,10 @@ export type PromotionGroupByOutputType = {
   startsAt: Date | null
   endsAt: Date | null
   isActive: boolean
+  createdAt: Date
+  updatedAt: Date
+  createdById: number | null
+  updatedById: number | null
   _count: PromotionCountAggregateOutputType | null
   _avg: PromotionAvgAggregateOutputType | null
   _sum: PromotionSumAggregateOutputType | null
@@ -291,6 +327,10 @@ export type PromotionWhereInput = {
   startsAt?: Prisma.DateTimeNullableFilter<"Promotion"> | Date | string | null
   endsAt?: Prisma.DateTimeNullableFilter<"Promotion"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Promotion"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Promotion"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Promotion"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Promotion"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Promotion"> | number | null
   product?: Prisma.XOR<Prisma.ProductNullableScalarRelationFilter, Prisma.ProductWhereInput> | null
   category?: Prisma.XOR<Prisma.CategoryNullableScalarRelationFilter, Prisma.CategoryWhereInput> | null
 }
@@ -308,6 +348,10 @@ export type PromotionOrderByWithRelationInput = {
   startsAt?: Prisma.SortOrderInput | Prisma.SortOrder
   endsAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   product?: Prisma.ProductOrderByWithRelationInput
   category?: Prisma.CategoryOrderByWithRelationInput
 }
@@ -328,6 +372,10 @@ export type PromotionWhereUniqueInput = Prisma.AtLeast<{
   startsAt?: Prisma.DateTimeNullableFilter<"Promotion"> | Date | string | null
   endsAt?: Prisma.DateTimeNullableFilter<"Promotion"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Promotion"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Promotion"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Promotion"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Promotion"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Promotion"> | number | null
   product?: Prisma.XOR<Prisma.ProductNullableScalarRelationFilter, Prisma.ProductWhereInput> | null
   category?: Prisma.XOR<Prisma.CategoryNullableScalarRelationFilter, Prisma.CategoryWhereInput> | null
 }, "id">
@@ -345,6 +393,10 @@ export type PromotionOrderByWithAggregationInput = {
   startsAt?: Prisma.SortOrderInput | Prisma.SortOrder
   endsAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.PromotionCountOrderByAggregateInput
   _avg?: Prisma.PromotionAvgOrderByAggregateInput
   _max?: Prisma.PromotionMaxOrderByAggregateInput
@@ -368,6 +420,10 @@ export type PromotionScalarWhereWithAggregatesInput = {
   startsAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Promotion"> | Date | string | null
   endsAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Promotion"> | Date | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Promotion"> | boolean
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Promotion"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Promotion"> | Date | string
+  createdById?: Prisma.IntNullableWithAggregatesFilter<"Promotion"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"Promotion"> | number | null
 }
 
 export type PromotionCreateInput = {
@@ -380,6 +436,10 @@ export type PromotionCreateInput = {
   startsAt?: Date | string | null
   endsAt?: Date | string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   product?: Prisma.ProductCreateNestedOneWithoutPromotionsInput
   category?: Prisma.CategoryCreateNestedOneWithoutPromotionsInput
 }
@@ -397,6 +457,10 @@ export type PromotionUncheckedCreateInput = {
   startsAt?: Date | string | null
   endsAt?: Date | string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type PromotionUpdateInput = {
@@ -409,6 +473,10 @@ export type PromotionUpdateInput = {
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   product?: Prisma.ProductUpdateOneWithoutPromotionsNestedInput
   category?: Prisma.CategoryUpdateOneWithoutPromotionsNestedInput
 }
@@ -426,6 +494,10 @@ export type PromotionUncheckedUpdateInput = {
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PromotionCreateManyInput = {
@@ -441,6 +513,10 @@ export type PromotionCreateManyInput = {
   startsAt?: Date | string | null
   endsAt?: Date | string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type PromotionUpdateManyMutationInput = {
@@ -453,6 +529,10 @@ export type PromotionUpdateManyMutationInput = {
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PromotionUncheckedUpdateManyInput = {
@@ -468,6 +548,10 @@ export type PromotionUncheckedUpdateManyInput = {
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PromotionListRelationFilter = {
@@ -493,6 +577,10 @@ export type PromotionCountOrderByAggregateInput = {
   startsAt?: Prisma.SortOrder
   endsAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type PromotionAvgOrderByAggregateInput = {
@@ -502,6 +590,8 @@ export type PromotionAvgOrderByAggregateInput = {
   payQty?: Prisma.SortOrder
   productId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type PromotionMaxOrderByAggregateInput = {
@@ -517,6 +607,10 @@ export type PromotionMaxOrderByAggregateInput = {
   startsAt?: Prisma.SortOrder
   endsAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type PromotionMinOrderByAggregateInput = {
@@ -532,6 +626,10 @@ export type PromotionMinOrderByAggregateInput = {
   startsAt?: Prisma.SortOrder
   endsAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type PromotionSumOrderByAggregateInput = {
@@ -541,6 +639,8 @@ export type PromotionSumOrderByAggregateInput = {
   payQty?: Prisma.SortOrder
   productId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type PromotionCreateNestedManyWithoutCategoryInput = {
@@ -637,6 +737,10 @@ export type PromotionCreateWithoutCategoryInput = {
   startsAt?: Date | string | null
   endsAt?: Date | string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   product?: Prisma.ProductCreateNestedOneWithoutPromotionsInput
 }
 
@@ -652,6 +756,10 @@ export type PromotionUncheckedCreateWithoutCategoryInput = {
   startsAt?: Date | string | null
   endsAt?: Date | string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type PromotionCreateOrConnectWithoutCategoryInput = {
@@ -696,6 +804,10 @@ export type PromotionScalarWhereInput = {
   startsAt?: Prisma.DateTimeNullableFilter<"Promotion"> | Date | string | null
   endsAt?: Prisma.DateTimeNullableFilter<"Promotion"> | Date | string | null
   isActive?: Prisma.BoolFilter<"Promotion"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Promotion"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Promotion"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Promotion"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Promotion"> | number | null
 }
 
 export type PromotionCreateWithoutProductInput = {
@@ -708,6 +820,10 @@ export type PromotionCreateWithoutProductInput = {
   startsAt?: Date | string | null
   endsAt?: Date | string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   category?: Prisma.CategoryCreateNestedOneWithoutPromotionsInput
 }
 
@@ -723,6 +839,10 @@ export type PromotionUncheckedCreateWithoutProductInput = {
   startsAt?: Date | string | null
   endsAt?: Date | string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type PromotionCreateOrConnectWithoutProductInput = {
@@ -763,6 +883,10 @@ export type PromotionCreateManyCategoryInput = {
   startsAt?: Date | string | null
   endsAt?: Date | string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type PromotionUpdateWithoutCategoryInput = {
@@ -775,6 +899,10 @@ export type PromotionUpdateWithoutCategoryInput = {
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   product?: Prisma.ProductUpdateOneWithoutPromotionsNestedInput
 }
 
@@ -790,6 +918,10 @@ export type PromotionUncheckedUpdateWithoutCategoryInput = {
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PromotionUncheckedUpdateManyWithoutCategoryInput = {
@@ -804,6 +936,10 @@ export type PromotionUncheckedUpdateManyWithoutCategoryInput = {
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PromotionCreateManyProductInput = {
@@ -818,6 +954,10 @@ export type PromotionCreateManyProductInput = {
   startsAt?: Date | string | null
   endsAt?: Date | string | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type PromotionUpdateWithoutProductInput = {
@@ -830,6 +970,10 @@ export type PromotionUpdateWithoutProductInput = {
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.CategoryUpdateOneWithoutPromotionsNestedInput
 }
 
@@ -845,6 +989,10 @@ export type PromotionUncheckedUpdateWithoutProductInput = {
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PromotionUncheckedUpdateManyWithoutProductInput = {
@@ -859,6 +1007,10 @@ export type PromotionUncheckedUpdateManyWithoutProductInput = {
   startsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endsAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -876,6 +1028,10 @@ export type PromotionSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   startsAt?: boolean
   endsAt?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   product?: boolean | Prisma.Promotion$productArgs<ExtArgs>
   category?: boolean | Prisma.Promotion$categoryArgs<ExtArgs>
 }, ExtArgs["result"]["promotion"]>
@@ -893,6 +1049,10 @@ export type PromotionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   startsAt?: boolean
   endsAt?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   product?: boolean | Prisma.Promotion$productArgs<ExtArgs>
   category?: boolean | Prisma.Promotion$categoryArgs<ExtArgs>
 }, ExtArgs["result"]["promotion"]>
@@ -910,6 +1070,10 @@ export type PromotionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   startsAt?: boolean
   endsAt?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   product?: boolean | Prisma.Promotion$productArgs<ExtArgs>
   category?: boolean | Prisma.Promotion$categoryArgs<ExtArgs>
 }, ExtArgs["result"]["promotion"]>
@@ -927,9 +1091,13 @@ export type PromotionSelectScalar = {
   startsAt?: boolean
   endsAt?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }
 
-export type PromotionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "value" | "buyQty" | "payQty" | "scope" | "productId" | "categoryId" | "startsAt" | "endsAt" | "isActive", ExtArgs["result"]["promotion"]>
+export type PromotionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "value" | "buyQty" | "payQty" | "scope" | "productId" | "categoryId" | "startsAt" | "endsAt" | "isActive" | "createdAt" | "updatedAt" | "createdById" | "updatedById", ExtArgs["result"]["promotion"]>
 export type PromotionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   product?: boolean | Prisma.Promotion$productArgs<ExtArgs>
   category?: boolean | Prisma.Promotion$categoryArgs<ExtArgs>
@@ -962,6 +1130,10 @@ export type $PromotionPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     startsAt: Date | null
     endsAt: Date | null
     isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    createdById: number | null
+    updatedById: number | null
   }, ExtArgs["result"]["promotion"]>
   composites: {}
 }
@@ -1399,6 +1571,10 @@ export interface PromotionFieldRefs {
   readonly startsAt: Prisma.FieldRef<"Promotion", 'DateTime'>
   readonly endsAt: Prisma.FieldRef<"Promotion", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"Promotion", 'Boolean'>
+  readonly createdAt: Prisma.FieldRef<"Promotion", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Promotion", 'DateTime'>
+  readonly createdById: Prisma.FieldRef<"Promotion", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"Promotion", 'Int'>
 }
     
 

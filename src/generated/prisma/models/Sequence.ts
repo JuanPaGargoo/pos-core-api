@@ -30,6 +30,8 @@ export type SequenceAvgAggregateOutputType = {
   branchId: number | null
   nextNumber: number | null
   padding: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type SequenceSumAggregateOutputType = {
@@ -37,6 +39,8 @@ export type SequenceSumAggregateOutputType = {
   branchId: number | null
   nextNumber: number | null
   padding: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type SequenceMinAggregateOutputType = {
@@ -46,6 +50,10 @@ export type SequenceMinAggregateOutputType = {
   prefix: string | null
   nextNumber: number | null
   padding: number | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type SequenceMaxAggregateOutputType = {
@@ -55,6 +63,10 @@ export type SequenceMaxAggregateOutputType = {
   prefix: string | null
   nextNumber: number | null
   padding: number | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type SequenceCountAggregateOutputType = {
@@ -64,6 +76,10 @@ export type SequenceCountAggregateOutputType = {
   prefix: number
   nextNumber: number
   padding: number
+  createdAt: number
+  updatedAt: number
+  createdById: number
+  updatedById: number
   _all: number
 }
 
@@ -73,6 +89,8 @@ export type SequenceAvgAggregateInputType = {
   branchId?: true
   nextNumber?: true
   padding?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type SequenceSumAggregateInputType = {
@@ -80,6 +98,8 @@ export type SequenceSumAggregateInputType = {
   branchId?: true
   nextNumber?: true
   padding?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type SequenceMinAggregateInputType = {
@@ -89,6 +109,10 @@ export type SequenceMinAggregateInputType = {
   prefix?: true
   nextNumber?: true
   padding?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type SequenceMaxAggregateInputType = {
@@ -98,6 +122,10 @@ export type SequenceMaxAggregateInputType = {
   prefix?: true
   nextNumber?: true
   padding?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type SequenceCountAggregateInputType = {
@@ -107,6 +135,10 @@ export type SequenceCountAggregateInputType = {
   prefix?: true
   nextNumber?: true
   padding?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
   _all?: true
 }
 
@@ -203,6 +235,10 @@ export type SequenceGroupByOutputType = {
   prefix: string
   nextNumber: number
   padding: number
+  createdAt: Date
+  updatedAt: Date
+  createdById: number | null
+  updatedById: number | null
   _count: SequenceCountAggregateOutputType | null
   _avg: SequenceAvgAggregateOutputType | null
   _sum: SequenceSumAggregateOutputType | null
@@ -235,6 +271,10 @@ export type SequenceWhereInput = {
   prefix?: Prisma.StringFilter<"Sequence"> | string
   nextNumber?: Prisma.IntFilter<"Sequence"> | number
   padding?: Prisma.IntFilter<"Sequence"> | number
+  createdAt?: Prisma.DateTimeFilter<"Sequence"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Sequence"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Sequence"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Sequence"> | number | null
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
 }
 
@@ -245,6 +285,10 @@ export type SequenceOrderByWithRelationInput = {
   prefix?: Prisma.SortOrder
   nextNumber?: Prisma.SortOrder
   padding?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   branch?: Prisma.BranchOrderByWithRelationInput
 }
 
@@ -259,6 +303,10 @@ export type SequenceWhereUniqueInput = Prisma.AtLeast<{
   prefix?: Prisma.StringFilter<"Sequence"> | string
   nextNumber?: Prisma.IntFilter<"Sequence"> | number
   padding?: Prisma.IntFilter<"Sequence"> | number
+  createdAt?: Prisma.DateTimeFilter<"Sequence"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Sequence"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Sequence"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Sequence"> | number | null
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
 }, "id" | "branchId_key">
 
@@ -269,6 +317,10 @@ export type SequenceOrderByWithAggregationInput = {
   prefix?: Prisma.SortOrder
   nextNumber?: Prisma.SortOrder
   padding?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SequenceCountOrderByAggregateInput
   _avg?: Prisma.SequenceAvgOrderByAggregateInput
   _max?: Prisma.SequenceMaxOrderByAggregateInput
@@ -286,6 +338,10 @@ export type SequenceScalarWhereWithAggregatesInput = {
   prefix?: Prisma.StringWithAggregatesFilter<"Sequence"> | string
   nextNumber?: Prisma.IntWithAggregatesFilter<"Sequence"> | number
   padding?: Prisma.IntWithAggregatesFilter<"Sequence"> | number
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Sequence"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Sequence"> | Date | string
+  createdById?: Prisma.IntNullableWithAggregatesFilter<"Sequence"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"Sequence"> | number | null
 }
 
 export type SequenceCreateInput = {
@@ -293,6 +349,10 @@ export type SequenceCreateInput = {
   prefix: string
   nextNumber?: number
   padding?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   branch: Prisma.BranchCreateNestedOneWithoutSequencesInput
 }
 
@@ -303,6 +363,10 @@ export type SequenceUncheckedCreateInput = {
   prefix: string
   nextNumber?: number
   padding?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type SequenceUpdateInput = {
@@ -310,6 +374,10 @@ export type SequenceUpdateInput = {
   prefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextNumber?: Prisma.IntFieldUpdateOperationsInput | number
   padding?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   branch?: Prisma.BranchUpdateOneRequiredWithoutSequencesNestedInput
 }
 
@@ -320,6 +388,10 @@ export type SequenceUncheckedUpdateInput = {
   prefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextNumber?: Prisma.IntFieldUpdateOperationsInput | number
   padding?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type SequenceCreateManyInput = {
@@ -329,6 +401,10 @@ export type SequenceCreateManyInput = {
   prefix: string
   nextNumber?: number
   padding?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type SequenceUpdateManyMutationInput = {
@@ -336,6 +412,10 @@ export type SequenceUpdateManyMutationInput = {
   prefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextNumber?: Prisma.IntFieldUpdateOperationsInput | number
   padding?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type SequenceUncheckedUpdateManyInput = {
@@ -345,6 +425,10 @@ export type SequenceUncheckedUpdateManyInput = {
   prefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextNumber?: Prisma.IntFieldUpdateOperationsInput | number
   padding?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type SequenceListRelationFilter = {
@@ -369,6 +453,10 @@ export type SequenceCountOrderByAggregateInput = {
   prefix?: Prisma.SortOrder
   nextNumber?: Prisma.SortOrder
   padding?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type SequenceAvgOrderByAggregateInput = {
@@ -376,6 +464,8 @@ export type SequenceAvgOrderByAggregateInput = {
   branchId?: Prisma.SortOrder
   nextNumber?: Prisma.SortOrder
   padding?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type SequenceMaxOrderByAggregateInput = {
@@ -385,6 +475,10 @@ export type SequenceMaxOrderByAggregateInput = {
   prefix?: Prisma.SortOrder
   nextNumber?: Prisma.SortOrder
   padding?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type SequenceMinOrderByAggregateInput = {
@@ -394,6 +488,10 @@ export type SequenceMinOrderByAggregateInput = {
   prefix?: Prisma.SortOrder
   nextNumber?: Prisma.SortOrder
   padding?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type SequenceSumOrderByAggregateInput = {
@@ -401,6 +499,8 @@ export type SequenceSumOrderByAggregateInput = {
   branchId?: Prisma.SortOrder
   nextNumber?: Prisma.SortOrder
   padding?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type SequenceCreateNestedManyWithoutBranchInput = {
@@ -450,6 +550,10 @@ export type SequenceCreateWithoutBranchInput = {
   prefix: string
   nextNumber?: number
   padding?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type SequenceUncheckedCreateWithoutBranchInput = {
@@ -458,6 +562,10 @@ export type SequenceUncheckedCreateWithoutBranchInput = {
   prefix: string
   nextNumber?: number
   padding?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type SequenceCreateOrConnectWithoutBranchInput = {
@@ -496,6 +604,10 @@ export type SequenceScalarWhereInput = {
   prefix?: Prisma.StringFilter<"Sequence"> | string
   nextNumber?: Prisma.IntFilter<"Sequence"> | number
   padding?: Prisma.IntFilter<"Sequence"> | number
+  createdAt?: Prisma.DateTimeFilter<"Sequence"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Sequence"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Sequence"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Sequence"> | number | null
 }
 
 export type SequenceCreateManyBranchInput = {
@@ -504,6 +616,10 @@ export type SequenceCreateManyBranchInput = {
   prefix: string
   nextNumber?: number
   padding?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type SequenceUpdateWithoutBranchInput = {
@@ -511,6 +627,10 @@ export type SequenceUpdateWithoutBranchInput = {
   prefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextNumber?: Prisma.IntFieldUpdateOperationsInput | number
   padding?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type SequenceUncheckedUpdateWithoutBranchInput = {
@@ -519,6 +639,10 @@ export type SequenceUncheckedUpdateWithoutBranchInput = {
   prefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextNumber?: Prisma.IntFieldUpdateOperationsInput | number
   padding?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type SequenceUncheckedUpdateManyWithoutBranchInput = {
@@ -527,6 +651,10 @@ export type SequenceUncheckedUpdateManyWithoutBranchInput = {
   prefix?: Prisma.StringFieldUpdateOperationsInput | string
   nextNumber?: Prisma.IntFieldUpdateOperationsInput | number
   padding?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -538,6 +666,10 @@ export type SequenceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   prefix?: boolean
   nextNumber?: boolean
   padding?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sequence"]>
 
@@ -548,6 +680,10 @@ export type SequenceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   prefix?: boolean
   nextNumber?: boolean
   padding?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sequence"]>
 
@@ -558,6 +694,10 @@ export type SequenceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   prefix?: boolean
   nextNumber?: boolean
   padding?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sequence"]>
 
@@ -568,9 +708,13 @@ export type SequenceSelectScalar = {
   prefix?: boolean
   nextNumber?: boolean
   padding?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }
 
-export type SequenceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "branchId" | "key" | "prefix" | "nextNumber" | "padding", ExtArgs["result"]["sequence"]>
+export type SequenceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "branchId" | "key" | "prefix" | "nextNumber" | "padding" | "createdAt" | "updatedAt" | "createdById" | "updatedById", ExtArgs["result"]["sequence"]>
 export type SequenceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
 }
@@ -593,6 +737,10 @@ export type $SequencePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     prefix: string
     nextNumber: number
     padding: number
+    createdAt: Date
+    updatedAt: Date
+    createdById: number | null
+    updatedById: number | null
   }, ExtArgs["result"]["sequence"]>
   composites: {}
 }
@@ -1023,6 +1171,10 @@ export interface SequenceFieldRefs {
   readonly prefix: Prisma.FieldRef<"Sequence", 'String'>
   readonly nextNumber: Prisma.FieldRef<"Sequence", 'Int'>
   readonly padding: Prisma.FieldRef<"Sequence", 'Int'>
+  readonly createdAt: Prisma.FieldRef<"Sequence", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Sequence", 'DateTime'>
+  readonly createdById: Prisma.FieldRef<"Sequence", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"Sequence", 'Int'>
 }
     
 

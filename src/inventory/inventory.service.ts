@@ -37,6 +37,7 @@ const stockInclude = {
 const movementInclude = {
   product: { select: { id: true, name: true, sku: true } },
   warehouse: { select: { id: true, name: true } },
+  user: { select: { id: true, name: true } },
 } satisfies Prisma.StockMovementInclude;
 
 type StockLevelWithRelations = Prisma.StockLevelGetPayload<{
@@ -78,6 +79,7 @@ function mapMovement(m: MovementWithRelations) {
     refId: m.refId,
     note: m.note,
     userId: m.userId,
+    user: m.user,
     createdAt: m.createdAt,
     productId: m.productId,
     product: m.product,

@@ -31,6 +31,8 @@ export type CustomerAvgAggregateOutputType = {
   creditLimit: runtime.Decimal | null
   creditBalance: runtime.Decimal | null
   loyaltyPoints: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type CustomerSumAggregateOutputType = {
@@ -39,6 +41,8 @@ export type CustomerSumAggregateOutputType = {
   creditLimit: runtime.Decimal | null
   creditBalance: runtime.Decimal | null
   loyaltyPoints: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type CustomerMinAggregateOutputType = {
@@ -56,6 +60,9 @@ export type CustomerMinAggregateOutputType = {
   loyaltyPoints: number | null
   isActive: boolean | null
   createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type CustomerMaxAggregateOutputType = {
@@ -73,6 +80,9 @@ export type CustomerMaxAggregateOutputType = {
   loyaltyPoints: number | null
   isActive: boolean | null
   createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type CustomerCountAggregateOutputType = {
@@ -90,6 +100,9 @@ export type CustomerCountAggregateOutputType = {
   loyaltyPoints: number
   isActive: number
   createdAt: number
+  updatedAt: number
+  createdById: number
+  updatedById: number
   _all: number
 }
 
@@ -100,6 +113,8 @@ export type CustomerAvgAggregateInputType = {
   creditLimit?: true
   creditBalance?: true
   loyaltyPoints?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type CustomerSumAggregateInputType = {
@@ -108,6 +123,8 @@ export type CustomerSumAggregateInputType = {
   creditLimit?: true
   creditBalance?: true
   loyaltyPoints?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type CustomerMinAggregateInputType = {
@@ -125,6 +142,9 @@ export type CustomerMinAggregateInputType = {
   loyaltyPoints?: true
   isActive?: true
   createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type CustomerMaxAggregateInputType = {
@@ -142,6 +162,9 @@ export type CustomerMaxAggregateInputType = {
   loyaltyPoints?: true
   isActive?: true
   createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type CustomerCountAggregateInputType = {
@@ -159,6 +182,9 @@ export type CustomerCountAggregateInputType = {
   loyaltyPoints?: true
   isActive?: true
   createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
   _all?: true
 }
 
@@ -263,6 +289,9 @@ export type CustomerGroupByOutputType = {
   loyaltyPoints: number
   isActive: boolean
   createdAt: Date
+  updatedAt: Date
+  createdById: number | null
+  updatedById: number | null
   _count: CustomerCountAggregateOutputType | null
   _avg: CustomerAvgAggregateOutputType | null
   _sum: CustomerSumAggregateOutputType | null
@@ -303,6 +332,9 @@ export type CustomerWhereInput = {
   loyaltyPoints?: Prisma.IntFilter<"Customer"> | number
   isActive?: Prisma.BoolFilter<"Customer"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Customer"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Customer"> | number | null
   priceList?: Prisma.XOR<Prisma.PriceListNullableScalarRelationFilter, Prisma.PriceListWhereInput> | null
   sales?: Prisma.SaleListRelationFilter
   creditEntries?: Prisma.CustomerCreditEntryListRelationFilter
@@ -323,6 +355,9 @@ export type CustomerOrderByWithRelationInput = {
   loyaltyPoints?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   priceList?: Prisma.PriceListOrderByWithRelationInput
   sales?: Prisma.SaleOrderByRelationAggregateInput
   creditEntries?: Prisma.CustomerCreditEntryOrderByRelationAggregateInput
@@ -346,6 +381,9 @@ export type CustomerWhereUniqueInput = Prisma.AtLeast<{
   loyaltyPoints?: Prisma.IntFilter<"Customer"> | number
   isActive?: Prisma.BoolFilter<"Customer"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Customer"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Customer"> | number | null
   priceList?: Prisma.XOR<Prisma.PriceListNullableScalarRelationFilter, Prisma.PriceListWhereInput> | null
   sales?: Prisma.SaleListRelationFilter
   creditEntries?: Prisma.CustomerCreditEntryListRelationFilter
@@ -366,6 +404,9 @@ export type CustomerOrderByWithAggregationInput = {
   loyaltyPoints?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CustomerCountOrderByAggregateInput
   _avg?: Prisma.CustomerAvgOrderByAggregateInput
   _max?: Prisma.CustomerMaxOrderByAggregateInput
@@ -391,6 +432,9 @@ export type CustomerScalarWhereWithAggregatesInput = {
   loyaltyPoints?: Prisma.IntWithAggregatesFilter<"Customer"> | number
   isActive?: Prisma.BoolWithAggregatesFilter<"Customer"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Customer"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Customer"> | Date | string
+  createdById?: Prisma.IntNullableWithAggregatesFilter<"Customer"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"Customer"> | number | null
 }
 
 export type CustomerCreateInput = {
@@ -406,6 +450,9 @@ export type CustomerCreateInput = {
   loyaltyPoints?: number
   isActive?: boolean
   createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   priceList?: Prisma.PriceListCreateNestedOneWithoutCustomersInput
   sales?: Prisma.SaleCreateNestedManyWithoutCustomerInput
   creditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutCustomerInput
@@ -426,6 +473,9 @@ export type CustomerUncheckedCreateInput = {
   loyaltyPoints?: number
   isActive?: boolean
   createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   sales?: Prisma.SaleUncheckedCreateNestedManyWithoutCustomerInput
   creditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutCustomerInput
 }
@@ -443,6 +493,9 @@ export type CustomerUpdateInput = {
   loyaltyPoints?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   priceList?: Prisma.PriceListUpdateOneWithoutCustomersNestedInput
   sales?: Prisma.SaleUpdateManyWithoutCustomerNestedInput
   creditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutCustomerNestedInput
@@ -463,6 +516,9 @@ export type CustomerUncheckedUpdateInput = {
   loyaltyPoints?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sales?: Prisma.SaleUncheckedUpdateManyWithoutCustomerNestedInput
   creditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutCustomerNestedInput
 }
@@ -482,6 +538,9 @@ export type CustomerCreateManyInput = {
   loyaltyPoints?: number
   isActive?: boolean
   createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type CustomerUpdateManyMutationInput = {
@@ -497,6 +556,9 @@ export type CustomerUpdateManyMutationInput = {
   loyaltyPoints?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type CustomerUncheckedUpdateManyInput = {
@@ -514,6 +576,9 @@ export type CustomerUncheckedUpdateManyInput = {
   loyaltyPoints?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type CustomerListRelationFilter = {
@@ -546,6 +611,9 @@ export type CustomerCountOrderByAggregateInput = {
   loyaltyPoints?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type CustomerAvgOrderByAggregateInput = {
@@ -554,6 +622,8 @@ export type CustomerAvgOrderByAggregateInput = {
   creditLimit?: Prisma.SortOrder
   creditBalance?: Prisma.SortOrder
   loyaltyPoints?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type CustomerMaxOrderByAggregateInput = {
@@ -571,6 +641,9 @@ export type CustomerMaxOrderByAggregateInput = {
   loyaltyPoints?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type CustomerMinOrderByAggregateInput = {
@@ -588,6 +661,9 @@ export type CustomerMinOrderByAggregateInput = {
   loyaltyPoints?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type CustomerSumOrderByAggregateInput = {
@@ -596,6 +672,8 @@ export type CustomerSumOrderByAggregateInput = {
   creditLimit?: Prisma.SortOrder
   creditBalance?: Prisma.SortOrder
   loyaltyPoints?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type CustomerScalarRelationFilter = {
@@ -688,6 +766,9 @@ export type CustomerCreateWithoutPriceListInput = {
   loyaltyPoints?: number
   isActive?: boolean
   createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   sales?: Prisma.SaleCreateNestedManyWithoutCustomerInput
   creditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutCustomerInput
 }
@@ -706,6 +787,9 @@ export type CustomerUncheckedCreateWithoutPriceListInput = {
   loyaltyPoints?: number
   isActive?: boolean
   createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   sales?: Prisma.SaleUncheckedCreateNestedManyWithoutCustomerInput
   creditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutCustomerInput
 }
@@ -754,6 +838,9 @@ export type CustomerScalarWhereInput = {
   loyaltyPoints?: Prisma.IntFilter<"Customer"> | number
   isActive?: Prisma.BoolFilter<"Customer"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Customer"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Customer"> | number | null
 }
 
 export type CustomerCreateWithoutSalesInput = {
@@ -769,6 +856,9 @@ export type CustomerCreateWithoutSalesInput = {
   loyaltyPoints?: number
   isActive?: boolean
   createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   priceList?: Prisma.PriceListCreateNestedOneWithoutCustomersInput
   creditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutCustomerInput
 }
@@ -788,6 +878,9 @@ export type CustomerUncheckedCreateWithoutSalesInput = {
   loyaltyPoints?: number
   isActive?: boolean
   createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   creditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutCustomerInput
 }
 
@@ -820,6 +913,9 @@ export type CustomerUpdateWithoutSalesInput = {
   loyaltyPoints?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   priceList?: Prisma.PriceListUpdateOneWithoutCustomersNestedInput
   creditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutCustomerNestedInput
 }
@@ -839,6 +935,9 @@ export type CustomerUncheckedUpdateWithoutSalesInput = {
   loyaltyPoints?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   creditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
@@ -855,6 +954,9 @@ export type CustomerCreateWithoutCreditEntriesInput = {
   loyaltyPoints?: number
   isActive?: boolean
   createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   priceList?: Prisma.PriceListCreateNestedOneWithoutCustomersInput
   sales?: Prisma.SaleCreateNestedManyWithoutCustomerInput
 }
@@ -874,6 +976,9 @@ export type CustomerUncheckedCreateWithoutCreditEntriesInput = {
   loyaltyPoints?: number
   isActive?: boolean
   createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   sales?: Prisma.SaleUncheckedCreateNestedManyWithoutCustomerInput
 }
 
@@ -906,6 +1011,9 @@ export type CustomerUpdateWithoutCreditEntriesInput = {
   loyaltyPoints?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   priceList?: Prisma.PriceListUpdateOneWithoutCustomersNestedInput
   sales?: Prisma.SaleUpdateManyWithoutCustomerNestedInput
 }
@@ -925,6 +1033,9 @@ export type CustomerUncheckedUpdateWithoutCreditEntriesInput = {
   loyaltyPoints?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sales?: Prisma.SaleUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
@@ -942,6 +1053,9 @@ export type CustomerCreateManyPriceListInput = {
   loyaltyPoints?: number
   isActive?: boolean
   createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type CustomerUpdateWithoutPriceListInput = {
@@ -957,6 +1071,9 @@ export type CustomerUpdateWithoutPriceListInput = {
   loyaltyPoints?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sales?: Prisma.SaleUpdateManyWithoutCustomerNestedInput
   creditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutCustomerNestedInput
 }
@@ -975,6 +1092,9 @@ export type CustomerUncheckedUpdateWithoutPriceListInput = {
   loyaltyPoints?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sales?: Prisma.SaleUncheckedUpdateManyWithoutCustomerNestedInput
   creditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutCustomerNestedInput
 }
@@ -993,6 +1113,9 @@ export type CustomerUncheckedUpdateManyWithoutPriceListInput = {
   loyaltyPoints?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -1050,6 +1173,9 @@ export type CustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   loyaltyPoints?: boolean
   isActive?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   priceList?: boolean | Prisma.Customer$priceListArgs<ExtArgs>
   sales?: boolean | Prisma.Customer$salesArgs<ExtArgs>
   creditEntries?: boolean | Prisma.Customer$creditEntriesArgs<ExtArgs>
@@ -1071,6 +1197,9 @@ export type CustomerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   loyaltyPoints?: boolean
   isActive?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   priceList?: boolean | Prisma.Customer$priceListArgs<ExtArgs>
 }, ExtArgs["result"]["customer"]>
 
@@ -1089,6 +1218,9 @@ export type CustomerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   loyaltyPoints?: boolean
   isActive?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   priceList?: boolean | Prisma.Customer$priceListArgs<ExtArgs>
 }, ExtArgs["result"]["customer"]>
 
@@ -1107,9 +1239,12 @@ export type CustomerSelectScalar = {
   loyaltyPoints?: boolean
   isActive?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }
 
-export type CustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "phone" | "email" | "rfc" | "fiscalRegime" | "cfdiUse" | "priceListId" | "creditEnabled" | "creditLimit" | "creditBalance" | "loyaltyPoints" | "isActive" | "createdAt", ExtArgs["result"]["customer"]>
+export type CustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "phone" | "email" | "rfc" | "fiscalRegime" | "cfdiUse" | "priceListId" | "creditEnabled" | "creditLimit" | "creditBalance" | "loyaltyPoints" | "isActive" | "createdAt" | "updatedAt" | "createdById" | "updatedById", ExtArgs["result"]["customer"]>
 export type CustomerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   priceList?: boolean | Prisma.Customer$priceListArgs<ExtArgs>
   sales?: boolean | Prisma.Customer$salesArgs<ExtArgs>
@@ -1145,6 +1280,9 @@ export type $CustomerPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     loyaltyPoints: number
     isActive: boolean
     createdAt: Date
+    updatedAt: Date
+    createdById: number | null
+    updatedById: number | null
   }, ExtArgs["result"]["customer"]>
   composites: {}
 }
@@ -1585,6 +1723,9 @@ export interface CustomerFieldRefs {
   readonly loyaltyPoints: Prisma.FieldRef<"Customer", 'Int'>
   readonly isActive: Prisma.FieldRef<"Customer", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Customer", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Customer", 'DateTime'>
+  readonly createdById: Prisma.FieldRef<"Customer", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"Customer", 'Int'>
 }
     
 

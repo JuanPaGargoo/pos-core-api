@@ -13,6 +13,7 @@ import { CreatePurchaseDto, PaginationQueryDto } from './dto';
 const purchaseInclude = {
   supplier: { select: { id: true, name: true } },
   warehouse: { select: { id: true, name: true } },
+  user: { select: { id: true, name: true } },
   items: {
     include: { product: { select: { id: true, name: true, sku: true } } },
   },
@@ -40,6 +41,8 @@ function mapPurchase(p: PurchaseWithRelations) {
     total: Number(p.total),
     receivedAt: p.receivedAt,
     createdAt: p.createdAt,
+    userId: p.userId,
+    user: p.user,
     items: p.items.map((i) => ({
       id: i.id,
       productId: i.productId,

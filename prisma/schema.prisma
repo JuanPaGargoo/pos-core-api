@@ -32,6 +32,15 @@ model User {
   auditLogs    AuditLog[]
   sales        Sale[]
   cashSessions CashSession[]
+  stockMovements        StockMovement[]
+  saleReturns           SaleReturn[]
+  purchases             Purchase[]
+  cashMovements         CashMovement[]
+  customerCreditEntries CustomerCreditEntry[]
+
+  // Auditoría
+  createdById Int? @map("created_by_id")
+  updatedById Int? @map("updated_by_id")
 
   @@map("users")
 }
@@ -46,6 +55,12 @@ model Role {
   rolePermissions RolePermission[]
   userRoles       UserRole[]
 
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
+
   @@map("roles")
 }
 
@@ -57,6 +72,12 @@ model Permission {
 
   // Relations
   rolePermissions RolePermission[]
+
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
 
   @@map("permissions")
 }
@@ -112,6 +133,12 @@ model Branch {
   customerCreditEntries CustomerCreditEntry[]
   saleReturns         SaleReturn[]
 
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
+
   @@map("branches")
 }
 
@@ -144,6 +171,12 @@ model Warehouse {
   stockMovements StockMovement[]
   purchases      Purchase[]
 
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
+
   @@map("warehouses")
 }
 
@@ -162,6 +195,12 @@ model Location {
   parent    Location?  @relation("LocationHierarchy", fields: [parentId], references: [id], onDelete: Restrict)
   children  Location[] @relation("LocationHierarchy")
 
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
+
   @@map("locations")
 }
 
@@ -176,6 +215,12 @@ model PaymentMethod {
   // Relations
   salePayments SalePayment[]
 
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
+
   @@map("payment_methods")
 }
 
@@ -189,6 +234,12 @@ model Tax {
 
   // Relations
   products Product[]
+
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
 
   @@map("taxes")
 }
@@ -205,6 +256,12 @@ model Sequence {
   // Relations
   branch Branch @relation(fields: [branchId], references: [id], onDelete: Restrict)
 
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
+
   @@unique([branchId, key])
   @@map("sequences")
 }
@@ -219,6 +276,12 @@ model Setting {
 
   // Relations
   branch Branch? @relation(fields: [branchId], references: [id], onDelete: Cascade)
+
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
 
   @@unique([scope, branchId, key])
   @@map("settings")
@@ -267,6 +330,12 @@ model Category {
   products   Product[]
   promotions Promotion[]
 
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
+
   @@map("categories")
 }
 
@@ -279,6 +348,12 @@ model Unit {
 
   // Relations
   products Product[]
+
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
 
   @@map("units")
 }
@@ -312,6 +387,10 @@ model Product {
   saleReturnItems SaleReturnItem[]
   promotions      Promotion[]
 
+  // Auditoría
+  createdById Int? @map("created_by_id")
+  updatedById Int? @map("updated_by_id")
+
   @@index([categoryId])
   @@map("products")
 }
@@ -341,6 +420,12 @@ model PriceList {
   // Relations
   prices    ProductPrice[]
   customers Customer[]
+
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
 
   @@map("price_lists")
 }
@@ -407,6 +492,7 @@ model StockMovement {
   product   Product   @relation(fields: [productId], references: [id], onDelete: Restrict)
   branch    Branch    @relation(fields: [branchId], references: [id], onDelete: Restrict)
   warehouse Warehouse @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  user      User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@index([productId, warehouseId])
   @@index([branchId, createdAt])
@@ -454,6 +540,7 @@ model CashMovement {
 
   // Relations
   cashSession CashSession @relation(fields: [cashSessionId], references: [id], onDelete: Cascade)
+  user        User        @relation(fields: [userId], references: [id], onDelete: Restrict)
 
   @@map("cash_movements")
 }
@@ -552,6 +639,12 @@ model Supplier {
   // Relations
   purchases Purchase[]
 
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
+
   @@map("suppliers")
 }
 
@@ -575,6 +668,7 @@ model Purchase {
   branch    Branch         @relation(fields: [branchId], references: [id], onDelete: Restrict)
   warehouse Warehouse      @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
   supplier  Supplier       @relation(fields: [supplierId], references: [id], onDelete: Restrict)
+  user      User?          @relation(fields: [userId], references: [id], onDelete: SetNull)
   items     PurchaseItem[]
 
   @@unique([branchId, folio])
@@ -625,6 +719,11 @@ model Customer {
   sales         Sale[]
   creditEntries CustomerCreditEntry[]
 
+  // Auditoría
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
+
   @@map("customers")
 }
 
@@ -646,6 +745,7 @@ model CustomerCreditEntry {
   // Relations
   customer Customer @relation(fields: [customerId], references: [id], onDelete: Restrict)
   branch   Branch   @relation(fields: [branchId], references: [id], onDelete: Restrict)
+  user     User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@index([customerId, createdAt])
   @@map("customer_credit_entries")
@@ -670,6 +770,7 @@ model SaleReturn {
   // Relations
   sale   Sale             @relation(fields: [saleId], references: [id], onDelete: Restrict)
   branch Branch           @relation(fields: [branchId], references: [id], onDelete: Restrict)
+  user   User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
   items  SaleReturnItem[]
 
   @@index([saleId])
@@ -717,6 +818,12 @@ model Promotion {
   // Relations
   product  Product?  @relation(fields: [productId], references: [id], onDelete: Cascade)
   category Category? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
 
   @@map("promotions")
 }

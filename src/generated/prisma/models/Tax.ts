@@ -28,11 +28,15 @@ export type AggregateTax = {
 export type TaxAvgAggregateOutputType = {
   id: number | null
   rate: runtime.Decimal | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type TaxSumAggregateOutputType = {
   id: number | null
   rate: runtime.Decimal | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type TaxMinAggregateOutputType = {
@@ -41,6 +45,10 @@ export type TaxMinAggregateOutputType = {
   rate: runtime.Decimal | null
   isIncluded: boolean | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type TaxMaxAggregateOutputType = {
@@ -49,6 +57,10 @@ export type TaxMaxAggregateOutputType = {
   rate: runtime.Decimal | null
   isIncluded: boolean | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type TaxCountAggregateOutputType = {
@@ -57,6 +69,10 @@ export type TaxCountAggregateOutputType = {
   rate: number
   isIncluded: number
   isActive: number
+  createdAt: number
+  updatedAt: number
+  createdById: number
+  updatedById: number
   _all: number
 }
 
@@ -64,11 +80,15 @@ export type TaxCountAggregateOutputType = {
 export type TaxAvgAggregateInputType = {
   id?: true
   rate?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type TaxSumAggregateInputType = {
   id?: true
   rate?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type TaxMinAggregateInputType = {
@@ -77,6 +97,10 @@ export type TaxMinAggregateInputType = {
   rate?: true
   isIncluded?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type TaxMaxAggregateInputType = {
@@ -85,6 +109,10 @@ export type TaxMaxAggregateInputType = {
   rate?: true
   isIncluded?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type TaxCountAggregateInputType = {
@@ -93,6 +121,10 @@ export type TaxCountAggregateInputType = {
   rate?: true
   isIncluded?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
   _all?: true
 }
 
@@ -188,6 +220,10 @@ export type TaxGroupByOutputType = {
   rate: runtime.Decimal
   isIncluded: boolean
   isActive: boolean
+  createdAt: Date
+  updatedAt: Date
+  createdById: number | null
+  updatedById: number | null
   _count: TaxCountAggregateOutputType | null
   _avg: TaxAvgAggregateOutputType | null
   _sum: TaxSumAggregateOutputType | null
@@ -219,6 +255,10 @@ export type TaxWhereInput = {
   rate?: Prisma.DecimalFilter<"Tax"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: Prisma.BoolFilter<"Tax"> | boolean
   isActive?: Prisma.BoolFilter<"Tax"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Tax"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Tax"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Tax"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Tax"> | number | null
   products?: Prisma.ProductListRelationFilter
 }
 
@@ -228,6 +268,10 @@ export type TaxOrderByWithRelationInput = {
   rate?: Prisma.SortOrder
   isIncluded?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   products?: Prisma.ProductOrderByRelationAggregateInput
 }
 
@@ -240,6 +284,10 @@ export type TaxWhereUniqueInput = Prisma.AtLeast<{
   rate?: Prisma.DecimalFilter<"Tax"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: Prisma.BoolFilter<"Tax"> | boolean
   isActive?: Prisma.BoolFilter<"Tax"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Tax"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Tax"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Tax"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Tax"> | number | null
   products?: Prisma.ProductListRelationFilter
 }, "id">
 
@@ -249,6 +297,10 @@ export type TaxOrderByWithAggregationInput = {
   rate?: Prisma.SortOrder
   isIncluded?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TaxCountOrderByAggregateInput
   _avg?: Prisma.TaxAvgOrderByAggregateInput
   _max?: Prisma.TaxMaxOrderByAggregateInput
@@ -265,6 +317,10 @@ export type TaxScalarWhereWithAggregatesInput = {
   rate?: Prisma.DecimalWithAggregatesFilter<"Tax"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: Prisma.BoolWithAggregatesFilter<"Tax"> | boolean
   isActive?: Prisma.BoolWithAggregatesFilter<"Tax"> | boolean
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tax"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Tax"> | Date | string
+  createdById?: Prisma.IntNullableWithAggregatesFilter<"Tax"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"Tax"> | number | null
 }
 
 export type TaxCreateInput = {
@@ -272,6 +328,10 @@ export type TaxCreateInput = {
   rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: boolean
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   products?: Prisma.ProductCreateNestedManyWithoutTaxInput
 }
 
@@ -281,6 +341,10 @@ export type TaxUncheckedCreateInput = {
   rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: boolean
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutTaxInput
 }
 
@@ -289,6 +353,10 @@ export type TaxUpdateInput = {
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   products?: Prisma.ProductUpdateManyWithoutTaxNestedInput
 }
 
@@ -298,6 +366,10 @@ export type TaxUncheckedUpdateInput = {
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   products?: Prisma.ProductUncheckedUpdateManyWithoutTaxNestedInput
 }
 
@@ -307,6 +379,10 @@ export type TaxCreateManyInput = {
   rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: boolean
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type TaxUpdateManyMutationInput = {
@@ -314,6 +390,10 @@ export type TaxUpdateManyMutationInput = {
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type TaxUncheckedUpdateManyInput = {
@@ -322,6 +402,10 @@ export type TaxUncheckedUpdateManyInput = {
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type TaxCountOrderByAggregateInput = {
@@ -330,11 +414,17 @@ export type TaxCountOrderByAggregateInput = {
   rate?: Prisma.SortOrder
   isIncluded?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type TaxAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   rate?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type TaxMaxOrderByAggregateInput = {
@@ -343,6 +433,10 @@ export type TaxMaxOrderByAggregateInput = {
   rate?: Prisma.SortOrder
   isIncluded?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type TaxMinOrderByAggregateInput = {
@@ -351,11 +445,17 @@ export type TaxMinOrderByAggregateInput = {
   rate?: Prisma.SortOrder
   isIncluded?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type TaxSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   rate?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type TaxNullableScalarRelationFilter = {
@@ -392,6 +492,10 @@ export type TaxCreateWithoutProductsInput = {
   rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: boolean
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type TaxUncheckedCreateWithoutProductsInput = {
@@ -400,6 +504,10 @@ export type TaxUncheckedCreateWithoutProductsInput = {
   rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: boolean
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type TaxCreateOrConnectWithoutProductsInput = {
@@ -423,6 +531,10 @@ export type TaxUpdateWithoutProductsInput = {
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type TaxUncheckedUpdateWithoutProductsInput = {
@@ -431,6 +543,10 @@ export type TaxUncheckedUpdateWithoutProductsInput = {
   rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   isIncluded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -470,6 +586,10 @@ export type TaxSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   rate?: boolean
   isIncluded?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   products?: boolean | Prisma.Tax$productsArgs<ExtArgs>
   _count?: boolean | Prisma.TaxCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tax"]>
@@ -480,6 +600,10 @@ export type TaxSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extension
   rate?: boolean
   isIncluded?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }, ExtArgs["result"]["tax"]>
 
 export type TaxSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -488,6 +612,10 @@ export type TaxSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extension
   rate?: boolean
   isIncluded?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }, ExtArgs["result"]["tax"]>
 
 export type TaxSelectScalar = {
@@ -496,9 +624,13 @@ export type TaxSelectScalar = {
   rate?: boolean
   isIncluded?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }
 
-export type TaxOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "rate" | "isIncluded" | "isActive", ExtArgs["result"]["tax"]>
+export type TaxOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "rate" | "isIncluded" | "isActive" | "createdAt" | "updatedAt" | "createdById" | "updatedById", ExtArgs["result"]["tax"]>
 export type TaxInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   products?: boolean | Prisma.Tax$productsArgs<ExtArgs>
   _count?: boolean | Prisma.TaxCountOutputTypeDefaultArgs<ExtArgs>
@@ -517,6 +649,10 @@ export type $TaxPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     rate: runtime.Decimal
     isIncluded: boolean
     isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    createdById: number | null
+    updatedById: number | null
   }, ExtArgs["result"]["tax"]>
   composites: {}
 }
@@ -946,6 +1082,10 @@ export interface TaxFieldRefs {
   readonly rate: Prisma.FieldRef<"Tax", 'Decimal'>
   readonly isIncluded: Prisma.FieldRef<"Tax", 'Boolean'>
   readonly isActive: Prisma.FieldRef<"Tax", 'Boolean'>
+  readonly createdAt: Prisma.FieldRef<"Tax", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Tax", 'DateTime'>
+  readonly createdById: Prisma.FieldRef<"Tax", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"Tax", 'Int'>
 }
     
 

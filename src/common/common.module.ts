@@ -2,6 +2,7 @@ import { Global, Module } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { PermissionsGuard } from './guards/permissions.guard';
 import { AuditInterceptor } from './interceptors/audit.interceptor';
+import { RequestContextInterceptor } from './interceptors/request-context.interceptor';
 import { TransformResponseInterceptor } from './interceptors/transform-response.interceptor';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 
@@ -18,6 +19,11 @@ import { HttpExceptionFilter } from './filters/http-exception.filter';
 @Module({
   providers: [
     PermissionsGuard,
+    // Debe ir primero: abre el contexto de petición para los demás.
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: RequestContextInterceptor,
+    },
     {
       provide: APP_INTERCEPTOR,
       useClass: AuditInterceptor,

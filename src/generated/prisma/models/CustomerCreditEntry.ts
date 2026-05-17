@@ -301,6 +301,7 @@ export type CustomerCreditEntryWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"CustomerCreditEntry"> | Date | string
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type CustomerCreditEntryOrderByWithRelationInput = {
@@ -318,6 +319,7 @@ export type CustomerCreditEntryOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   customer?: Prisma.CustomerOrderByWithRelationInput
   branch?: Prisma.BranchOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type CustomerCreditEntryWhereUniqueInput = Prisma.AtLeast<{
@@ -338,6 +340,7 @@ export type CustomerCreditEntryWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"CustomerCreditEntry"> | Date | string
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id">
 
 export type CustomerCreditEntryOrderByWithAggregationInput = {
@@ -386,10 +389,10 @@ export type CustomerCreditEntryCreateInput = {
   refId?: number | null
   paymentMethodId?: number | null
   note?: string | null
-  userId?: number | null
   createdAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutCreditEntriesInput
   branch: Prisma.BranchCreateNestedOneWithoutCustomerCreditEntriesInput
+  user?: Prisma.UserCreateNestedOneWithoutCustomerCreditEntriesInput
 }
 
 export type CustomerCreditEntryUncheckedCreateInput = {
@@ -415,10 +418,10 @@ export type CustomerCreditEntryUpdateInput = {
   refId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentMethodId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCreditEntriesNestedInput
   branch?: Prisma.BranchUpdateOneRequiredWithoutCustomerCreditEntriesNestedInput
+  user?: Prisma.UserUpdateOneWithoutCustomerCreditEntriesNestedInput
 }
 
 export type CustomerCreditEntryUncheckedUpdateInput = {
@@ -459,7 +462,6 @@ export type CustomerCreditEntryUpdateManyMutationInput = {
   refId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentMethodId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -555,6 +557,48 @@ export type CustomerCreditEntrySumOrderByAggregateInput = {
   userId?: Prisma.SortOrder
 }
 
+export type CustomerCreditEntryCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.CustomerCreditEntryCreateWithoutUserInput, Prisma.CustomerCreditEntryUncheckedCreateWithoutUserInput> | Prisma.CustomerCreditEntryCreateWithoutUserInput[] | Prisma.CustomerCreditEntryUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.CustomerCreditEntryCreateOrConnectWithoutUserInput | Prisma.CustomerCreditEntryCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.CustomerCreditEntryCreateManyUserInputEnvelope
+  connect?: Prisma.CustomerCreditEntryWhereUniqueInput | Prisma.CustomerCreditEntryWhereUniqueInput[]
+}
+
+export type CustomerCreditEntryUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.CustomerCreditEntryCreateWithoutUserInput, Prisma.CustomerCreditEntryUncheckedCreateWithoutUserInput> | Prisma.CustomerCreditEntryCreateWithoutUserInput[] | Prisma.CustomerCreditEntryUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.CustomerCreditEntryCreateOrConnectWithoutUserInput | Prisma.CustomerCreditEntryCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.CustomerCreditEntryCreateManyUserInputEnvelope
+  connect?: Prisma.CustomerCreditEntryWhereUniqueInput | Prisma.CustomerCreditEntryWhereUniqueInput[]
+}
+
+export type CustomerCreditEntryUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.CustomerCreditEntryCreateWithoutUserInput, Prisma.CustomerCreditEntryUncheckedCreateWithoutUserInput> | Prisma.CustomerCreditEntryCreateWithoutUserInput[] | Prisma.CustomerCreditEntryUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.CustomerCreditEntryCreateOrConnectWithoutUserInput | Prisma.CustomerCreditEntryCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.CustomerCreditEntryUpsertWithWhereUniqueWithoutUserInput | Prisma.CustomerCreditEntryUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.CustomerCreditEntryCreateManyUserInputEnvelope
+  set?: Prisma.CustomerCreditEntryWhereUniqueInput | Prisma.CustomerCreditEntryWhereUniqueInput[]
+  disconnect?: Prisma.CustomerCreditEntryWhereUniqueInput | Prisma.CustomerCreditEntryWhereUniqueInput[]
+  delete?: Prisma.CustomerCreditEntryWhereUniqueInput | Prisma.CustomerCreditEntryWhereUniqueInput[]
+  connect?: Prisma.CustomerCreditEntryWhereUniqueInput | Prisma.CustomerCreditEntryWhereUniqueInput[]
+  update?: Prisma.CustomerCreditEntryUpdateWithWhereUniqueWithoutUserInput | Prisma.CustomerCreditEntryUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.CustomerCreditEntryUpdateManyWithWhereWithoutUserInput | Prisma.CustomerCreditEntryUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.CustomerCreditEntryScalarWhereInput | Prisma.CustomerCreditEntryScalarWhereInput[]
+}
+
+export type CustomerCreditEntryUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.CustomerCreditEntryCreateWithoutUserInput, Prisma.CustomerCreditEntryUncheckedCreateWithoutUserInput> | Prisma.CustomerCreditEntryCreateWithoutUserInput[] | Prisma.CustomerCreditEntryUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.CustomerCreditEntryCreateOrConnectWithoutUserInput | Prisma.CustomerCreditEntryCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.CustomerCreditEntryUpsertWithWhereUniqueWithoutUserInput | Prisma.CustomerCreditEntryUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.CustomerCreditEntryCreateManyUserInputEnvelope
+  set?: Prisma.CustomerCreditEntryWhereUniqueInput | Prisma.CustomerCreditEntryWhereUniqueInput[]
+  disconnect?: Prisma.CustomerCreditEntryWhereUniqueInput | Prisma.CustomerCreditEntryWhereUniqueInput[]
+  delete?: Prisma.CustomerCreditEntryWhereUniqueInput | Prisma.CustomerCreditEntryWhereUniqueInput[]
+  connect?: Prisma.CustomerCreditEntryWhereUniqueInput | Prisma.CustomerCreditEntryWhereUniqueInput[]
+  update?: Prisma.CustomerCreditEntryUpdateWithWhereUniqueWithoutUserInput | Prisma.CustomerCreditEntryUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.CustomerCreditEntryUpdateManyWithWhereWithoutUserInput | Prisma.CustomerCreditEntryUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.CustomerCreditEntryScalarWhereInput | Prisma.CustomerCreditEntryScalarWhereInput[]
+}
+
 export type CustomerCreditEntryCreateNestedManyWithoutBranchInput = {
   create?: Prisma.XOR<Prisma.CustomerCreditEntryCreateWithoutBranchInput, Prisma.CustomerCreditEntryUncheckedCreateWithoutBranchInput> | Prisma.CustomerCreditEntryCreateWithoutBranchInput[] | Prisma.CustomerCreditEntryUncheckedCreateWithoutBranchInput[]
   connectOrCreate?: Prisma.CustomerCreditEntryCreateOrConnectWithoutBranchInput | Prisma.CustomerCreditEntryCreateOrConnectWithoutBranchInput[]
@@ -639,6 +683,77 @@ export type CustomerCreditEntryUncheckedUpdateManyWithoutCustomerNestedInput = {
   deleteMany?: Prisma.CustomerCreditEntryScalarWhereInput | Prisma.CustomerCreditEntryScalarWhereInput[]
 }
 
+export type CustomerCreditEntryCreateWithoutUserInput = {
+  type: string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  balanceAfter: runtime.Decimal | runtime.DecimalJsLike | number | string
+  refType?: string | null
+  refId?: number | null
+  paymentMethodId?: number | null
+  note?: string | null
+  createdAt?: Date | string
+  customer: Prisma.CustomerCreateNestedOneWithoutCreditEntriesInput
+  branch: Prisma.BranchCreateNestedOneWithoutCustomerCreditEntriesInput
+}
+
+export type CustomerCreditEntryUncheckedCreateWithoutUserInput = {
+  id?: number
+  customerId: number
+  branchId: number
+  type: string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  balanceAfter: runtime.Decimal | runtime.DecimalJsLike | number | string
+  refType?: string | null
+  refId?: number | null
+  paymentMethodId?: number | null
+  note?: string | null
+  createdAt?: Date | string
+}
+
+export type CustomerCreditEntryCreateOrConnectWithoutUserInput = {
+  where: Prisma.CustomerCreditEntryWhereUniqueInput
+  create: Prisma.XOR<Prisma.CustomerCreditEntryCreateWithoutUserInput, Prisma.CustomerCreditEntryUncheckedCreateWithoutUserInput>
+}
+
+export type CustomerCreditEntryCreateManyUserInputEnvelope = {
+  data: Prisma.CustomerCreditEntryCreateManyUserInput | Prisma.CustomerCreditEntryCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type CustomerCreditEntryUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.CustomerCreditEntryWhereUniqueInput
+  update: Prisma.XOR<Prisma.CustomerCreditEntryUpdateWithoutUserInput, Prisma.CustomerCreditEntryUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.CustomerCreditEntryCreateWithoutUserInput, Prisma.CustomerCreditEntryUncheckedCreateWithoutUserInput>
+}
+
+export type CustomerCreditEntryUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.CustomerCreditEntryWhereUniqueInput
+  data: Prisma.XOR<Prisma.CustomerCreditEntryUpdateWithoutUserInput, Prisma.CustomerCreditEntryUncheckedUpdateWithoutUserInput>
+}
+
+export type CustomerCreditEntryUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.CustomerCreditEntryScalarWhereInput
+  data: Prisma.XOR<Prisma.CustomerCreditEntryUpdateManyMutationInput, Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutUserInput>
+}
+
+export type CustomerCreditEntryScalarWhereInput = {
+  AND?: Prisma.CustomerCreditEntryScalarWhereInput | Prisma.CustomerCreditEntryScalarWhereInput[]
+  OR?: Prisma.CustomerCreditEntryScalarWhereInput[]
+  NOT?: Prisma.CustomerCreditEntryScalarWhereInput | Prisma.CustomerCreditEntryScalarWhereInput[]
+  id?: Prisma.IntFilter<"CustomerCreditEntry"> | number
+  customerId?: Prisma.IntFilter<"CustomerCreditEntry"> | number
+  branchId?: Prisma.IntFilter<"CustomerCreditEntry"> | number
+  type?: Prisma.StringFilter<"CustomerCreditEntry"> | string
+  amount?: Prisma.DecimalFilter<"CustomerCreditEntry"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  balanceAfter?: Prisma.DecimalFilter<"CustomerCreditEntry"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  refType?: Prisma.StringNullableFilter<"CustomerCreditEntry"> | string | null
+  refId?: Prisma.IntNullableFilter<"CustomerCreditEntry"> | number | null
+  paymentMethodId?: Prisma.IntNullableFilter<"CustomerCreditEntry"> | number | null
+  note?: Prisma.StringNullableFilter<"CustomerCreditEntry"> | string | null
+  userId?: Prisma.IntNullableFilter<"CustomerCreditEntry"> | number | null
+  createdAt?: Prisma.DateTimeFilter<"CustomerCreditEntry"> | Date | string
+}
+
 export type CustomerCreditEntryCreateWithoutBranchInput = {
   type: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -647,9 +762,9 @@ export type CustomerCreditEntryCreateWithoutBranchInput = {
   refId?: number | null
   paymentMethodId?: number | null
   note?: string | null
-  userId?: number | null
   createdAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutCreditEntriesInput
+  user?: Prisma.UserCreateNestedOneWithoutCustomerCreditEntriesInput
 }
 
 export type CustomerCreditEntryUncheckedCreateWithoutBranchInput = {
@@ -692,24 +807,6 @@ export type CustomerCreditEntryUpdateManyWithWhereWithoutBranchInput = {
   data: Prisma.XOR<Prisma.CustomerCreditEntryUpdateManyMutationInput, Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutBranchInput>
 }
 
-export type CustomerCreditEntryScalarWhereInput = {
-  AND?: Prisma.CustomerCreditEntryScalarWhereInput | Prisma.CustomerCreditEntryScalarWhereInput[]
-  OR?: Prisma.CustomerCreditEntryScalarWhereInput[]
-  NOT?: Prisma.CustomerCreditEntryScalarWhereInput | Prisma.CustomerCreditEntryScalarWhereInput[]
-  id?: Prisma.IntFilter<"CustomerCreditEntry"> | number
-  customerId?: Prisma.IntFilter<"CustomerCreditEntry"> | number
-  branchId?: Prisma.IntFilter<"CustomerCreditEntry"> | number
-  type?: Prisma.StringFilter<"CustomerCreditEntry"> | string
-  amount?: Prisma.DecimalFilter<"CustomerCreditEntry"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  balanceAfter?: Prisma.DecimalFilter<"CustomerCreditEntry"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  refType?: Prisma.StringNullableFilter<"CustomerCreditEntry"> | string | null
-  refId?: Prisma.IntNullableFilter<"CustomerCreditEntry"> | number | null
-  paymentMethodId?: Prisma.IntNullableFilter<"CustomerCreditEntry"> | number | null
-  note?: Prisma.StringNullableFilter<"CustomerCreditEntry"> | string | null
-  userId?: Prisma.IntNullableFilter<"CustomerCreditEntry"> | number | null
-  createdAt?: Prisma.DateTimeFilter<"CustomerCreditEntry"> | Date | string
-}
-
 export type CustomerCreditEntryCreateWithoutCustomerInput = {
   type: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -718,9 +815,9 @@ export type CustomerCreditEntryCreateWithoutCustomerInput = {
   refId?: number | null
   paymentMethodId?: number | null
   note?: string | null
-  userId?: number | null
   createdAt?: Date | string
   branch: Prisma.BranchCreateNestedOneWithoutCustomerCreditEntriesInput
+  user?: Prisma.UserCreateNestedOneWithoutCustomerCreditEntriesInput
 }
 
 export type CustomerCreditEntryUncheckedCreateWithoutCustomerInput = {
@@ -763,6 +860,61 @@ export type CustomerCreditEntryUpdateManyWithWhereWithoutCustomerInput = {
   data: Prisma.XOR<Prisma.CustomerCreditEntryUpdateManyMutationInput, Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutCustomerInput>
 }
 
+export type CustomerCreditEntryCreateManyUserInput = {
+  id?: number
+  customerId: number
+  branchId: number
+  type: string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  balanceAfter: runtime.Decimal | runtime.DecimalJsLike | number | string
+  refType?: string | null
+  refId?: number | null
+  paymentMethodId?: number | null
+  note?: string | null
+  createdAt?: Date | string
+}
+
+export type CustomerCreditEntryUpdateWithoutUserInput = {
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  balanceAfter?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  refType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethodId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutCreditEntriesNestedInput
+  branch?: Prisma.BranchUpdateOneRequiredWithoutCustomerCreditEntriesNestedInput
+}
+
+export type CustomerCreditEntryUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  customerId?: Prisma.IntFieldUpdateOperationsInput | number
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  balanceAfter?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  refType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethodId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CustomerCreditEntryUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  customerId?: Prisma.IntFieldUpdateOperationsInput | number
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  balanceAfter?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  refType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  refId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethodId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type CustomerCreditEntryCreateManyBranchInput = {
   id?: number
   customerId: number
@@ -785,9 +937,9 @@ export type CustomerCreditEntryUpdateWithoutBranchInput = {
   refId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentMethodId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCreditEntriesNestedInput
+  user?: Prisma.UserUpdateOneWithoutCustomerCreditEntriesNestedInput
 }
 
 export type CustomerCreditEntryUncheckedUpdateWithoutBranchInput = {
@@ -840,9 +992,9 @@ export type CustomerCreditEntryUpdateWithoutCustomerInput = {
   refId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentMethodId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   branch?: Prisma.BranchUpdateOneRequiredWithoutCustomerCreditEntriesNestedInput
+  user?: Prisma.UserUpdateOneWithoutCustomerCreditEntriesNestedInput
 }
 
 export type CustomerCreditEntryUncheckedUpdateWithoutCustomerInput = {
@@ -890,6 +1042,7 @@ export type CustomerCreditEntrySelect<ExtArgs extends runtime.Types.Extensions.I
   createdAt?: boolean
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.CustomerCreditEntry$userArgs<ExtArgs>
 }, ExtArgs["result"]["customerCreditEntry"]>
 
 export type CustomerCreditEntrySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -907,6 +1060,7 @@ export type CustomerCreditEntrySelectCreateManyAndReturn<ExtArgs extends runtime
   createdAt?: boolean
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.CustomerCreditEntry$userArgs<ExtArgs>
 }, ExtArgs["result"]["customerCreditEntry"]>
 
 export type CustomerCreditEntrySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -924,6 +1078,7 @@ export type CustomerCreditEntrySelectUpdateManyAndReturn<ExtArgs extends runtime
   createdAt?: boolean
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.CustomerCreditEntry$userArgs<ExtArgs>
 }, ExtArgs["result"]["customerCreditEntry"]>
 
 export type CustomerCreditEntrySelectScalar = {
@@ -945,14 +1100,17 @@ export type CustomerCreditEntryOmit<ExtArgs extends runtime.Types.Extensions.Int
 export type CustomerCreditEntryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.CustomerCreditEntry$userArgs<ExtArgs>
 }
 export type CustomerCreditEntryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.CustomerCreditEntry$userArgs<ExtArgs>
 }
 export type CustomerCreditEntryIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.CustomerCreditEntry$userArgs<ExtArgs>
 }
 
 export type $CustomerCreditEntryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -960,6 +1118,7 @@ export type $CustomerCreditEntryPayload<ExtArgs extends runtime.Types.Extensions
   objects: {
     customer: Prisma.$CustomerPayload<ExtArgs>
     branch: Prisma.$BranchPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1370,6 +1529,7 @@ export interface Prisma__CustomerCreditEntryClient<T, Null = never, ExtArgs exte
   readonly [Symbol.toStringTag]: "PrismaPromise"
   customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   branch<T extends Prisma.BranchDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BranchDefaultArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.CustomerCreditEntry$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerCreditEntry$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1804,6 +1964,25 @@ export type CustomerCreditEntryDeleteManyArgs<ExtArgs extends runtime.Types.Exte
    * Limit how many CustomerCreditEntries to delete.
    */
   limit?: number
+}
+
+/**
+ * CustomerCreditEntry.user
+ */
+export type CustomerCreditEntry$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

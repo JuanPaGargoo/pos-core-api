@@ -244,6 +244,7 @@ export type CashMovementWhereInput = {
   userId?: Prisma.IntFilter<"CashMovement"> | number
   createdAt?: Prisma.DateTimeFilter<"CashMovement"> | Date | string
   cashSession?: Prisma.XOR<Prisma.CashSessionScalarRelationFilter, Prisma.CashSessionWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type CashMovementOrderByWithRelationInput = {
@@ -255,6 +256,7 @@ export type CashMovementOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   cashSession?: Prisma.CashSessionOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type CashMovementWhereUniqueInput = Prisma.AtLeast<{
@@ -269,6 +271,7 @@ export type CashMovementWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.IntFilter<"CashMovement"> | number
   createdAt?: Prisma.DateTimeFilter<"CashMovement"> | Date | string
   cashSession?: Prisma.XOR<Prisma.CashSessionScalarRelationFilter, Prisma.CashSessionWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type CashMovementOrderByWithAggregationInput = {
@@ -303,9 +306,9 @@ export type CashMovementCreateInput = {
   type: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   reason: string
-  userId: number
   createdAt?: Date | string
   cashSession: Prisma.CashSessionCreateNestedOneWithoutMovementsInput
+  user: Prisma.UserCreateNestedOneWithoutCashMovementsInput
 }
 
 export type CashMovementUncheckedCreateInput = {
@@ -322,9 +325,9 @@ export type CashMovementUpdateInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cashSession?: Prisma.CashSessionUpdateOneRequiredWithoutMovementsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutCashMovementsNestedInput
 }
 
 export type CashMovementUncheckedUpdateInput = {
@@ -351,7 +354,6 @@ export type CashMovementUpdateManyMutationInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -419,6 +421,48 @@ export type CashMovementSumOrderByAggregateInput = {
   userId?: Prisma.SortOrder
 }
 
+export type CashMovementCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.CashMovementCreateWithoutUserInput, Prisma.CashMovementUncheckedCreateWithoutUserInput> | Prisma.CashMovementCreateWithoutUserInput[] | Prisma.CashMovementUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.CashMovementCreateOrConnectWithoutUserInput | Prisma.CashMovementCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.CashMovementCreateManyUserInputEnvelope
+  connect?: Prisma.CashMovementWhereUniqueInput | Prisma.CashMovementWhereUniqueInput[]
+}
+
+export type CashMovementUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.CashMovementCreateWithoutUserInput, Prisma.CashMovementUncheckedCreateWithoutUserInput> | Prisma.CashMovementCreateWithoutUserInput[] | Prisma.CashMovementUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.CashMovementCreateOrConnectWithoutUserInput | Prisma.CashMovementCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.CashMovementCreateManyUserInputEnvelope
+  connect?: Prisma.CashMovementWhereUniqueInput | Prisma.CashMovementWhereUniqueInput[]
+}
+
+export type CashMovementUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.CashMovementCreateWithoutUserInput, Prisma.CashMovementUncheckedCreateWithoutUserInput> | Prisma.CashMovementCreateWithoutUserInput[] | Prisma.CashMovementUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.CashMovementCreateOrConnectWithoutUserInput | Prisma.CashMovementCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.CashMovementUpsertWithWhereUniqueWithoutUserInput | Prisma.CashMovementUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.CashMovementCreateManyUserInputEnvelope
+  set?: Prisma.CashMovementWhereUniqueInput | Prisma.CashMovementWhereUniqueInput[]
+  disconnect?: Prisma.CashMovementWhereUniqueInput | Prisma.CashMovementWhereUniqueInput[]
+  delete?: Prisma.CashMovementWhereUniqueInput | Prisma.CashMovementWhereUniqueInput[]
+  connect?: Prisma.CashMovementWhereUniqueInput | Prisma.CashMovementWhereUniqueInput[]
+  update?: Prisma.CashMovementUpdateWithWhereUniqueWithoutUserInput | Prisma.CashMovementUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.CashMovementUpdateManyWithWhereWithoutUserInput | Prisma.CashMovementUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.CashMovementScalarWhereInput | Prisma.CashMovementScalarWhereInput[]
+}
+
+export type CashMovementUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.CashMovementCreateWithoutUserInput, Prisma.CashMovementUncheckedCreateWithoutUserInput> | Prisma.CashMovementCreateWithoutUserInput[] | Prisma.CashMovementUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.CashMovementCreateOrConnectWithoutUserInput | Prisma.CashMovementCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.CashMovementUpsertWithWhereUniqueWithoutUserInput | Prisma.CashMovementUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.CashMovementCreateManyUserInputEnvelope
+  set?: Prisma.CashMovementWhereUniqueInput | Prisma.CashMovementWhereUniqueInput[]
+  disconnect?: Prisma.CashMovementWhereUniqueInput | Prisma.CashMovementWhereUniqueInput[]
+  delete?: Prisma.CashMovementWhereUniqueInput | Prisma.CashMovementWhereUniqueInput[]
+  connect?: Prisma.CashMovementWhereUniqueInput | Prisma.CashMovementWhereUniqueInput[]
+  update?: Prisma.CashMovementUpdateWithWhereUniqueWithoutUserInput | Prisma.CashMovementUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.CashMovementUpdateManyWithWhereWithoutUserInput | Prisma.CashMovementUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.CashMovementScalarWhereInput | Prisma.CashMovementScalarWhereInput[]
+}
+
 export type CashMovementCreateNestedManyWithoutCashSessionInput = {
   create?: Prisma.XOR<Prisma.CashMovementCreateWithoutCashSessionInput, Prisma.CashMovementUncheckedCreateWithoutCashSessionInput> | Prisma.CashMovementCreateWithoutCashSessionInput[] | Prisma.CashMovementUncheckedCreateWithoutCashSessionInput[]
   connectOrCreate?: Prisma.CashMovementCreateOrConnectWithoutCashSessionInput | Prisma.CashMovementCreateOrConnectWithoutCashSessionInput[]
@@ -461,12 +505,68 @@ export type CashMovementUncheckedUpdateManyWithoutCashSessionNestedInput = {
   deleteMany?: Prisma.CashMovementScalarWhereInput | Prisma.CashMovementScalarWhereInput[]
 }
 
+export type CashMovementCreateWithoutUserInput = {
+  type: string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reason: string
+  createdAt?: Date | string
+  cashSession: Prisma.CashSessionCreateNestedOneWithoutMovementsInput
+}
+
+export type CashMovementUncheckedCreateWithoutUserInput = {
+  id?: number
+  cashSessionId: number
+  type: string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reason: string
+  createdAt?: Date | string
+}
+
+export type CashMovementCreateOrConnectWithoutUserInput = {
+  where: Prisma.CashMovementWhereUniqueInput
+  create: Prisma.XOR<Prisma.CashMovementCreateWithoutUserInput, Prisma.CashMovementUncheckedCreateWithoutUserInput>
+}
+
+export type CashMovementCreateManyUserInputEnvelope = {
+  data: Prisma.CashMovementCreateManyUserInput | Prisma.CashMovementCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type CashMovementUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.CashMovementWhereUniqueInput
+  update: Prisma.XOR<Prisma.CashMovementUpdateWithoutUserInput, Prisma.CashMovementUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.CashMovementCreateWithoutUserInput, Prisma.CashMovementUncheckedCreateWithoutUserInput>
+}
+
+export type CashMovementUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.CashMovementWhereUniqueInput
+  data: Prisma.XOR<Prisma.CashMovementUpdateWithoutUserInput, Prisma.CashMovementUncheckedUpdateWithoutUserInput>
+}
+
+export type CashMovementUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.CashMovementScalarWhereInput
+  data: Prisma.XOR<Prisma.CashMovementUpdateManyMutationInput, Prisma.CashMovementUncheckedUpdateManyWithoutUserInput>
+}
+
+export type CashMovementScalarWhereInput = {
+  AND?: Prisma.CashMovementScalarWhereInput | Prisma.CashMovementScalarWhereInput[]
+  OR?: Prisma.CashMovementScalarWhereInput[]
+  NOT?: Prisma.CashMovementScalarWhereInput | Prisma.CashMovementScalarWhereInput[]
+  id?: Prisma.IntFilter<"CashMovement"> | number
+  cashSessionId?: Prisma.IntFilter<"CashMovement"> | number
+  type?: Prisma.StringFilter<"CashMovement"> | string
+  amount?: Prisma.DecimalFilter<"CashMovement"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reason?: Prisma.StringFilter<"CashMovement"> | string
+  userId?: Prisma.IntFilter<"CashMovement"> | number
+  createdAt?: Prisma.DateTimeFilter<"CashMovement"> | Date | string
+}
+
 export type CashMovementCreateWithoutCashSessionInput = {
   type: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   reason: string
-  userId: number
   createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutCashMovementsInput
 }
 
 export type CashMovementUncheckedCreateWithoutCashSessionInput = {
@@ -504,17 +604,39 @@ export type CashMovementUpdateManyWithWhereWithoutCashSessionInput = {
   data: Prisma.XOR<Prisma.CashMovementUpdateManyMutationInput, Prisma.CashMovementUncheckedUpdateManyWithoutCashSessionInput>
 }
 
-export type CashMovementScalarWhereInput = {
-  AND?: Prisma.CashMovementScalarWhereInput | Prisma.CashMovementScalarWhereInput[]
-  OR?: Prisma.CashMovementScalarWhereInput[]
-  NOT?: Prisma.CashMovementScalarWhereInput | Prisma.CashMovementScalarWhereInput[]
-  id?: Prisma.IntFilter<"CashMovement"> | number
-  cashSessionId?: Prisma.IntFilter<"CashMovement"> | number
-  type?: Prisma.StringFilter<"CashMovement"> | string
-  amount?: Prisma.DecimalFilter<"CashMovement"> | runtime.Decimal | runtime.DecimalJsLike | number | string
-  reason?: Prisma.StringFilter<"CashMovement"> | string
-  userId?: Prisma.IntFilter<"CashMovement"> | number
-  createdAt?: Prisma.DateTimeFilter<"CashMovement"> | Date | string
+export type CashMovementCreateManyUserInput = {
+  id?: number
+  cashSessionId: number
+  type: string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  reason: string
+  createdAt?: Date | string
+}
+
+export type CashMovementUpdateWithoutUserInput = {
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reason?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cashSession?: Prisma.CashSessionUpdateOneRequiredWithoutMovementsNestedInput
+}
+
+export type CashMovementUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  cashSessionId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reason?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CashMovementUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  cashSessionId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  reason?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CashMovementCreateManyCashSessionInput = {
@@ -530,8 +652,8 @@ export type CashMovementUpdateWithoutCashSessionInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   reason?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutCashMovementsNestedInput
 }
 
 export type CashMovementUncheckedUpdateWithoutCashSessionInput = {
@@ -563,6 +685,7 @@ export type CashMovementSelect<ExtArgs extends runtime.Types.Extensions.Internal
   userId?: boolean
   createdAt?: boolean
   cashSession?: boolean | Prisma.CashSessionDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cashMovement"]>
 
 export type CashMovementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -574,6 +697,7 @@ export type CashMovementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   userId?: boolean
   createdAt?: boolean
   cashSession?: boolean | Prisma.CashSessionDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cashMovement"]>
 
 export type CashMovementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -585,6 +709,7 @@ export type CashMovementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   userId?: boolean
   createdAt?: boolean
   cashSession?: boolean | Prisma.CashSessionDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cashMovement"]>
 
 export type CashMovementSelectScalar = {
@@ -600,18 +725,22 @@ export type CashMovementSelectScalar = {
 export type CashMovementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cashSessionId" | "type" | "amount" | "reason" | "userId" | "createdAt", ExtArgs["result"]["cashMovement"]>
 export type CashMovementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cashSession?: boolean | Prisma.CashSessionDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type CashMovementIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cashSession?: boolean | Prisma.CashSessionDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type CashMovementIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cashSession?: boolean | Prisma.CashSessionDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $CashMovementPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CashMovement"
   objects: {
     cashSession: Prisma.$CashSessionPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1016,6 +1145,7 @@ readonly fields: CashMovementFieldRefs;
 export interface Prisma__CashMovementClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   cashSession<T extends Prisma.CashSessionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CashSessionDefaultArgs<ExtArgs>>): Prisma.Prisma__CashSessionClient<runtime.Types.Result.GetResult<Prisma.$CashSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

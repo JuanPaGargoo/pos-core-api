@@ -30,6 +30,8 @@ export type ProductAvgAggregateOutputType = {
   categoryId: number | null
   unitId: number | null
   taxId: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type ProductSumAggregateOutputType = {
@@ -37,6 +39,8 @@ export type ProductSumAggregateOutputType = {
   categoryId: number | null
   unitId: number | null
   taxId: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type ProductMinAggregateOutputType = {
@@ -53,6 +57,8 @@ export type ProductMinAggregateOutputType = {
   imageUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type ProductMaxAggregateOutputType = {
@@ -69,6 +75,8 @@ export type ProductMaxAggregateOutputType = {
   imageUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type ProductCountAggregateOutputType = {
@@ -85,6 +93,8 @@ export type ProductCountAggregateOutputType = {
   imageUrl: number
   createdAt: number
   updatedAt: number
+  createdById: number
+  updatedById: number
   _all: number
 }
 
@@ -94,6 +104,8 @@ export type ProductAvgAggregateInputType = {
   categoryId?: true
   unitId?: true
   taxId?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type ProductSumAggregateInputType = {
@@ -101,6 +113,8 @@ export type ProductSumAggregateInputType = {
   categoryId?: true
   unitId?: true
   taxId?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type ProductMinAggregateInputType = {
@@ -117,6 +131,8 @@ export type ProductMinAggregateInputType = {
   imageUrl?: true
   createdAt?: true
   updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type ProductMaxAggregateInputType = {
@@ -133,6 +149,8 @@ export type ProductMaxAggregateInputType = {
   imageUrl?: true
   createdAt?: true
   updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type ProductCountAggregateInputType = {
@@ -149,6 +167,8 @@ export type ProductCountAggregateInputType = {
   imageUrl?: true
   createdAt?: true
   updatedAt?: true
+  createdById?: true
+  updatedById?: true
   _all?: true
 }
 
@@ -252,6 +272,8 @@ export type ProductGroupByOutputType = {
   imageUrl: string | null
   createdAt: Date
   updatedAt: Date
+  createdById: number | null
+  updatedById: number | null
   _count: ProductCountAggregateOutputType | null
   _avg: ProductAvgAggregateOutputType | null
   _sum: ProductSumAggregateOutputType | null
@@ -291,6 +313,8 @@ export type ProductWhereInput = {
   imageUrl?: Prisma.StringNullableFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Product"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Product"> | number | null
   category?: Prisma.XOR<Prisma.CategoryNullableScalarRelationFilter, Prisma.CategoryWhereInput> | null
   unit?: Prisma.XOR<Prisma.UnitScalarRelationFilter, Prisma.UnitWhereInput>
   tax?: Prisma.XOR<Prisma.TaxNullableScalarRelationFilter, Prisma.TaxWhereInput> | null
@@ -318,6 +342,8 @@ export type ProductOrderByWithRelationInput = {
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.CategoryOrderByWithRelationInput
   unit?: Prisma.UnitOrderByWithRelationInput
   tax?: Prisma.TaxOrderByWithRelationInput
@@ -348,6 +374,8 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   imageUrl?: Prisma.StringNullableFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Product"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Product"> | number | null
   category?: Prisma.XOR<Prisma.CategoryNullableScalarRelationFilter, Prisma.CategoryWhereInput> | null
   unit?: Prisma.XOR<Prisma.UnitScalarRelationFilter, Prisma.UnitWhereInput>
   tax?: Prisma.XOR<Prisma.TaxNullableScalarRelationFilter, Prisma.TaxWhereInput> | null
@@ -375,6 +403,8 @@ export type ProductOrderByWithAggregationInput = {
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ProductCountOrderByAggregateInput
   _avg?: Prisma.ProductAvgOrderByAggregateInput
   _max?: Prisma.ProductMaxOrderByAggregateInput
@@ -399,6 +429,8 @@ export type ProductScalarWhereWithAggregatesInput = {
   imageUrl?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
+  createdById?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
 }
 
 export type ProductCreateInput = {
@@ -411,6 +443,8 @@ export type ProductCreateInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   category?: Prisma.CategoryCreateNestedOneWithoutProductsInput
   unit: Prisma.UnitCreateNestedOneWithoutProductsInput
   tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
@@ -438,6 +472,8 @@ export type ProductUncheckedCreateInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   barcodes?: Prisma.ProductBarcodeUncheckedCreateNestedManyWithoutProductInput
   prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutProductInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutProductInput
@@ -458,6 +494,8 @@ export type ProductUpdateInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.CategoryUpdateOneWithoutProductsNestedInput
   unit?: Prisma.UnitUpdateOneRequiredWithoutProductsNestedInput
   tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
@@ -485,6 +523,8 @@ export type ProductUncheckedUpdateInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   barcodes?: Prisma.ProductBarcodeUncheckedUpdateManyWithoutProductNestedInput
   prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutProductNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutProductNestedInput
@@ -509,6 +549,8 @@ export type ProductCreateManyInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type ProductUpdateManyMutationInput = {
@@ -521,6 +563,8 @@ export type ProductUpdateManyMutationInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type ProductUncheckedUpdateManyInput = {
@@ -537,6 +581,8 @@ export type ProductUncheckedUpdateManyInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type ProductListRelationFilter = {
@@ -563,6 +609,8 @@ export type ProductCountOrderByAggregateInput = {
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type ProductAvgOrderByAggregateInput = {
@@ -570,6 +618,8 @@ export type ProductAvgOrderByAggregateInput = {
   categoryId?: Prisma.SortOrder
   unitId?: Prisma.SortOrder
   taxId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type ProductMaxOrderByAggregateInput = {
@@ -586,6 +636,8 @@ export type ProductMaxOrderByAggregateInput = {
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type ProductMinOrderByAggregateInput = {
@@ -602,6 +654,8 @@ export type ProductMinOrderByAggregateInput = {
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type ProductSumOrderByAggregateInput = {
@@ -609,6 +663,8 @@ export type ProductSumOrderByAggregateInput = {
   categoryId?: Prisma.SortOrder
   unitId?: Prisma.SortOrder
   taxId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type ProductScalarRelationFilter = {
@@ -871,6 +927,8 @@ export type ProductCreateWithoutTaxInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   category?: Prisma.CategoryCreateNestedOneWithoutProductsInput
   unit: Prisma.UnitCreateNestedOneWithoutProductsInput
   barcodes?: Prisma.ProductBarcodeCreateNestedManyWithoutProductInput
@@ -896,6 +954,8 @@ export type ProductUncheckedCreateWithoutTaxInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   barcodes?: Prisma.ProductBarcodeUncheckedCreateNestedManyWithoutProductInput
   prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutProductInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutProductInput
@@ -949,6 +1009,8 @@ export type ProductScalarWhereInput = {
   imageUrl?: Prisma.StringNullableFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Product"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Product"> | number | null
 }
 
 export type ProductCreateWithoutCategoryInput = {
@@ -961,6 +1023,8 @@ export type ProductCreateWithoutCategoryInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   unit: Prisma.UnitCreateNestedOneWithoutProductsInput
   tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
   barcodes?: Prisma.ProductBarcodeCreateNestedManyWithoutProductInput
@@ -986,6 +1050,8 @@ export type ProductUncheckedCreateWithoutCategoryInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   barcodes?: Prisma.ProductBarcodeUncheckedCreateNestedManyWithoutProductInput
   prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutProductInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutProductInput
@@ -1032,6 +1098,8 @@ export type ProductCreateWithoutUnitInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   category?: Prisma.CategoryCreateNestedOneWithoutProductsInput
   tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
   barcodes?: Prisma.ProductBarcodeCreateNestedManyWithoutProductInput
@@ -1057,6 +1125,8 @@ export type ProductUncheckedCreateWithoutUnitInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   barcodes?: Prisma.ProductBarcodeUncheckedCreateNestedManyWithoutProductInput
   prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutProductInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutProductInput
@@ -1103,6 +1173,8 @@ export type ProductCreateWithoutBarcodesInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   category?: Prisma.CategoryCreateNestedOneWithoutProductsInput
   unit: Prisma.UnitCreateNestedOneWithoutProductsInput
   tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
@@ -1129,6 +1201,8 @@ export type ProductUncheckedCreateWithoutBarcodesInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutProductInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutProductInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutProductInput
@@ -1164,6 +1238,8 @@ export type ProductUpdateWithoutBarcodesInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.CategoryUpdateOneWithoutProductsNestedInput
   unit?: Prisma.UnitUpdateOneRequiredWithoutProductsNestedInput
   tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
@@ -1190,6 +1266,8 @@ export type ProductUncheckedUpdateWithoutBarcodesInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutProductNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutProductNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutProductNestedInput
@@ -1209,6 +1287,8 @@ export type ProductCreateWithoutPricesInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   category?: Prisma.CategoryCreateNestedOneWithoutProductsInput
   unit: Prisma.UnitCreateNestedOneWithoutProductsInput
   tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
@@ -1235,6 +1315,8 @@ export type ProductUncheckedCreateWithoutPricesInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   barcodes?: Prisma.ProductBarcodeUncheckedCreateNestedManyWithoutProductInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutProductInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutProductInput
@@ -1270,6 +1352,8 @@ export type ProductUpdateWithoutPricesInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.CategoryUpdateOneWithoutProductsNestedInput
   unit?: Prisma.UnitUpdateOneRequiredWithoutProductsNestedInput
   tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
@@ -1296,6 +1380,8 @@ export type ProductUncheckedUpdateWithoutPricesInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   barcodes?: Prisma.ProductBarcodeUncheckedUpdateManyWithoutProductNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutProductNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutProductNestedInput
@@ -1315,6 +1401,8 @@ export type ProductCreateWithoutStockLevelsInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   category?: Prisma.CategoryCreateNestedOneWithoutProductsInput
   unit: Prisma.UnitCreateNestedOneWithoutProductsInput
   tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
@@ -1341,6 +1429,8 @@ export type ProductUncheckedCreateWithoutStockLevelsInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   barcodes?: Prisma.ProductBarcodeUncheckedCreateNestedManyWithoutProductInput
   prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutProductInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutProductInput
@@ -1376,6 +1466,8 @@ export type ProductUpdateWithoutStockLevelsInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.CategoryUpdateOneWithoutProductsNestedInput
   unit?: Prisma.UnitUpdateOneRequiredWithoutProductsNestedInput
   tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
@@ -1402,6 +1494,8 @@ export type ProductUncheckedUpdateWithoutStockLevelsInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   barcodes?: Prisma.ProductBarcodeUncheckedUpdateManyWithoutProductNestedInput
   prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutProductNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutProductNestedInput
@@ -1421,6 +1515,8 @@ export type ProductCreateWithoutStockMovementsInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   category?: Prisma.CategoryCreateNestedOneWithoutProductsInput
   unit: Prisma.UnitCreateNestedOneWithoutProductsInput
   tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
@@ -1447,6 +1543,8 @@ export type ProductUncheckedCreateWithoutStockMovementsInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   barcodes?: Prisma.ProductBarcodeUncheckedCreateNestedManyWithoutProductInput
   prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutProductInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutProductInput
@@ -1482,6 +1580,8 @@ export type ProductUpdateWithoutStockMovementsInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.CategoryUpdateOneWithoutProductsNestedInput
   unit?: Prisma.UnitUpdateOneRequiredWithoutProductsNestedInput
   tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
@@ -1508,6 +1608,8 @@ export type ProductUncheckedUpdateWithoutStockMovementsInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   barcodes?: Prisma.ProductBarcodeUncheckedUpdateManyWithoutProductNestedInput
   prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutProductNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutProductNestedInput
@@ -1527,6 +1629,8 @@ export type ProductCreateWithoutSaleItemsInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   category?: Prisma.CategoryCreateNestedOneWithoutProductsInput
   unit: Prisma.UnitCreateNestedOneWithoutProductsInput
   tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
@@ -1553,6 +1657,8 @@ export type ProductUncheckedCreateWithoutSaleItemsInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   barcodes?: Prisma.ProductBarcodeUncheckedCreateNestedManyWithoutProductInput
   prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutProductInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutProductInput
@@ -1588,6 +1694,8 @@ export type ProductUpdateWithoutSaleItemsInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.CategoryUpdateOneWithoutProductsNestedInput
   unit?: Prisma.UnitUpdateOneRequiredWithoutProductsNestedInput
   tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
@@ -1614,6 +1722,8 @@ export type ProductUncheckedUpdateWithoutSaleItemsInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   barcodes?: Prisma.ProductBarcodeUncheckedUpdateManyWithoutProductNestedInput
   prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutProductNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutProductNestedInput
@@ -1633,6 +1743,8 @@ export type ProductCreateWithoutPurchaseItemsInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   category?: Prisma.CategoryCreateNestedOneWithoutProductsInput
   unit: Prisma.UnitCreateNestedOneWithoutProductsInput
   tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
@@ -1659,6 +1771,8 @@ export type ProductUncheckedCreateWithoutPurchaseItemsInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   barcodes?: Prisma.ProductBarcodeUncheckedCreateNestedManyWithoutProductInput
   prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutProductInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutProductInput
@@ -1694,6 +1808,8 @@ export type ProductUpdateWithoutPurchaseItemsInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.CategoryUpdateOneWithoutProductsNestedInput
   unit?: Prisma.UnitUpdateOneRequiredWithoutProductsNestedInput
   tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
@@ -1720,6 +1836,8 @@ export type ProductUncheckedUpdateWithoutPurchaseItemsInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   barcodes?: Prisma.ProductBarcodeUncheckedUpdateManyWithoutProductNestedInput
   prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutProductNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutProductNestedInput
@@ -1739,6 +1857,8 @@ export type ProductCreateWithoutSaleReturnItemsInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   category?: Prisma.CategoryCreateNestedOneWithoutProductsInput
   unit: Prisma.UnitCreateNestedOneWithoutProductsInput
   tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
@@ -1765,6 +1885,8 @@ export type ProductUncheckedCreateWithoutSaleReturnItemsInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   barcodes?: Prisma.ProductBarcodeUncheckedCreateNestedManyWithoutProductInput
   prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutProductInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutProductInput
@@ -1800,6 +1922,8 @@ export type ProductUpdateWithoutSaleReturnItemsInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.CategoryUpdateOneWithoutProductsNestedInput
   unit?: Prisma.UnitUpdateOneRequiredWithoutProductsNestedInput
   tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
@@ -1826,6 +1950,8 @@ export type ProductUncheckedUpdateWithoutSaleReturnItemsInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   barcodes?: Prisma.ProductBarcodeUncheckedUpdateManyWithoutProductNestedInput
   prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutProductNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutProductNestedInput
@@ -1845,6 +1971,8 @@ export type ProductCreateWithoutPromotionsInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   category?: Prisma.CategoryCreateNestedOneWithoutProductsInput
   unit: Prisma.UnitCreateNestedOneWithoutProductsInput
   tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
@@ -1871,6 +1999,8 @@ export type ProductUncheckedCreateWithoutPromotionsInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   barcodes?: Prisma.ProductBarcodeUncheckedCreateNestedManyWithoutProductInput
   prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutProductInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutProductInput
@@ -1906,6 +2036,8 @@ export type ProductUpdateWithoutPromotionsInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.CategoryUpdateOneWithoutProductsNestedInput
   unit?: Prisma.UnitUpdateOneRequiredWithoutProductsNestedInput
   tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
@@ -1932,6 +2064,8 @@ export type ProductUncheckedUpdateWithoutPromotionsInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   barcodes?: Prisma.ProductBarcodeUncheckedUpdateManyWithoutProductNestedInput
   prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutProductNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutProductNestedInput
@@ -1954,6 +2088,8 @@ export type ProductCreateManyTaxInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type ProductUpdateWithoutTaxInput = {
@@ -1966,6 +2102,8 @@ export type ProductUpdateWithoutTaxInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.CategoryUpdateOneWithoutProductsNestedInput
   unit?: Prisma.UnitUpdateOneRequiredWithoutProductsNestedInput
   barcodes?: Prisma.ProductBarcodeUpdateManyWithoutProductNestedInput
@@ -1991,6 +2129,8 @@ export type ProductUncheckedUpdateWithoutTaxInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   barcodes?: Prisma.ProductBarcodeUncheckedUpdateManyWithoutProductNestedInput
   prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutProductNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutProductNestedInput
@@ -2014,6 +2154,8 @@ export type ProductUncheckedUpdateManyWithoutTaxInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type ProductCreateManyCategoryInput = {
@@ -2029,6 +2171,8 @@ export type ProductCreateManyCategoryInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type ProductUpdateWithoutCategoryInput = {
@@ -2041,6 +2185,8 @@ export type ProductUpdateWithoutCategoryInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   unit?: Prisma.UnitUpdateOneRequiredWithoutProductsNestedInput
   tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
   barcodes?: Prisma.ProductBarcodeUpdateManyWithoutProductNestedInput
@@ -2066,6 +2212,8 @@ export type ProductUncheckedUpdateWithoutCategoryInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   barcodes?: Prisma.ProductBarcodeUncheckedUpdateManyWithoutProductNestedInput
   prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutProductNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutProductNestedInput
@@ -2089,6 +2237,8 @@ export type ProductUncheckedUpdateManyWithoutCategoryInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type ProductCreateManyUnitInput = {
@@ -2104,6 +2254,8 @@ export type ProductCreateManyUnitInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type ProductUpdateWithoutUnitInput = {
@@ -2116,6 +2268,8 @@ export type ProductUpdateWithoutUnitInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.CategoryUpdateOneWithoutProductsNestedInput
   tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
   barcodes?: Prisma.ProductBarcodeUpdateManyWithoutProductNestedInput
@@ -2141,6 +2295,8 @@ export type ProductUncheckedUpdateWithoutUnitInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   barcodes?: Prisma.ProductBarcodeUncheckedUpdateManyWithoutProductNestedInput
   prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutProductNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutProductNestedInput
@@ -2164,6 +2320,8 @@ export type ProductUncheckedUpdateManyWithoutUnitInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -2274,6 +2432,8 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   imageUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   category?: boolean | Prisma.Product$categoryArgs<ExtArgs>
   unit?: boolean | Prisma.UnitDefaultArgs<ExtArgs>
   tax?: boolean | Prisma.Product$taxArgs<ExtArgs>
@@ -2302,6 +2462,8 @@ export type ProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   imageUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   category?: boolean | Prisma.Product$categoryArgs<ExtArgs>
   unit?: boolean | Prisma.UnitDefaultArgs<ExtArgs>
   tax?: boolean | Prisma.Product$taxArgs<ExtArgs>
@@ -2321,6 +2483,8 @@ export type ProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   imageUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   category?: boolean | Prisma.Product$categoryArgs<ExtArgs>
   unit?: boolean | Prisma.UnitDefaultArgs<ExtArgs>
   tax?: boolean | Prisma.Product$taxArgs<ExtArgs>
@@ -2340,9 +2504,11 @@ export type ProductSelectScalar = {
   imageUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }
 
-export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sku" | "name" | "description" | "categoryId" | "unitId" | "taxId" | "sellType" | "trackStock" | "isActive" | "imageUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sku" | "name" | "description" | "categoryId" | "unitId" | "taxId" | "sellType" | "trackStock" | "isActive" | "imageUrl" | "createdAt" | "updatedAt" | "createdById" | "updatedById", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   category?: boolean | Prisma.Product$categoryArgs<ExtArgs>
   unit?: boolean | Prisma.UnitDefaultArgs<ExtArgs>
@@ -2397,6 +2563,8 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     imageUrl: string | null
     createdAt: Date
     updatedAt: Date
+    createdById: number | null
+    updatedById: number | null
   }, ExtArgs["result"]["product"]>
   composites: {}
 }
@@ -2844,6 +3012,8 @@ export interface ProductFieldRefs {
   readonly imageUrl: Prisma.FieldRef<"Product", 'String'>
   readonly createdAt: Prisma.FieldRef<"Product", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Product", 'DateTime'>
+  readonly createdById: Prisma.FieldRef<"Product", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"Product", 'Int'>
 }
     
 

@@ -27,10 +27,14 @@ export type AggregatePriceList = {
 
 export type PriceListAvgAggregateOutputType = {
   id: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type PriceListSumAggregateOutputType = {
   id: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type PriceListMinAggregateOutputType = {
@@ -38,6 +42,10 @@ export type PriceListMinAggregateOutputType = {
   name: string | null
   isDefault: boolean | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type PriceListMaxAggregateOutputType = {
@@ -45,6 +53,10 @@ export type PriceListMaxAggregateOutputType = {
   name: string | null
   isDefault: boolean | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type PriceListCountAggregateOutputType = {
@@ -52,16 +64,24 @@ export type PriceListCountAggregateOutputType = {
   name: number
   isDefault: number
   isActive: number
+  createdAt: number
+  updatedAt: number
+  createdById: number
+  updatedById: number
   _all: number
 }
 
 
 export type PriceListAvgAggregateInputType = {
   id?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type PriceListSumAggregateInputType = {
   id?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type PriceListMinAggregateInputType = {
@@ -69,6 +89,10 @@ export type PriceListMinAggregateInputType = {
   name?: true
   isDefault?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type PriceListMaxAggregateInputType = {
@@ -76,6 +100,10 @@ export type PriceListMaxAggregateInputType = {
   name?: true
   isDefault?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type PriceListCountAggregateInputType = {
@@ -83,6 +111,10 @@ export type PriceListCountAggregateInputType = {
   name?: true
   isDefault?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
   _all?: true
 }
 
@@ -177,6 +209,10 @@ export type PriceListGroupByOutputType = {
   name: string
   isDefault: boolean
   isActive: boolean
+  createdAt: Date
+  updatedAt: Date
+  createdById: number | null
+  updatedById: number | null
   _count: PriceListCountAggregateOutputType | null
   _avg: PriceListAvgAggregateOutputType | null
   _sum: PriceListSumAggregateOutputType | null
@@ -207,6 +243,10 @@ export type PriceListWhereInput = {
   name?: Prisma.StringFilter<"PriceList"> | string
   isDefault?: Prisma.BoolFilter<"PriceList"> | boolean
   isActive?: Prisma.BoolFilter<"PriceList"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"PriceList"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"PriceList"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"PriceList"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"PriceList"> | number | null
   prices?: Prisma.ProductPriceListRelationFilter
   customers?: Prisma.CustomerListRelationFilter
 }
@@ -216,6 +256,10 @@ export type PriceListOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   prices?: Prisma.ProductPriceOrderByRelationAggregateInput
   customers?: Prisma.CustomerOrderByRelationAggregateInput
 }
@@ -228,6 +272,10 @@ export type PriceListWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"PriceList"> | string
   isDefault?: Prisma.BoolFilter<"PriceList"> | boolean
   isActive?: Prisma.BoolFilter<"PriceList"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"PriceList"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"PriceList"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"PriceList"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"PriceList"> | number | null
   prices?: Prisma.ProductPriceListRelationFilter
   customers?: Prisma.CustomerListRelationFilter
 }, "id">
@@ -237,6 +285,10 @@ export type PriceListOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.PriceListCountOrderByAggregateInput
   _avg?: Prisma.PriceListAvgOrderByAggregateInput
   _max?: Prisma.PriceListMaxOrderByAggregateInput
@@ -252,12 +304,20 @@ export type PriceListScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"PriceList"> | string
   isDefault?: Prisma.BoolWithAggregatesFilter<"PriceList"> | boolean
   isActive?: Prisma.BoolWithAggregatesFilter<"PriceList"> | boolean
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"PriceList"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PriceList"> | Date | string
+  createdById?: Prisma.IntNullableWithAggregatesFilter<"PriceList"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"PriceList"> | number | null
 }
 
 export type PriceListCreateInput = {
   name: string
   isDefault?: boolean
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   prices?: Prisma.ProductPriceCreateNestedManyWithoutPriceListInput
   customers?: Prisma.CustomerCreateNestedManyWithoutPriceListInput
 }
@@ -267,6 +327,10 @@ export type PriceListUncheckedCreateInput = {
   name: string
   isDefault?: boolean
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutPriceListInput
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutPriceListInput
 }
@@ -275,6 +339,10 @@ export type PriceListUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   prices?: Prisma.ProductPriceUpdateManyWithoutPriceListNestedInput
   customers?: Prisma.CustomerUpdateManyWithoutPriceListNestedInput
 }
@@ -284,6 +352,10 @@ export type PriceListUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutPriceListNestedInput
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutPriceListNestedInput
 }
@@ -293,12 +365,20 @@ export type PriceListCreateManyInput = {
   name: string
   isDefault?: boolean
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type PriceListUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PriceListUncheckedUpdateManyInput = {
@@ -306,6 +386,10 @@ export type PriceListUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PriceListCountOrderByAggregateInput = {
@@ -313,10 +397,16 @@ export type PriceListCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type PriceListAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type PriceListMaxOrderByAggregateInput = {
@@ -324,6 +414,10 @@ export type PriceListMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type PriceListMinOrderByAggregateInput = {
@@ -331,10 +425,16 @@ export type PriceListMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   isDefault?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type PriceListSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type PriceListScalarRelationFilter = {
@@ -381,6 +481,10 @@ export type PriceListCreateWithoutPricesInput = {
   name: string
   isDefault?: boolean
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   customers?: Prisma.CustomerCreateNestedManyWithoutPriceListInput
 }
 
@@ -389,6 +493,10 @@ export type PriceListUncheckedCreateWithoutPricesInput = {
   name: string
   isDefault?: boolean
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   customers?: Prisma.CustomerUncheckedCreateNestedManyWithoutPriceListInput
 }
 
@@ -412,6 +520,10 @@ export type PriceListUpdateWithoutPricesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   customers?: Prisma.CustomerUpdateManyWithoutPriceListNestedInput
 }
 
@@ -420,6 +532,10 @@ export type PriceListUncheckedUpdateWithoutPricesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   customers?: Prisma.CustomerUncheckedUpdateManyWithoutPriceListNestedInput
 }
 
@@ -427,6 +543,10 @@ export type PriceListCreateWithoutCustomersInput = {
   name: string
   isDefault?: boolean
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   prices?: Prisma.ProductPriceCreateNestedManyWithoutPriceListInput
 }
 
@@ -435,6 +555,10 @@ export type PriceListUncheckedCreateWithoutCustomersInput = {
   name: string
   isDefault?: boolean
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutPriceListInput
 }
 
@@ -458,6 +582,10 @@ export type PriceListUpdateWithoutCustomersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   prices?: Prisma.ProductPriceUpdateManyWithoutPriceListNestedInput
 }
 
@@ -466,6 +594,10 @@ export type PriceListUncheckedUpdateWithoutCustomersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isDefault?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutPriceListNestedInput
 }
 
@@ -514,6 +646,10 @@ export type PriceListSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   name?: boolean
   isDefault?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   prices?: boolean | Prisma.PriceList$pricesArgs<ExtArgs>
   customers?: boolean | Prisma.PriceList$customersArgs<ExtArgs>
   _count?: boolean | Prisma.PriceListCountOutputTypeDefaultArgs<ExtArgs>
@@ -524,6 +660,10 @@ export type PriceListSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   name?: boolean
   isDefault?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }, ExtArgs["result"]["priceList"]>
 
 export type PriceListSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -531,6 +671,10 @@ export type PriceListSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   name?: boolean
   isDefault?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }, ExtArgs["result"]["priceList"]>
 
 export type PriceListSelectScalar = {
@@ -538,9 +682,13 @@ export type PriceListSelectScalar = {
   name?: boolean
   isDefault?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }
 
-export type PriceListOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "isDefault" | "isActive", ExtArgs["result"]["priceList"]>
+export type PriceListOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "isDefault" | "isActive" | "createdAt" | "updatedAt" | "createdById" | "updatedById", ExtArgs["result"]["priceList"]>
 export type PriceListInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   prices?: boolean | Prisma.PriceList$pricesArgs<ExtArgs>
   customers?: boolean | Prisma.PriceList$customersArgs<ExtArgs>
@@ -560,6 +708,10 @@ export type $PriceListPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     name: string
     isDefault: boolean
     isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    createdById: number | null
+    updatedById: number | null
   }, ExtArgs["result"]["priceList"]>
   composites: {}
 }
@@ -989,6 +1141,10 @@ export interface PriceListFieldRefs {
   readonly name: Prisma.FieldRef<"PriceList", 'String'>
   readonly isDefault: Prisma.FieldRef<"PriceList", 'Boolean'>
   readonly isActive: Prisma.FieldRef<"PriceList", 'Boolean'>
+  readonly createdAt: Prisma.FieldRef<"PriceList", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"PriceList", 'DateTime'>
+  readonly createdById: Prisma.FieldRef<"PriceList", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"PriceList", 'Int'>
 }
     
 

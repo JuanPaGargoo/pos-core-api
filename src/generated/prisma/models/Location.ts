@@ -29,12 +29,16 @@ export type LocationAvgAggregateOutputType = {
   id: number | null
   warehouseId: number | null
   parentId: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type LocationSumAggregateOutputType = {
   id: number | null
   warehouseId: number | null
   parentId: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type LocationMinAggregateOutputType = {
@@ -45,6 +49,10 @@ export type LocationMinAggregateOutputType = {
   type: string | null
   parentId: number | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type LocationMaxAggregateOutputType = {
@@ -55,6 +63,10 @@ export type LocationMaxAggregateOutputType = {
   type: string | null
   parentId: number | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type LocationCountAggregateOutputType = {
@@ -65,6 +77,10 @@ export type LocationCountAggregateOutputType = {
   type: number
   parentId: number
   isActive: number
+  createdAt: number
+  updatedAt: number
+  createdById: number
+  updatedById: number
   _all: number
 }
 
@@ -73,12 +89,16 @@ export type LocationAvgAggregateInputType = {
   id?: true
   warehouseId?: true
   parentId?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type LocationSumAggregateInputType = {
   id?: true
   warehouseId?: true
   parentId?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type LocationMinAggregateInputType = {
@@ -89,6 +109,10 @@ export type LocationMinAggregateInputType = {
   type?: true
   parentId?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type LocationMaxAggregateInputType = {
@@ -99,6 +123,10 @@ export type LocationMaxAggregateInputType = {
   type?: true
   parentId?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type LocationCountAggregateInputType = {
@@ -109,6 +137,10 @@ export type LocationCountAggregateInputType = {
   type?: true
   parentId?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
   _all?: true
 }
 
@@ -206,6 +238,10 @@ export type LocationGroupByOutputType = {
   type: string
   parentId: number | null
   isActive: boolean
+  createdAt: Date
+  updatedAt: Date
+  createdById: number | null
+  updatedById: number | null
   _count: LocationCountAggregateOutputType | null
   _avg: LocationAvgAggregateOutputType | null
   _sum: LocationSumAggregateOutputType | null
@@ -239,6 +275,10 @@ export type LocationWhereInput = {
   type?: Prisma.StringFilter<"Location"> | string
   parentId?: Prisma.IntNullableFilter<"Location"> | number | null
   isActive?: Prisma.BoolFilter<"Location"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Location"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Location"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Location"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Location"> | number | null
   warehouse?: Prisma.XOR<Prisma.WarehouseScalarRelationFilter, Prisma.WarehouseWhereInput>
   parent?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
   children?: Prisma.LocationListRelationFilter
@@ -252,6 +292,10 @@ export type LocationOrderByWithRelationInput = {
   type?: Prisma.SortOrder
   parentId?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   warehouse?: Prisma.WarehouseOrderByWithRelationInput
   parent?: Prisma.LocationOrderByWithRelationInput
   children?: Prisma.LocationOrderByRelationAggregateInput
@@ -268,6 +312,10 @@ export type LocationWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.StringFilter<"Location"> | string
   parentId?: Prisma.IntNullableFilter<"Location"> | number | null
   isActive?: Prisma.BoolFilter<"Location"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Location"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Location"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Location"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Location"> | number | null
   warehouse?: Prisma.XOR<Prisma.WarehouseScalarRelationFilter, Prisma.WarehouseWhereInput>
   parent?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
   children?: Prisma.LocationListRelationFilter
@@ -281,6 +329,10 @@ export type LocationOrderByWithAggregationInput = {
   type?: Prisma.SortOrder
   parentId?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.LocationCountOrderByAggregateInput
   _avg?: Prisma.LocationAvgOrderByAggregateInput
   _max?: Prisma.LocationMaxOrderByAggregateInput
@@ -299,6 +351,10 @@ export type LocationScalarWhereWithAggregatesInput = {
   type?: Prisma.StringWithAggregatesFilter<"Location"> | string
   parentId?: Prisma.IntNullableWithAggregatesFilter<"Location"> | number | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Location"> | boolean
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Location"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Location"> | Date | string
+  createdById?: Prisma.IntNullableWithAggregatesFilter<"Location"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"Location"> | number | null
 }
 
 export type LocationCreateInput = {
@@ -306,6 +362,10 @@ export type LocationCreateInput = {
   code: string
   type: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   warehouse: Prisma.WarehouseCreateNestedOneWithoutLocationsInput
   parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
   children?: Prisma.LocationCreateNestedManyWithoutParentInput
@@ -319,6 +379,10 @@ export type LocationUncheckedCreateInput = {
   type: string
   parentId?: number | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
 }
 
@@ -327,6 +391,10 @@ export type LocationUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   warehouse?: Prisma.WarehouseUpdateOneRequiredWithoutLocationsNestedInput
   parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
   children?: Prisma.LocationUpdateManyWithoutParentNestedInput
@@ -340,6 +408,10 @@ export type LocationUncheckedUpdateInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
 }
 
@@ -351,6 +423,10 @@ export type LocationCreateManyInput = {
   type: string
   parentId?: number | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type LocationUpdateManyMutationInput = {
@@ -358,6 +434,10 @@ export type LocationUpdateManyMutationInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type LocationUncheckedUpdateManyInput = {
@@ -368,6 +448,10 @@ export type LocationUncheckedUpdateManyInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type LocationListRelationFilter = {
@@ -393,12 +477,18 @@ export type LocationCountOrderByAggregateInput = {
   type?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type LocationAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   warehouseId?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type LocationMaxOrderByAggregateInput = {
@@ -409,6 +499,10 @@ export type LocationMaxOrderByAggregateInput = {
   type?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type LocationMinOrderByAggregateInput = {
@@ -419,12 +513,18 @@ export type LocationMinOrderByAggregateInput = {
   type?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type LocationSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   warehouseId?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type LocationCreateNestedManyWithoutWarehouseInput = {
@@ -513,14 +613,6 @@ export type LocationUpdateManyWithoutParentNestedInput = {
   deleteMany?: Prisma.LocationScalarWhereInput | Prisma.LocationScalarWhereInput[]
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type LocationUncheckedUpdateManyWithoutParentNestedInput = {
   create?: Prisma.XOR<Prisma.LocationCreateWithoutParentInput, Prisma.LocationUncheckedCreateWithoutParentInput> | Prisma.LocationCreateWithoutParentInput[] | Prisma.LocationUncheckedCreateWithoutParentInput[]
   connectOrCreate?: Prisma.LocationCreateOrConnectWithoutParentInput | Prisma.LocationCreateOrConnectWithoutParentInput[]
@@ -540,6 +632,10 @@ export type LocationCreateWithoutWarehouseInput = {
   code: string
   type: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
   children?: Prisma.LocationCreateNestedManyWithoutParentInput
 }
@@ -551,6 +647,10 @@ export type LocationUncheckedCreateWithoutWarehouseInput = {
   type: string
   parentId?: number | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
 }
 
@@ -591,6 +691,10 @@ export type LocationScalarWhereInput = {
   type?: Prisma.StringFilter<"Location"> | string
   parentId?: Prisma.IntNullableFilter<"Location"> | number | null
   isActive?: Prisma.BoolFilter<"Location"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Location"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Location"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Location"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Location"> | number | null
 }
 
 export type LocationCreateWithoutChildrenInput = {
@@ -598,6 +702,10 @@ export type LocationCreateWithoutChildrenInput = {
   code: string
   type: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   warehouse: Prisma.WarehouseCreateNestedOneWithoutLocationsInput
   parent?: Prisma.LocationCreateNestedOneWithoutChildrenInput
 }
@@ -610,6 +718,10 @@ export type LocationUncheckedCreateWithoutChildrenInput = {
   type: string
   parentId?: number | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type LocationCreateOrConnectWithoutChildrenInput = {
@@ -622,6 +734,10 @@ export type LocationCreateWithoutParentInput = {
   code: string
   type: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   warehouse: Prisma.WarehouseCreateNestedOneWithoutLocationsInput
   children?: Prisma.LocationCreateNestedManyWithoutParentInput
 }
@@ -633,6 +749,10 @@ export type LocationUncheckedCreateWithoutParentInput = {
   code: string
   type: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   children?: Prisma.LocationUncheckedCreateNestedManyWithoutParentInput
 }
 
@@ -662,6 +782,10 @@ export type LocationUpdateWithoutChildrenInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   warehouse?: Prisma.WarehouseUpdateOneRequiredWithoutLocationsNestedInput
   parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
 }
@@ -674,6 +798,10 @@ export type LocationUncheckedUpdateWithoutChildrenInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type LocationUpsertWithWhereUniqueWithoutParentInput = {
@@ -699,6 +827,10 @@ export type LocationCreateManyWarehouseInput = {
   type: string
   parentId?: number | null
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type LocationUpdateWithoutWarehouseInput = {
@@ -706,6 +838,10 @@ export type LocationUpdateWithoutWarehouseInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   parent?: Prisma.LocationUpdateOneWithoutChildrenNestedInput
   children?: Prisma.LocationUpdateManyWithoutParentNestedInput
 }
@@ -717,6 +853,10 @@ export type LocationUncheckedUpdateWithoutWarehouseInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
 }
 
@@ -727,6 +867,10 @@ export type LocationUncheckedUpdateManyWithoutWarehouseInput = {
   type?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type LocationCreateManyParentInput = {
@@ -736,6 +880,10 @@ export type LocationCreateManyParentInput = {
   code: string
   type: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type LocationUpdateWithoutParentInput = {
@@ -743,6 +891,10 @@ export type LocationUpdateWithoutParentInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   warehouse?: Prisma.WarehouseUpdateOneRequiredWithoutLocationsNestedInput
   children?: Prisma.LocationUpdateManyWithoutParentNestedInput
 }
@@ -754,6 +906,10 @@ export type LocationUncheckedUpdateWithoutParentInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   children?: Prisma.LocationUncheckedUpdateManyWithoutParentNestedInput
 }
 
@@ -764,6 +920,10 @@ export type LocationUncheckedUpdateManyWithoutParentInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -805,6 +965,10 @@ export type LocationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   type?: boolean
   parentId?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   warehouse?: boolean | Prisma.WarehouseDefaultArgs<ExtArgs>
   parent?: boolean | Prisma.Location$parentArgs<ExtArgs>
   children?: boolean | Prisma.Location$childrenArgs<ExtArgs>
@@ -819,6 +983,10 @@ export type LocationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   type?: boolean
   parentId?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   warehouse?: boolean | Prisma.WarehouseDefaultArgs<ExtArgs>
   parent?: boolean | Prisma.Location$parentArgs<ExtArgs>
 }, ExtArgs["result"]["location"]>
@@ -831,6 +999,10 @@ export type LocationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   type?: boolean
   parentId?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   warehouse?: boolean | Prisma.WarehouseDefaultArgs<ExtArgs>
   parent?: boolean | Prisma.Location$parentArgs<ExtArgs>
 }, ExtArgs["result"]["location"]>
@@ -843,9 +1015,13 @@ export type LocationSelectScalar = {
   type?: boolean
   parentId?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }
 
-export type LocationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "warehouseId" | "name" | "code" | "type" | "parentId" | "isActive", ExtArgs["result"]["location"]>
+export type LocationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "warehouseId" | "name" | "code" | "type" | "parentId" | "isActive" | "createdAt" | "updatedAt" | "createdById" | "updatedById", ExtArgs["result"]["location"]>
 export type LocationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   warehouse?: boolean | Prisma.WarehouseDefaultArgs<ExtArgs>
   parent?: boolean | Prisma.Location$parentArgs<ExtArgs>
@@ -876,6 +1052,10 @@ export type $LocationPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     type: string
     parentId: number | null
     isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    createdById: number | null
+    updatedById: number | null
   }, ExtArgs["result"]["location"]>
   composites: {}
 }
@@ -1309,6 +1489,10 @@ export interface LocationFieldRefs {
   readonly type: Prisma.FieldRef<"Location", 'String'>
   readonly parentId: Prisma.FieldRef<"Location", 'Int'>
   readonly isActive: Prisma.FieldRef<"Location", 'Boolean'>
+  readonly createdAt: Prisma.FieldRef<"Location", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Location", 'DateTime'>
+  readonly createdById: Prisma.FieldRef<"Location", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"Location", 'Int'>
 }
     
 

@@ -28,11 +28,15 @@ export type AggregateWarehouse = {
 export type WarehouseAvgAggregateOutputType = {
   id: number | null
   branchId: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type WarehouseSumAggregateOutputType = {
   id: number | null
   branchId: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type WarehouseMinAggregateOutputType = {
@@ -41,6 +45,10 @@ export type WarehouseMinAggregateOutputType = {
   name: string | null
   code: string | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type WarehouseMaxAggregateOutputType = {
@@ -49,6 +57,10 @@ export type WarehouseMaxAggregateOutputType = {
   name: string | null
   code: string | null
   isActive: boolean | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type WarehouseCountAggregateOutputType = {
@@ -57,6 +69,10 @@ export type WarehouseCountAggregateOutputType = {
   name: number
   code: number
   isActive: number
+  createdAt: number
+  updatedAt: number
+  createdById: number
+  updatedById: number
   _all: number
 }
 
@@ -64,11 +80,15 @@ export type WarehouseCountAggregateOutputType = {
 export type WarehouseAvgAggregateInputType = {
   id?: true
   branchId?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type WarehouseSumAggregateInputType = {
   id?: true
   branchId?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type WarehouseMinAggregateInputType = {
@@ -77,6 +97,10 @@ export type WarehouseMinAggregateInputType = {
   name?: true
   code?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type WarehouseMaxAggregateInputType = {
@@ -85,6 +109,10 @@ export type WarehouseMaxAggregateInputType = {
   name?: true
   code?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type WarehouseCountAggregateInputType = {
@@ -93,6 +121,10 @@ export type WarehouseCountAggregateInputType = {
   name?: true
   code?: true
   isActive?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
   _all?: true
 }
 
@@ -188,6 +220,10 @@ export type WarehouseGroupByOutputType = {
   name: string
   code: string
   isActive: boolean
+  createdAt: Date
+  updatedAt: Date
+  createdById: number | null
+  updatedById: number | null
   _count: WarehouseCountAggregateOutputType | null
   _avg: WarehouseAvgAggregateOutputType | null
   _sum: WarehouseSumAggregateOutputType | null
@@ -219,6 +255,10 @@ export type WarehouseWhereInput = {
   name?: Prisma.StringFilter<"Warehouse"> | string
   code?: Prisma.StringFilter<"Warehouse"> | string
   isActive?: Prisma.BoolFilter<"Warehouse"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Warehouse"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Warehouse"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Warehouse"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Warehouse"> | number | null
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   locations?: Prisma.LocationListRelationFilter
   stockLevels?: Prisma.StockLevelListRelationFilter
@@ -232,6 +272,10 @@ export type WarehouseOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   branch?: Prisma.BranchOrderByWithRelationInput
   locations?: Prisma.LocationOrderByRelationAggregateInput
   stockLevels?: Prisma.StockLevelOrderByRelationAggregateInput
@@ -248,6 +292,10 @@ export type WarehouseWhereUniqueInput = Prisma.AtLeast<{
   branchId?: Prisma.IntFilter<"Warehouse"> | number
   name?: Prisma.StringFilter<"Warehouse"> | string
   isActive?: Prisma.BoolFilter<"Warehouse"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Warehouse"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Warehouse"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Warehouse"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Warehouse"> | number | null
   branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   locations?: Prisma.LocationListRelationFilter
   stockLevels?: Prisma.StockLevelListRelationFilter
@@ -261,6 +309,10 @@ export type WarehouseOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.WarehouseCountOrderByAggregateInput
   _avg?: Prisma.WarehouseAvgOrderByAggregateInput
   _max?: Prisma.WarehouseMaxOrderByAggregateInput
@@ -277,12 +329,20 @@ export type WarehouseScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Warehouse"> | string
   code?: Prisma.StringWithAggregatesFilter<"Warehouse"> | string
   isActive?: Prisma.BoolWithAggregatesFilter<"Warehouse"> | boolean
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Warehouse"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Warehouse"> | Date | string
+  createdById?: Prisma.IntNullableWithAggregatesFilter<"Warehouse"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"Warehouse"> | number | null
 }
 
 export type WarehouseCreateInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   branch: Prisma.BranchCreateNestedOneWithoutWarehousesInput
   locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
   stockLevels?: Prisma.StockLevelCreateNestedManyWithoutWarehouseInput
@@ -296,6 +356,10 @@ export type WarehouseUncheckedCreateInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutWarehouseInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutWarehouseInput
@@ -306,6 +370,10 @@ export type WarehouseUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   branch?: Prisma.BranchUpdateOneRequiredWithoutWarehousesNestedInput
   locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
   stockLevels?: Prisma.StockLevelUpdateManyWithoutWarehouseNestedInput
@@ -319,6 +387,10 @@ export type WarehouseUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutWarehouseNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutWarehouseNestedInput
@@ -331,12 +403,20 @@ export type WarehouseCreateManyInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type WarehouseUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type WarehouseUncheckedUpdateManyInput = {
@@ -345,6 +425,10 @@ export type WarehouseUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type WarehouseListRelationFilter = {
@@ -363,11 +447,17 @@ export type WarehouseCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type WarehouseAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type WarehouseMaxOrderByAggregateInput = {
@@ -376,6 +466,10 @@ export type WarehouseMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type WarehouseMinOrderByAggregateInput = {
@@ -384,11 +478,17 @@ export type WarehouseMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type WarehouseSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type WarehouseScalarRelationFilter = {
@@ -498,6 +598,10 @@ export type WarehouseCreateWithoutBranchInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
   stockLevels?: Prisma.StockLevelCreateNestedManyWithoutWarehouseInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutWarehouseInput
@@ -509,6 +613,10 @@ export type WarehouseUncheckedCreateWithoutBranchInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutWarehouseInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutWarehouseInput
@@ -550,12 +658,20 @@ export type WarehouseScalarWhereInput = {
   name?: Prisma.StringFilter<"Warehouse"> | string
   code?: Prisma.StringFilter<"Warehouse"> | string
   isActive?: Prisma.BoolFilter<"Warehouse"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Warehouse"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Warehouse"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Warehouse"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Warehouse"> | number | null
 }
 
 export type WarehouseCreateWithoutLocationsInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   branch: Prisma.BranchCreateNestedOneWithoutWarehousesInput
   stockLevels?: Prisma.StockLevelCreateNestedManyWithoutWarehouseInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutWarehouseInput
@@ -568,6 +684,10 @@ export type WarehouseUncheckedCreateWithoutLocationsInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutWarehouseInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutWarehouseInput
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutWarehouseInput
@@ -593,6 +713,10 @@ export type WarehouseUpdateWithoutLocationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   branch?: Prisma.BranchUpdateOneRequiredWithoutWarehousesNestedInput
   stockLevels?: Prisma.StockLevelUpdateManyWithoutWarehouseNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutWarehouseNestedInput
@@ -605,6 +729,10 @@ export type WarehouseUncheckedUpdateWithoutLocationsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutWarehouseNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutWarehouseNestedInput
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutWarehouseNestedInput
@@ -614,6 +742,10 @@ export type WarehouseCreateWithoutStockLevelsInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   branch: Prisma.BranchCreateNestedOneWithoutWarehousesInput
   locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutWarehouseInput
@@ -626,6 +758,10 @@ export type WarehouseUncheckedCreateWithoutStockLevelsInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutWarehouseInput
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutWarehouseInput
@@ -651,6 +787,10 @@ export type WarehouseUpdateWithoutStockLevelsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   branch?: Prisma.BranchUpdateOneRequiredWithoutWarehousesNestedInput
   locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutWarehouseNestedInput
@@ -663,6 +803,10 @@ export type WarehouseUncheckedUpdateWithoutStockLevelsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutWarehouseNestedInput
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutWarehouseNestedInput
@@ -672,6 +816,10 @@ export type WarehouseCreateWithoutStockMovementsInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   branch: Prisma.BranchCreateNestedOneWithoutWarehousesInput
   locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
   stockLevels?: Prisma.StockLevelCreateNestedManyWithoutWarehouseInput
@@ -684,6 +832,10 @@ export type WarehouseUncheckedCreateWithoutStockMovementsInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutWarehouseInput
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutWarehouseInput
@@ -709,6 +861,10 @@ export type WarehouseUpdateWithoutStockMovementsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   branch?: Prisma.BranchUpdateOneRequiredWithoutWarehousesNestedInput
   locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
   stockLevels?: Prisma.StockLevelUpdateManyWithoutWarehouseNestedInput
@@ -721,6 +877,10 @@ export type WarehouseUncheckedUpdateWithoutStockMovementsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutWarehouseNestedInput
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutWarehouseNestedInput
@@ -730,6 +890,10 @@ export type WarehouseCreateWithoutPurchasesInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   branch: Prisma.BranchCreateNestedOneWithoutWarehousesInput
   locations?: Prisma.LocationCreateNestedManyWithoutWarehouseInput
   stockLevels?: Prisma.StockLevelCreateNestedManyWithoutWarehouseInput
@@ -742,6 +906,10 @@ export type WarehouseUncheckedCreateWithoutPurchasesInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutWarehouseInput
   stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutWarehouseInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutWarehouseInput
@@ -767,6 +935,10 @@ export type WarehouseUpdateWithoutPurchasesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   branch?: Prisma.BranchUpdateOneRequiredWithoutWarehousesNestedInput
   locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
   stockLevels?: Prisma.StockLevelUpdateManyWithoutWarehouseNestedInput
@@ -779,6 +951,10 @@ export type WarehouseUncheckedUpdateWithoutPurchasesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutWarehouseNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutWarehouseNestedInput
@@ -789,12 +965,20 @@ export type WarehouseCreateManyBranchInput = {
   name: string
   code: string
   isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type WarehouseUpdateWithoutBranchInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   locations?: Prisma.LocationUpdateManyWithoutWarehouseNestedInput
   stockLevels?: Prisma.StockLevelUpdateManyWithoutWarehouseNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutWarehouseNestedInput
@@ -806,6 +990,10 @@ export type WarehouseUncheckedUpdateWithoutBranchInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   locations?: Prisma.LocationUncheckedUpdateManyWithoutWarehouseNestedInput
   stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutWarehouseNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutWarehouseNestedInput
@@ -817,6 +1005,10 @@ export type WarehouseUncheckedUpdateManyWithoutBranchInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -883,6 +1075,10 @@ export type WarehouseSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   name?: boolean
   code?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   locations?: boolean | Prisma.Warehouse$locationsArgs<ExtArgs>
   stockLevels?: boolean | Prisma.Warehouse$stockLevelsArgs<ExtArgs>
@@ -897,6 +1093,10 @@ export type WarehouseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   name?: boolean
   code?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["warehouse"]>
 
@@ -906,6 +1106,10 @@ export type WarehouseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   name?: boolean
   code?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["warehouse"]>
 
@@ -915,9 +1119,13 @@ export type WarehouseSelectScalar = {
   name?: boolean
   code?: boolean
   isActive?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }
 
-export type WarehouseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "branchId" | "name" | "code" | "isActive", ExtArgs["result"]["warehouse"]>
+export type WarehouseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "branchId" | "name" | "code" | "isActive" | "createdAt" | "updatedAt" | "createdById" | "updatedById", ExtArgs["result"]["warehouse"]>
 export type WarehouseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   locations?: boolean | Prisma.Warehouse$locationsArgs<ExtArgs>
@@ -948,6 +1156,10 @@ export type $WarehousePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     name: string
     code: string
     isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    createdById: number | null
+    updatedById: number | null
   }, ExtArgs["result"]["warehouse"]>
   composites: {}
 }
@@ -1381,6 +1593,10 @@ export interface WarehouseFieldRefs {
   readonly name: Prisma.FieldRef<"Warehouse", 'String'>
   readonly code: Prisma.FieldRef<"Warehouse", 'String'>
   readonly isActive: Prisma.FieldRef<"Warehouse", 'Boolean'>
+  readonly createdAt: Prisma.FieldRef<"Warehouse", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Warehouse", 'DateTime'>
+  readonly createdById: Prisma.FieldRef<"Warehouse", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"Warehouse", 'Int'>
 }
     
 

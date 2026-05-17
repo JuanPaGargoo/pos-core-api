@@ -28,11 +28,15 @@ export type AggregateSetting = {
 export type SettingAvgAggregateOutputType = {
   id: number | null
   branchId: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type SettingSumAggregateOutputType = {
   id: number | null
   branchId: number | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type SettingMinAggregateOutputType = {
@@ -40,6 +44,10 @@ export type SettingMinAggregateOutputType = {
   scope: string | null
   branchId: number | null
   key: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type SettingMaxAggregateOutputType = {
@@ -47,6 +55,10 @@ export type SettingMaxAggregateOutputType = {
   scope: string | null
   branchId: number | null
   key: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  createdById: number | null
+  updatedById: number | null
 }
 
 export type SettingCountAggregateOutputType = {
@@ -55,6 +67,10 @@ export type SettingCountAggregateOutputType = {
   branchId: number
   key: number
   valueJson: number
+  createdAt: number
+  updatedAt: number
+  createdById: number
+  updatedById: number
   _all: number
 }
 
@@ -62,11 +78,15 @@ export type SettingCountAggregateOutputType = {
 export type SettingAvgAggregateInputType = {
   id?: true
   branchId?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type SettingSumAggregateInputType = {
   id?: true
   branchId?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type SettingMinAggregateInputType = {
@@ -74,6 +94,10 @@ export type SettingMinAggregateInputType = {
   scope?: true
   branchId?: true
   key?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type SettingMaxAggregateInputType = {
@@ -81,6 +105,10 @@ export type SettingMaxAggregateInputType = {
   scope?: true
   branchId?: true
   key?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
 }
 
 export type SettingCountAggregateInputType = {
@@ -89,6 +117,10 @@ export type SettingCountAggregateInputType = {
   branchId?: true
   key?: true
   valueJson?: true
+  createdAt?: true
+  updatedAt?: true
+  createdById?: true
+  updatedById?: true
   _all?: true
 }
 
@@ -184,6 +216,10 @@ export type SettingGroupByOutputType = {
   branchId: number | null
   key: string
   valueJson: runtime.JsonValue
+  createdAt: Date
+  updatedAt: Date
+  createdById: number | null
+  updatedById: number | null
   _count: SettingCountAggregateOutputType | null
   _avg: SettingAvgAggregateOutputType | null
   _sum: SettingSumAggregateOutputType | null
@@ -215,6 +251,10 @@ export type SettingWhereInput = {
   branchId?: Prisma.IntNullableFilter<"Setting"> | number | null
   key?: Prisma.StringFilter<"Setting"> | string
   valueJson?: Prisma.JsonFilter<"Setting">
+  createdAt?: Prisma.DateTimeFilter<"Setting"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Setting"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Setting"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Setting"> | number | null
   branch?: Prisma.XOR<Prisma.BranchNullableScalarRelationFilter, Prisma.BranchWhereInput> | null
 }
 
@@ -224,6 +264,10 @@ export type SettingOrderByWithRelationInput = {
   branchId?: Prisma.SortOrderInput | Prisma.SortOrder
   key?: Prisma.SortOrder
   valueJson?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   branch?: Prisma.BranchOrderByWithRelationInput
 }
 
@@ -237,6 +281,10 @@ export type SettingWhereUniqueInput = Prisma.AtLeast<{
   branchId?: Prisma.IntNullableFilter<"Setting"> | number | null
   key?: Prisma.StringFilter<"Setting"> | string
   valueJson?: Prisma.JsonFilter<"Setting">
+  createdAt?: Prisma.DateTimeFilter<"Setting"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Setting"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Setting"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Setting"> | number | null
   branch?: Prisma.XOR<Prisma.BranchNullableScalarRelationFilter, Prisma.BranchWhereInput> | null
 }, "id" | "scope_branchId_key">
 
@@ -246,6 +294,10 @@ export type SettingOrderByWithAggregationInput = {
   branchId?: Prisma.SortOrderInput | Prisma.SortOrder
   key?: Prisma.SortOrder
   valueJson?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedById?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SettingCountOrderByAggregateInput
   _avg?: Prisma.SettingAvgOrderByAggregateInput
   _max?: Prisma.SettingMaxOrderByAggregateInput
@@ -262,12 +314,20 @@ export type SettingScalarWhereWithAggregatesInput = {
   branchId?: Prisma.IntNullableWithAggregatesFilter<"Setting"> | number | null
   key?: Prisma.StringWithAggregatesFilter<"Setting"> | string
   valueJson?: Prisma.JsonWithAggregatesFilter<"Setting">
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Setting"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Setting"> | Date | string
+  createdById?: Prisma.IntNullableWithAggregatesFilter<"Setting"> | number | null
+  updatedById?: Prisma.IntNullableWithAggregatesFilter<"Setting"> | number | null
 }
 
 export type SettingCreateInput = {
   scope: string
   key: string
   valueJson: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
   branch?: Prisma.BranchCreateNestedOneWithoutSettingsInput
 }
 
@@ -277,12 +337,20 @@ export type SettingUncheckedCreateInput = {
   branchId?: number | null
   key: string
   valueJson: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type SettingUpdateInput = {
   scope?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
   valueJson?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   branch?: Prisma.BranchUpdateOneWithoutSettingsNestedInput
 }
 
@@ -292,6 +360,10 @@ export type SettingUncheckedUpdateInput = {
   branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   key?: Prisma.StringFieldUpdateOperationsInput | string
   valueJson?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type SettingCreateManyInput = {
@@ -300,12 +372,20 @@ export type SettingCreateManyInput = {
   branchId?: number | null
   key: string
   valueJson: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type SettingUpdateManyMutationInput = {
   scope?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
   valueJson?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type SettingUncheckedUpdateManyInput = {
@@ -314,6 +394,10 @@ export type SettingUncheckedUpdateManyInput = {
   branchId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   key?: Prisma.StringFieldUpdateOperationsInput | string
   valueJson?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type SettingListRelationFilter = {
@@ -338,11 +422,17 @@ export type SettingCountOrderByAggregateInput = {
   branchId?: Prisma.SortOrder
   key?: Prisma.SortOrder
   valueJson?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type SettingAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type SettingMaxOrderByAggregateInput = {
@@ -350,6 +440,10 @@ export type SettingMaxOrderByAggregateInput = {
   scope?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
   key?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type SettingMinOrderByAggregateInput = {
@@ -357,11 +451,17 @@ export type SettingMinOrderByAggregateInput = {
   scope?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
   key?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type SettingSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   branchId?: Prisma.SortOrder
+  createdById?: Prisma.SortOrder
+  updatedById?: Prisma.SortOrder
 }
 
 export type SettingCreateNestedManyWithoutBranchInput = {
@@ -410,6 +510,10 @@ export type SettingCreateWithoutBranchInput = {
   scope: string
   key: string
   valueJson: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type SettingUncheckedCreateWithoutBranchInput = {
@@ -417,6 +521,10 @@ export type SettingUncheckedCreateWithoutBranchInput = {
   scope: string
   key: string
   valueJson: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type SettingCreateOrConnectWithoutBranchInput = {
@@ -454,6 +562,10 @@ export type SettingScalarWhereInput = {
   branchId?: Prisma.IntNullableFilter<"Setting"> | number | null
   key?: Prisma.StringFilter<"Setting"> | string
   valueJson?: Prisma.JsonFilter<"Setting">
+  createdAt?: Prisma.DateTimeFilter<"Setting"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Setting"> | Date | string
+  createdById?: Prisma.IntNullableFilter<"Setting"> | number | null
+  updatedById?: Prisma.IntNullableFilter<"Setting"> | number | null
 }
 
 export type SettingCreateManyBranchInput = {
@@ -461,12 +573,20 @@ export type SettingCreateManyBranchInput = {
   scope: string
   key: string
   valueJson: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
 }
 
 export type SettingUpdateWithoutBranchInput = {
   scope?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
   valueJson?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type SettingUncheckedUpdateWithoutBranchInput = {
@@ -474,6 +594,10 @@ export type SettingUncheckedUpdateWithoutBranchInput = {
   scope?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
   valueJson?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type SettingUncheckedUpdateManyWithoutBranchInput = {
@@ -481,6 +605,10 @@ export type SettingUncheckedUpdateManyWithoutBranchInput = {
   scope?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
   valueJson?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -491,6 +619,10 @@ export type SettingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   branchId?: boolean
   key?: boolean
   valueJson?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   branch?: boolean | Prisma.Setting$branchArgs<ExtArgs>
 }, ExtArgs["result"]["setting"]>
 
@@ -500,6 +632,10 @@ export type SettingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   branchId?: boolean
   key?: boolean
   valueJson?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   branch?: boolean | Prisma.Setting$branchArgs<ExtArgs>
 }, ExtArgs["result"]["setting"]>
 
@@ -509,6 +645,10 @@ export type SettingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   branchId?: boolean
   key?: boolean
   valueJson?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
   branch?: boolean | Prisma.Setting$branchArgs<ExtArgs>
 }, ExtArgs["result"]["setting"]>
 
@@ -518,9 +658,13 @@ export type SettingSelectScalar = {
   branchId?: boolean
   key?: boolean
   valueJson?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  createdById?: boolean
+  updatedById?: boolean
 }
 
-export type SettingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "scope" | "branchId" | "key" | "valueJson", ExtArgs["result"]["setting"]>
+export type SettingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "scope" | "branchId" | "key" | "valueJson" | "createdAt" | "updatedAt" | "createdById" | "updatedById", ExtArgs["result"]["setting"]>
 export type SettingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   branch?: boolean | Prisma.Setting$branchArgs<ExtArgs>
 }
@@ -542,6 +686,10 @@ export type $SettingPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     branchId: number | null
     key: string
     valueJson: runtime.JsonValue
+    createdAt: Date
+    updatedAt: Date
+    createdById: number | null
+    updatedById: number | null
   }, ExtArgs["result"]["setting"]>
   composites: {}
 }
@@ -971,6 +1119,10 @@ export interface SettingFieldRefs {
   readonly branchId: Prisma.FieldRef<"Setting", 'Int'>
   readonly key: Prisma.FieldRef<"Setting", 'String'>
   readonly valueJson: Prisma.FieldRef<"Setting", 'Json'>
+  readonly createdAt: Prisma.FieldRef<"Setting", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Setting", 'DateTime'>
+  readonly createdById: Prisma.FieldRef<"Setting", 'Int'>
+  readonly updatedById: Prisma.FieldRef<"Setting", 'Int'>
 }
     
 

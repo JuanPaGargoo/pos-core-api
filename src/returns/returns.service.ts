@@ -12,6 +12,7 @@ import { CreateReturnDto, PaginationQueryDto } from './dto';
 
 const returnInclude = {
   sale: { select: { id: true, folio: true } },
+  user: { select: { id: true, name: true } },
   items: {
     include: { product: { select: { id: true, name: true, sku: true } } },
   },
@@ -34,6 +35,8 @@ function mapReturn(r: ReturnWithRelations) {
     total: Number(r.total),
     refundMethod: r.refundMethod,
     createdAt: r.createdAt,
+    userId: r.userId,
+    user: r.user,
     items: r.items.map((i) => ({
       id: i.id,
       saleItemId: i.saleItemId,
