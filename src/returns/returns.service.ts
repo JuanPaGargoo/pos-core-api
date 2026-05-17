@@ -64,6 +64,12 @@ export class ReturnsService {
     const where: Prisma.SaleReturnWhereInput = {};
     if (query.saleId) where.saleId = query.saleId;
     if (query.branchId) where.branchId = query.branchId;
+    if (query.search) {
+      where.OR = [
+        { folio: { contains: query.search, mode: 'insensitive' } },
+        { reason: { contains: query.search, mode: 'insensitive' } },
+      ];
+    }
 
     const [returns, total] = await Promise.all([
       this.prisma.saleReturn.findMany({

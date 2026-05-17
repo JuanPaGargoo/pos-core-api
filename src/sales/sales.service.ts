@@ -118,6 +118,13 @@ export class SalesService {
     if (query.branchId) where.branchId = query.branchId;
     if (query.cashSessionId) where.cashSessionId = query.cashSessionId;
     if (query.status) where.status = query.status;
+    if (query.search) {
+      where.OR = [
+        { folio: { contains: query.search, mode: 'insensitive' } },
+        { customer: { name: { contains: query.search, mode: 'insensitive' } } },
+        { user: { name: { contains: query.search, mode: 'insensitive' } } },
+      ];
+    }
     if (query.from || query.to) {
       where.soldAt = {};
       if (query.from) where.soldAt.gte = new Date(query.from);

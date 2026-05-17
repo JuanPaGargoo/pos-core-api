@@ -4,6 +4,7 @@ import {
   IsInt,
   IsOptional,
   IsPositive,
+  IsString,
   Min,
 } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
@@ -61,4 +62,9 @@ export class PaginationQueryDto {
   @IsDateString()
   @IsOptional()
   to?: string;
+
+  @ApiPropertyOptional({ description: 'Buscar por folio, cliente o vendedor' })
+  @IsString()
+  @IsOptional()
+  search?: string;
 }

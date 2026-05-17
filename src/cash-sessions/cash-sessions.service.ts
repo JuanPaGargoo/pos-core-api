@@ -58,6 +58,12 @@ export class CashSessionsService {
     const where: Prisma.CashSessionWhereInput = {};
     if (query.branchId) where.branchId = query.branchId;
     if (query.status) where.status = query.status;
+    if (query.search) {
+      where.OR = [
+        { folio: { contains: query.search, mode: 'insensitive' } },
+        { user: { name: { contains: query.search, mode: 'insensitive' } } },
+      ];
+    }
 
     const [sessions, total] = await Promise.all([
       this.prisma.cashSession.findMany({
