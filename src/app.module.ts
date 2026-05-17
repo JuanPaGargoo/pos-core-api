@@ -30,6 +30,7 @@ import { ReturnsModule } from './returns/returns.module';
 import { PromotionsModule } from './promotions/promotions.module';
 import { PosSyncModule } from './pos-sync/pos-sync.module';
 import { ReportsModule } from './reports/reports.module';
+import { TaxesModule } from './taxes/taxes.module';
 import { validate } from './config/env.validation';
 
 @Module({
@@ -73,6 +74,7 @@ import { validate } from './config/env.validation';
     PromotionsModule,
     PosSyncModule,
     ReportsModule,
+    TaxesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

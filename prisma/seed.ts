@@ -112,6 +112,10 @@ const ALL_PERMISSIONS: { key: string; description: string }[] = [
   },
   // reports
   { key: 'reports.read', description: 'Ver reportes' },
+  // taxes
+  { key: 'taxes.create', description: 'Crear impuestos' },
+  { key: 'taxes.read', description: 'Ver impuestos' },
+  { key: 'taxes.update', description: 'Actualizar impuestos' },
 ];
 
 // ============================================================
@@ -188,6 +192,9 @@ const ROLES: { name: string; description: string; permissionKeys: string[] }[] =
         'promotions.update',
         'pos.sync',
         'reports.read',
+        'taxes.create',
+        'taxes.read',
+        'taxes.update',
       ],
     },
     {
