@@ -43,6 +43,8 @@ function mapProduct(p: ProductWithRelations) {
     description: p.description,
     sellType: p.sellType,
     trackStock: p.trackStock,
+    requiresPrescription: p.requiresPrescription,
+    controlledGroup: p.controlledGroup,
     isActive: p.isActive,
     imageUrl: p.imageUrl,
     categoryId: p.categoryId,
@@ -192,6 +194,8 @@ export class ProductsService {
           taxId: dto.taxId ?? null,
           sellType: dto.sellType ?? 'UNIT',
           trackStock: dto.trackStock ?? true,
+          requiresPrescription: dto.requiresPrescription ?? false,
+          controlledGroup: dto.controlledGroup ?? null,
           isActive: dto.isActive ?? true,
           imageUrl: dto.imageUrl ?? null,
         },
@@ -260,6 +264,12 @@ export class ProductsService {
           ...(dto.taxId !== undefined && { taxId: dto.taxId }),
           ...(dto.sellType !== undefined && { sellType: dto.sellType }),
           ...(dto.trackStock !== undefined && { trackStock: dto.trackStock }),
+          ...(dto.requiresPrescription !== undefined && {
+            requiresPrescription: dto.requiresPrescription,
+          }),
+          ...(dto.controlledGroup !== undefined && {
+            controlledGroup: dto.controlledGroup,
+          }),
           ...(dto.imageUrl !== undefined && { imageUrl: dto.imageUrl }),
         },
       });

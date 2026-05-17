@@ -281,6 +281,7 @@ export type UserWhereInput = {
   purchases?: Prisma.PurchaseListRelationFilter
   cashMovements?: Prisma.CashMovementListRelationFilter
   customerCreditEntries?: Prisma.CustomerCreditEntryListRelationFilter
+  prescriptions?: Prisma.PrescriptionListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -305,6 +306,7 @@ export type UserOrderByWithRelationInput = {
   purchases?: Prisma.PurchaseOrderByRelationAggregateInput
   cashMovements?: Prisma.CashMovementOrderByRelationAggregateInput
   customerCreditEntries?: Prisma.CustomerCreditEntryOrderByRelationAggregateInput
+  prescriptions?: Prisma.PrescriptionOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -332,6 +334,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   purchases?: Prisma.PurchaseListRelationFilter
   cashMovements?: Prisma.CashMovementListRelationFilter
   customerCreditEntries?: Prisma.CustomerCreditEntryListRelationFilter
+  prescriptions?: Prisma.PrescriptionListRelationFilter
 }, "id" | "username" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -391,6 +394,7 @@ export type UserCreateInput = {
   purchases?: Prisma.PurchaseCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -415,6 +419,7 @@ export type UserUncheckedCreateInput = {
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementUncheckedCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -438,6 +443,7 @@ export type UserUpdateInput = {
   purchases?: Prisma.PurchaseUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -462,6 +468,7 @@ export type UserUncheckedUpdateInput = {
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUncheckedUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -755,6 +762,22 @@ export type UserUpdateOneWithoutSaleReturnsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSaleReturnsInput, Prisma.UserUpdateWithoutSaleReturnsInput>, Prisma.UserUncheckedUpdateWithoutSaleReturnsInput>
 }
 
+export type UserCreateNestedOneWithoutPrescriptionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPrescriptionsInput, Prisma.UserUncheckedCreateWithoutPrescriptionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPrescriptionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutPrescriptionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPrescriptionsInput, Prisma.UserUncheckedCreateWithoutPrescriptionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPrescriptionsInput
+  upsert?: Prisma.UserUpsertWithoutPrescriptionsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPrescriptionsInput, Prisma.UserUpdateWithoutPrescriptionsInput>, Prisma.UserUncheckedUpdateWithoutPrescriptionsInput>
+}
+
 export type UserCreateWithoutUserRolesInput = {
   name: string
   username?: string | null
@@ -775,6 +798,7 @@ export type UserCreateWithoutUserRolesInput = {
   purchases?: Prisma.PurchaseCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutUserRolesInput = {
@@ -798,6 +822,7 @@ export type UserUncheckedCreateWithoutUserRolesInput = {
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementUncheckedCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutUserRolesInput = {
@@ -836,6 +861,7 @@ export type UserUpdateWithoutUserRolesInput = {
   purchases?: Prisma.PurchaseUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserRolesInput = {
@@ -859,6 +885,7 @@ export type UserUncheckedUpdateWithoutUserRolesInput = {
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUncheckedUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutUserBranchesInput = {
@@ -881,6 +908,7 @@ export type UserCreateWithoutUserBranchesInput = {
   purchases?: Prisma.PurchaseCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutUserBranchesInput = {
@@ -904,6 +932,7 @@ export type UserUncheckedCreateWithoutUserBranchesInput = {
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementUncheckedCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutUserBranchesInput = {
@@ -942,6 +971,7 @@ export type UserUpdateWithoutUserBranchesInput = {
   purchases?: Prisma.PurchaseUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUserBranchesInput = {
@@ -965,6 +995,7 @@ export type UserUncheckedUpdateWithoutUserBranchesInput = {
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUncheckedUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -987,6 +1018,7 @@ export type UserCreateWithoutAuditLogsInput = {
   purchases?: Prisma.PurchaseCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1010,6 +1042,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementUncheckedCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1048,6 +1081,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   purchases?: Prisma.PurchaseUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1071,6 +1105,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUncheckedUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutStockMovementsInput = {
@@ -1093,6 +1128,7 @@ export type UserCreateWithoutStockMovementsInput = {
   purchases?: Prisma.PurchaseCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStockMovementsInput = {
@@ -1116,6 +1152,7 @@ export type UserUncheckedCreateWithoutStockMovementsInput = {
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementUncheckedCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStockMovementsInput = {
@@ -1154,6 +1191,7 @@ export type UserUpdateWithoutStockMovementsInput = {
   purchases?: Prisma.PurchaseUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStockMovementsInput = {
@@ -1177,6 +1215,7 @@ export type UserUncheckedUpdateWithoutStockMovementsInput = {
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUncheckedUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCashSessionsInput = {
@@ -1199,6 +1238,7 @@ export type UserCreateWithoutCashSessionsInput = {
   purchases?: Prisma.PurchaseCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCashSessionsInput = {
@@ -1222,6 +1262,7 @@ export type UserUncheckedCreateWithoutCashSessionsInput = {
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementUncheckedCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCashSessionsInput = {
@@ -1260,6 +1301,7 @@ export type UserUpdateWithoutCashSessionsInput = {
   purchases?: Prisma.PurchaseUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCashSessionsInput = {
@@ -1283,6 +1325,7 @@ export type UserUncheckedUpdateWithoutCashSessionsInput = {
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUncheckedUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCashMovementsInput = {
@@ -1305,6 +1348,7 @@ export type UserCreateWithoutCashMovementsInput = {
   saleReturns?: Prisma.SaleReturnCreateNestedManyWithoutUserInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCashMovementsInput = {
@@ -1328,6 +1372,7 @@ export type UserUncheckedCreateWithoutCashMovementsInput = {
   saleReturns?: Prisma.SaleReturnUncheckedCreateNestedManyWithoutUserInput
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCashMovementsInput = {
@@ -1366,6 +1411,7 @@ export type UserUpdateWithoutCashMovementsInput = {
   saleReturns?: Prisma.SaleReturnUpdateManyWithoutUserNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCashMovementsInput = {
@@ -1389,6 +1435,7 @@ export type UserUncheckedUpdateWithoutCashMovementsInput = {
   saleReturns?: Prisma.SaleReturnUncheckedUpdateManyWithoutUserNestedInput
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSalesInput = {
@@ -1411,6 +1458,7 @@ export type UserCreateWithoutSalesInput = {
   purchases?: Prisma.PurchaseCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSalesInput = {
@@ -1434,6 +1482,7 @@ export type UserUncheckedCreateWithoutSalesInput = {
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementUncheckedCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSalesInput = {
@@ -1472,6 +1521,7 @@ export type UserUpdateWithoutSalesInput = {
   purchases?: Prisma.PurchaseUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSalesInput = {
@@ -1495,6 +1545,7 @@ export type UserUncheckedUpdateWithoutSalesInput = {
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUncheckedUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPurchasesInput = {
@@ -1517,6 +1568,7 @@ export type UserCreateWithoutPurchasesInput = {
   saleReturns?: Prisma.SaleReturnCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPurchasesInput = {
@@ -1540,6 +1592,7 @@ export type UserUncheckedCreateWithoutPurchasesInput = {
   saleReturns?: Prisma.SaleReturnUncheckedCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementUncheckedCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPurchasesInput = {
@@ -1578,6 +1631,7 @@ export type UserUpdateWithoutPurchasesInput = {
   saleReturns?: Prisma.SaleReturnUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPurchasesInput = {
@@ -1601,6 +1655,7 @@ export type UserUncheckedUpdateWithoutPurchasesInput = {
   saleReturns?: Prisma.SaleReturnUncheckedUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUncheckedUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCustomerCreditEntriesInput = {
@@ -1623,6 +1678,7 @@ export type UserCreateWithoutCustomerCreditEntriesInput = {
   saleReturns?: Prisma.SaleReturnCreateNestedManyWithoutUserInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCustomerCreditEntriesInput = {
@@ -1646,6 +1702,7 @@ export type UserUncheckedCreateWithoutCustomerCreditEntriesInput = {
   saleReturns?: Prisma.SaleReturnUncheckedCreateNestedManyWithoutUserInput
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementUncheckedCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCustomerCreditEntriesInput = {
@@ -1684,6 +1741,7 @@ export type UserUpdateWithoutCustomerCreditEntriesInput = {
   saleReturns?: Prisma.SaleReturnUpdateManyWithoutUserNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCustomerCreditEntriesInput = {
@@ -1707,6 +1765,7 @@ export type UserUncheckedUpdateWithoutCustomerCreditEntriesInput = {
   saleReturns?: Prisma.SaleReturnUncheckedUpdateManyWithoutUserNestedInput
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUncheckedUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSaleReturnsInput = {
@@ -1729,6 +1788,7 @@ export type UserCreateWithoutSaleReturnsInput = {
   purchases?: Prisma.PurchaseCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSaleReturnsInput = {
@@ -1752,6 +1812,7 @@ export type UserUncheckedCreateWithoutSaleReturnsInput = {
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutUserInput
   cashMovements?: Prisma.CashMovementUncheckedCreateNestedManyWithoutUserInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutUserInput
+  prescriptions?: Prisma.PrescriptionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSaleReturnsInput = {
@@ -1790,6 +1851,7 @@ export type UserUpdateWithoutSaleReturnsInput = {
   purchases?: Prisma.PurchaseUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSaleReturnsInput = {
@@ -1813,6 +1875,117 @@ export type UserUncheckedUpdateWithoutSaleReturnsInput = {
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutUserNestedInput
   cashMovements?: Prisma.CashMovementUncheckedUpdateManyWithoutUserNestedInput
   customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutUserNestedInput
+  prescriptions?: Prisma.PrescriptionUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPrescriptionsInput = {
+  name: string
+  username?: string | null
+  email?: string | null
+  passwordHash: string
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
+  userRoles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  userBranches?: Prisma.UserBranchCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  sales?: Prisma.SaleCreateNestedManyWithoutUserInput
+  cashSessions?: Prisma.CashSessionCreateNestedManyWithoutUserInput
+  stockMovements?: Prisma.StockMovementCreateNestedManyWithoutUserInput
+  saleReturns?: Prisma.SaleReturnCreateNestedManyWithoutUserInput
+  purchases?: Prisma.PurchaseCreateNestedManyWithoutUserInput
+  cashMovements?: Prisma.CashMovementCreateNestedManyWithoutUserInput
+  customerCreditEntries?: Prisma.CustomerCreditEntryCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPrescriptionsInput = {
+  id?: number
+  name: string
+  username?: string | null
+  email?: string | null
+  passwordHash: string
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
+  userRoles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  userBranches?: Prisma.UserBranchUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutUserInput
+  cashSessions?: Prisma.CashSessionUncheckedCreateNestedManyWithoutUserInput
+  stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutUserInput
+  saleReturns?: Prisma.SaleReturnUncheckedCreateNestedManyWithoutUserInput
+  purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutUserInput
+  cashMovements?: Prisma.CashMovementUncheckedCreateNestedManyWithoutUserInput
+  customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPrescriptionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPrescriptionsInput, Prisma.UserUncheckedCreateWithoutPrescriptionsInput>
+}
+
+export type UserUpsertWithoutPrescriptionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPrescriptionsInput, Prisma.UserUncheckedUpdateWithoutPrescriptionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPrescriptionsInput, Prisma.UserUncheckedCreateWithoutPrescriptionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPrescriptionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPrescriptionsInput, Prisma.UserUncheckedUpdateWithoutPrescriptionsInput>
+}
+
+export type UserUpdateWithoutPrescriptionsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  userRoles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  userBranches?: Prisma.UserBranchUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  sales?: Prisma.SaleUpdateManyWithoutUserNestedInput
+  cashSessions?: Prisma.CashSessionUpdateManyWithoutUserNestedInput
+  stockMovements?: Prisma.StockMovementUpdateManyWithoutUserNestedInput
+  saleReturns?: Prisma.SaleReturnUpdateManyWithoutUserNestedInput
+  purchases?: Prisma.PurchaseUpdateManyWithoutUserNestedInput
+  cashMovements?: Prisma.CashMovementUpdateManyWithoutUserNestedInput
+  customerCreditEntries?: Prisma.CustomerCreditEntryUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPrescriptionsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  userRoles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  userBranches?: Prisma.UserBranchUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  sales?: Prisma.SaleUncheckedUpdateManyWithoutUserNestedInput
+  cashSessions?: Prisma.CashSessionUncheckedUpdateManyWithoutUserNestedInput
+  stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutUserNestedInput
+  saleReturns?: Prisma.SaleReturnUncheckedUpdateManyWithoutUserNestedInput
+  purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutUserNestedInput
+  cashMovements?: Prisma.CashMovementUncheckedUpdateManyWithoutUserNestedInput
+  customerCreditEntries?: Prisma.CustomerCreditEntryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1831,6 +2004,7 @@ export type UserCountOutputType = {
   purchases: number
   cashMovements: number
   customerCreditEntries: number
+  prescriptions: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1844,6 +2018,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   purchases?: boolean | UserCountOutputTypeCountPurchasesArgs
   cashMovements?: boolean | UserCountOutputTypeCountCashMovementsArgs
   customerCreditEntries?: boolean | UserCountOutputTypeCountCustomerCreditEntriesArgs
+  prescriptions?: boolean | UserCountOutputTypeCountPrescriptionsArgs
 }
 
 /**
@@ -1926,6 +2101,13 @@ export type UserCountOutputTypeCountCustomerCreditEntriesArgs<ExtArgs extends ru
   where?: Prisma.CustomerCreditEntryWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPrescriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PrescriptionWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1949,6 +2131,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   purchases?: boolean | Prisma.User$purchasesArgs<ExtArgs>
   cashMovements?: boolean | Prisma.User$cashMovementsArgs<ExtArgs>
   customerCreditEntries?: boolean | Prisma.User$customerCreditEntriesArgs<ExtArgs>
+  prescriptions?: boolean | Prisma.User$prescriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2006,6 +2189,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   purchases?: boolean | Prisma.User$purchasesArgs<ExtArgs>
   cashMovements?: boolean | Prisma.User$cashMovementsArgs<ExtArgs>
   customerCreditEntries?: boolean | Prisma.User$customerCreditEntriesArgs<ExtArgs>
+  prescriptions?: boolean | Prisma.User$prescriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2024,6 +2208,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     purchases: Prisma.$PurchasePayload<ExtArgs>[]
     cashMovements: Prisma.$CashMovementPayload<ExtArgs>[]
     customerCreditEntries: Prisma.$CustomerCreditEntryPayload<ExtArgs>[]
+    prescriptions: Prisma.$PrescriptionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -2441,6 +2626,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   purchases<T extends Prisma.User$purchasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$purchasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cashMovements<T extends Prisma.User$cashMovementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cashMovementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CashMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   customerCreditEntries<T extends Prisma.User$customerCreditEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$customerCreditEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerCreditEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  prescriptions<T extends Prisma.User$prescriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$prescriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PrescriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3106,6 +3292,30 @@ export type User$customerCreditEntriesArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.CustomerCreditEntryScalarFieldEnum | Prisma.CustomerCreditEntryScalarFieldEnum[]
+}
+
+/**
+ * User.prescriptions
+ */
+export type User$prescriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Prescription
+   */
+  select?: Prisma.PrescriptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Prescription
+   */
+  omit?: Prisma.PrescriptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PrescriptionInclude<ExtArgs> | null
+  where?: Prisma.PrescriptionWhereInput
+  orderBy?: Prisma.PrescriptionOrderByWithRelationInput | Prisma.PrescriptionOrderByWithRelationInput[]
+  cursor?: Prisma.PrescriptionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PrescriptionScalarFieldEnum | Prisma.PrescriptionScalarFieldEnum[]
 }
 
 /**

@@ -37,6 +37,7 @@ model User {
   purchases             Purchase[]
   cashMovements         CashMovement[]
   customerCreditEntries CustomerCreditEntry[]
+  prescriptions         Prescription[]
 
   // Auditoría
   createdById Int? @map("created_by_id")
@@ -132,6 +133,7 @@ model Branch {
   purchases           Purchase[]
   customerCreditEntries CustomerCreditEntry[]
   saleReturns         SaleReturn[]
+  prescriptions       Prescription[]
 
   // Auditoría
   createdAt   DateTime @default(now()) @map("created_at")
@@ -369,6 +371,8 @@ model Product {
   taxId       Int?     @map("tax_id")
   sellType    String   @default("UNIT") @db.VarChar(20) // 'UNIT' | 'WEIGHT'
   trackStock  Boolean  @default(true) @map("track_stock")
+  requiresPrescription Boolean @default(false) @map("requires_prescription")
+  controlledGroup      String? @map("controlled_group") @db.VarChar(10) // fracción COFEPRIS I-VI
   isActive    Boolean  @default(true) @map("is_active")
   imageUrl    String?  @map("image_url") @db.Text
   createdAt   DateTime @default(now()) @map("created_at")
@@ -386,6 +390,7 @@ model Product {
   purchaseItems   PurchaseItem[]
   saleReturnItems SaleReturnItem[]
   promotions      Promotion[]
+  prescriptionItems PrescriptionItem[]
 
   // Auditoría
   createdById Int? @map("created_by_id")
@@ -718,6 +723,7 @@ model Customer {
   priceList     PriceList?            @relation(fields: [priceListId], references: [id], onDelete: SetNull)
   sales         Sale[]
   creditEntries CustomerCreditEntry[]
+  prescriptions Prescription[]
 
   // Auditoría
   updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
@@ -826,4 +832,74 @@ model Promotion {
   updatedById Int?     @map("updated_by_id")
 
   @@map("promotions")
+}
+
+// ====================================
+// MODELS - FARMACIA (módulo opcional)
+// ====================================
+
+// Doctor - médico que emite recetas
+model Doctor {
+  id        Int     @id @default(autoincrement())
+  name      String  @db.VarChar(255)
+  license   String  @db.VarChar(60) // cédula profesional
+  specialty String? @db.VarChar(150)
+  phone     String? @db.VarChar(50)
+  email     String? @db.VarChar(255)
+  isActive  Boolean @default(true) @map("is_active")
+
+  // Relations
+  prescriptions Prescription[]
+
+  // Auditoría
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @default(now()) @map("updated_at")
+  createdById Int?     @map("created_by_id")
+  updatedById Int?     @map("updated_by_id")
+
+  @@map("doctors")
+}
+
+// Prescription - receta médica
+model Prescription {
+  id          Int      @id @default(autoincrement())
+  folio       String   @db.VarChar(40)
+  branchId    Int      @map("branch_id")
+  doctorId    Int      @map("doctor_id")
+  customerId  Int?     @map("customer_id")
+  patientName String?  @map("patient_name") @db.VarChar(255)
+  diagnosis   String?  @db.Text
+  notes       String?  @db.Text
+  issuedAt    DateTime @map("issued_at")
+  status      String   @default("ACTIVE") @db.VarChar(20) // ACTIVE | DISPENSED | CANCELLED
+  saleId      Int?     @map("sale_id")
+  userId      Int?     @map("user_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  // Relations
+  branch   Branch             @relation(fields: [branchId], references: [id], onDelete: Restrict)
+  doctor   Doctor             @relation(fields: [doctorId], references: [id], onDelete: Restrict)
+  customer Customer?          @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  user     User?              @relation(fields: [userId], references: [id], onDelete: SetNull)
+  items    PrescriptionItem[]
+
+  @@index([branchId, issuedAt])
+  @@index([doctorId])
+  @@map("prescriptions")
+}
+
+// PrescriptionItem - producto recetado dentro de una receta
+model PrescriptionItem {
+  id             Int     @id @default(autoincrement())
+  prescriptionId Int     @map("prescription_id")
+  productId      Int     @map("product_id")
+  quantity       Decimal @db.Decimal(12, 3)
+  dosage         String? @db.Text // dosis e indicaciones
+
+  // Relations
+  prescription Prescription @relation(fields: [prescriptionId], references: [id], onDelete: Cascade)
+  product      Product      @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  @@index([prescriptionId])
+  @@map("prescription_items")
 }

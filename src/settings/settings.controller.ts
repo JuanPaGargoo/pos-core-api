@@ -37,6 +37,18 @@ export class SettingsController {
   }
 
   // ──────────────────────────────────────────────
+  // GET /settings/public — flags de app sin permiso especial
+  // ──────────────────────────────────────────────
+  @Get('public')
+  @ApiOperation({
+    summary: 'Flags públicos de la aplicación (cualquier usuario autenticado)',
+  })
+  @ApiResponse({ status: 200, description: 'Flags de la app' })
+  getPublic() {
+    return this.settingsService.getPublicFlags();
+  }
+
+  // ──────────────────────────────────────────────
   // PUT /settings
   // ──────────────────────────────────────────────
   @Put()

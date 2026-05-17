@@ -53,6 +53,8 @@ export type ProductMinAggregateOutputType = {
   taxId: number | null
   sellType: string | null
   trackStock: boolean | null
+  requiresPrescription: boolean | null
+  controlledGroup: string | null
   isActive: boolean | null
   imageUrl: string | null
   createdAt: Date | null
@@ -71,6 +73,8 @@ export type ProductMaxAggregateOutputType = {
   taxId: number | null
   sellType: string | null
   trackStock: boolean | null
+  requiresPrescription: boolean | null
+  controlledGroup: string | null
   isActive: boolean | null
   imageUrl: string | null
   createdAt: Date | null
@@ -89,6 +93,8 @@ export type ProductCountAggregateOutputType = {
   taxId: number
   sellType: number
   trackStock: number
+  requiresPrescription: number
+  controlledGroup: number
   isActive: number
   imageUrl: number
   createdAt: number
@@ -127,6 +133,8 @@ export type ProductMinAggregateInputType = {
   taxId?: true
   sellType?: true
   trackStock?: true
+  requiresPrescription?: true
+  controlledGroup?: true
   isActive?: true
   imageUrl?: true
   createdAt?: true
@@ -145,6 +153,8 @@ export type ProductMaxAggregateInputType = {
   taxId?: true
   sellType?: true
   trackStock?: true
+  requiresPrescription?: true
+  controlledGroup?: true
   isActive?: true
   imageUrl?: true
   createdAt?: true
@@ -163,6 +173,8 @@ export type ProductCountAggregateInputType = {
   taxId?: true
   sellType?: true
   trackStock?: true
+  requiresPrescription?: true
+  controlledGroup?: true
   isActive?: true
   imageUrl?: true
   createdAt?: true
@@ -268,6 +280,8 @@ export type ProductGroupByOutputType = {
   taxId: number | null
   sellType: string
   trackStock: boolean
+  requiresPrescription: boolean
+  controlledGroup: string | null
   isActive: boolean
   imageUrl: string | null
   createdAt: Date
@@ -309,6 +323,8 @@ export type ProductWhereInput = {
   taxId?: Prisma.IntNullableFilter<"Product"> | number | null
   sellType?: Prisma.StringFilter<"Product"> | string
   trackStock?: Prisma.BoolFilter<"Product"> | boolean
+  requiresPrescription?: Prisma.BoolFilter<"Product"> | boolean
+  controlledGroup?: Prisma.StringNullableFilter<"Product"> | string | null
   isActive?: Prisma.BoolFilter<"Product"> | boolean
   imageUrl?: Prisma.StringNullableFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
@@ -326,6 +342,7 @@ export type ProductWhereInput = {
   purchaseItems?: Prisma.PurchaseItemListRelationFilter
   saleReturnItems?: Prisma.SaleReturnItemListRelationFilter
   promotions?: Prisma.PromotionListRelationFilter
+  prescriptionItems?: Prisma.PrescriptionItemListRelationFilter
 }
 
 export type ProductOrderByWithRelationInput = {
@@ -338,6 +355,8 @@ export type ProductOrderByWithRelationInput = {
   taxId?: Prisma.SortOrderInput | Prisma.SortOrder
   sellType?: Prisma.SortOrder
   trackStock?: Prisma.SortOrder
+  requiresPrescription?: Prisma.SortOrder
+  controlledGroup?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -355,6 +374,7 @@ export type ProductOrderByWithRelationInput = {
   purchaseItems?: Prisma.PurchaseItemOrderByRelationAggregateInput
   saleReturnItems?: Prisma.SaleReturnItemOrderByRelationAggregateInput
   promotions?: Prisma.PromotionOrderByRelationAggregateInput
+  prescriptionItems?: Prisma.PrescriptionItemOrderByRelationAggregateInput
 }
 
 export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -370,6 +390,8 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   taxId?: Prisma.IntNullableFilter<"Product"> | number | null
   sellType?: Prisma.StringFilter<"Product"> | string
   trackStock?: Prisma.BoolFilter<"Product"> | boolean
+  requiresPrescription?: Prisma.BoolFilter<"Product"> | boolean
+  controlledGroup?: Prisma.StringNullableFilter<"Product"> | string | null
   isActive?: Prisma.BoolFilter<"Product"> | boolean
   imageUrl?: Prisma.StringNullableFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
@@ -387,6 +409,7 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   purchaseItems?: Prisma.PurchaseItemListRelationFilter
   saleReturnItems?: Prisma.SaleReturnItemListRelationFilter
   promotions?: Prisma.PromotionListRelationFilter
+  prescriptionItems?: Prisma.PrescriptionItemListRelationFilter
 }, "id" | "sku">
 
 export type ProductOrderByWithAggregationInput = {
@@ -399,6 +422,8 @@ export type ProductOrderByWithAggregationInput = {
   taxId?: Prisma.SortOrderInput | Prisma.SortOrder
   sellType?: Prisma.SortOrder
   trackStock?: Prisma.SortOrder
+  requiresPrescription?: Prisma.SortOrder
+  controlledGroup?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -425,6 +450,8 @@ export type ProductScalarWhereWithAggregatesInput = {
   taxId?: Prisma.IntNullableWithAggregatesFilter<"Product"> | number | null
   sellType?: Prisma.StringWithAggregatesFilter<"Product"> | string
   trackStock?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
+  requiresPrescription?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
+  controlledGroup?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
   imageUrl?: Prisma.StringNullableWithAggregatesFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
@@ -439,6 +466,8 @@ export type ProductCreateInput = {
   description?: string | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -456,6 +485,7 @@ export type ProductCreateInput = {
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateInput = {
@@ -468,6 +498,8 @@ export type ProductUncheckedCreateInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -482,6 +514,7 @@ export type ProductUncheckedCreateInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionUncheckedCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductUpdateInput = {
@@ -490,6 +523,8 @@ export type ProductUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -507,6 +542,7 @@ export type ProductUpdateInput = {
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateInput = {
@@ -519,6 +555,8 @@ export type ProductUncheckedUpdateInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -533,6 +571,7 @@ export type ProductUncheckedUpdateInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUncheckedUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateManyInput = {
@@ -545,6 +584,8 @@ export type ProductCreateManyInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -559,6 +600,8 @@ export type ProductUpdateManyMutationInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -577,6 +620,8 @@ export type ProductUncheckedUpdateManyInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -605,6 +650,8 @@ export type ProductCountOrderByAggregateInput = {
   taxId?: Prisma.SortOrder
   sellType?: Prisma.SortOrder
   trackStock?: Prisma.SortOrder
+  requiresPrescription?: Prisma.SortOrder
+  controlledGroup?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -632,6 +679,8 @@ export type ProductMaxOrderByAggregateInput = {
   taxId?: Prisma.SortOrder
   sellType?: Prisma.SortOrder
   trackStock?: Prisma.SortOrder
+  requiresPrescription?: Prisma.SortOrder
+  controlledGroup?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -650,6 +699,8 @@ export type ProductMinOrderByAggregateInput = {
   taxId?: Prisma.SortOrder
   sellType?: Prisma.SortOrder
   trackStock?: Prisma.SortOrder
+  requiresPrescription?: Prisma.SortOrder
+  controlledGroup?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -917,12 +968,28 @@ export type ProductUpdateOneWithoutPromotionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutPromotionsInput, Prisma.ProductUpdateWithoutPromotionsInput>, Prisma.ProductUncheckedUpdateWithoutPromotionsInput>
 }
 
+export type ProductCreateNestedOneWithoutPrescriptionItemsInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutPrescriptionItemsInput, Prisma.ProductUncheckedCreateWithoutPrescriptionItemsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutPrescriptionItemsInput
+  connect?: Prisma.ProductWhereUniqueInput
+}
+
+export type ProductUpdateOneRequiredWithoutPrescriptionItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutPrescriptionItemsInput, Prisma.ProductUncheckedCreateWithoutPrescriptionItemsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutPrescriptionItemsInput
+  upsert?: Prisma.ProductUpsertWithoutPrescriptionItemsInput
+  connect?: Prisma.ProductWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutPrescriptionItemsInput, Prisma.ProductUpdateWithoutPrescriptionItemsInput>, Prisma.ProductUncheckedUpdateWithoutPrescriptionItemsInput>
+}
+
 export type ProductCreateWithoutTaxInput = {
   sku: string
   name: string
   description?: string | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -939,6 +1006,7 @@ export type ProductCreateWithoutTaxInput = {
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutTaxInput = {
@@ -950,6 +1018,8 @@ export type ProductUncheckedCreateWithoutTaxInput = {
   unitId: number
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -964,6 +1034,7 @@ export type ProductUncheckedCreateWithoutTaxInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionUncheckedCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutTaxInput = {
@@ -1005,6 +1076,8 @@ export type ProductScalarWhereInput = {
   taxId?: Prisma.IntNullableFilter<"Product"> | number | null
   sellType?: Prisma.StringFilter<"Product"> | string
   trackStock?: Prisma.BoolFilter<"Product"> | boolean
+  requiresPrescription?: Prisma.BoolFilter<"Product"> | boolean
+  controlledGroup?: Prisma.StringNullableFilter<"Product"> | string | null
   isActive?: Prisma.BoolFilter<"Product"> | boolean
   imageUrl?: Prisma.StringNullableFilter<"Product"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
@@ -1019,6 +1092,8 @@ export type ProductCreateWithoutCategoryInput = {
   description?: string | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1035,6 +1110,7 @@ export type ProductCreateWithoutCategoryInput = {
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutCategoryInput = {
@@ -1046,6 +1122,8 @@ export type ProductUncheckedCreateWithoutCategoryInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1060,6 +1138,7 @@ export type ProductUncheckedCreateWithoutCategoryInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionUncheckedCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutCategoryInput = {
@@ -1094,6 +1173,8 @@ export type ProductCreateWithoutUnitInput = {
   description?: string | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1110,6 +1191,7 @@ export type ProductCreateWithoutUnitInput = {
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutUnitInput = {
@@ -1121,6 +1203,8 @@ export type ProductUncheckedCreateWithoutUnitInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1135,6 +1219,7 @@ export type ProductUncheckedCreateWithoutUnitInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionUncheckedCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutUnitInput = {
@@ -1169,6 +1254,8 @@ export type ProductCreateWithoutBarcodesInput = {
   description?: string | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1185,6 +1272,7 @@ export type ProductCreateWithoutBarcodesInput = {
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutBarcodesInput = {
@@ -1197,6 +1285,8 @@ export type ProductUncheckedCreateWithoutBarcodesInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1210,6 +1300,7 @@ export type ProductUncheckedCreateWithoutBarcodesInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionUncheckedCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutBarcodesInput = {
@@ -1234,6 +1325,8 @@ export type ProductUpdateWithoutBarcodesInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1250,6 +1343,7 @@ export type ProductUpdateWithoutBarcodesInput = {
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutBarcodesInput = {
@@ -1262,6 +1356,8 @@ export type ProductUncheckedUpdateWithoutBarcodesInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1275,6 +1371,7 @@ export type ProductUncheckedUpdateWithoutBarcodesInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUncheckedUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateWithoutPricesInput = {
@@ -1283,6 +1380,8 @@ export type ProductCreateWithoutPricesInput = {
   description?: string | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1299,6 +1398,7 @@ export type ProductCreateWithoutPricesInput = {
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutPricesInput = {
@@ -1311,6 +1411,8 @@ export type ProductUncheckedCreateWithoutPricesInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1324,6 +1426,7 @@ export type ProductUncheckedCreateWithoutPricesInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionUncheckedCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutPricesInput = {
@@ -1348,6 +1451,8 @@ export type ProductUpdateWithoutPricesInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1364,6 +1469,7 @@ export type ProductUpdateWithoutPricesInput = {
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutPricesInput = {
@@ -1376,6 +1482,8 @@ export type ProductUncheckedUpdateWithoutPricesInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1389,6 +1497,7 @@ export type ProductUncheckedUpdateWithoutPricesInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUncheckedUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateWithoutStockLevelsInput = {
@@ -1397,6 +1506,8 @@ export type ProductCreateWithoutStockLevelsInput = {
   description?: string | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1413,6 +1524,7 @@ export type ProductCreateWithoutStockLevelsInput = {
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutStockLevelsInput = {
@@ -1425,6 +1537,8 @@ export type ProductUncheckedCreateWithoutStockLevelsInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1438,6 +1552,7 @@ export type ProductUncheckedCreateWithoutStockLevelsInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionUncheckedCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutStockLevelsInput = {
@@ -1462,6 +1577,8 @@ export type ProductUpdateWithoutStockLevelsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1478,6 +1595,7 @@ export type ProductUpdateWithoutStockLevelsInput = {
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutStockLevelsInput = {
@@ -1490,6 +1608,8 @@ export type ProductUncheckedUpdateWithoutStockLevelsInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1503,6 +1623,7 @@ export type ProductUncheckedUpdateWithoutStockLevelsInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUncheckedUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateWithoutStockMovementsInput = {
@@ -1511,6 +1632,8 @@ export type ProductCreateWithoutStockMovementsInput = {
   description?: string | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1527,6 +1650,7 @@ export type ProductCreateWithoutStockMovementsInput = {
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutStockMovementsInput = {
@@ -1539,6 +1663,8 @@ export type ProductUncheckedCreateWithoutStockMovementsInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1552,6 +1678,7 @@ export type ProductUncheckedCreateWithoutStockMovementsInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionUncheckedCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutStockMovementsInput = {
@@ -1576,6 +1703,8 @@ export type ProductUpdateWithoutStockMovementsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1592,6 +1721,7 @@ export type ProductUpdateWithoutStockMovementsInput = {
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutStockMovementsInput = {
@@ -1604,6 +1734,8 @@ export type ProductUncheckedUpdateWithoutStockMovementsInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1617,6 +1749,7 @@ export type ProductUncheckedUpdateWithoutStockMovementsInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUncheckedUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateWithoutSaleItemsInput = {
@@ -1625,6 +1758,8 @@ export type ProductCreateWithoutSaleItemsInput = {
   description?: string | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1641,6 +1776,7 @@ export type ProductCreateWithoutSaleItemsInput = {
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutSaleItemsInput = {
@@ -1653,6 +1789,8 @@ export type ProductUncheckedCreateWithoutSaleItemsInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1666,6 +1804,7 @@ export type ProductUncheckedCreateWithoutSaleItemsInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionUncheckedCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutSaleItemsInput = {
@@ -1690,6 +1829,8 @@ export type ProductUpdateWithoutSaleItemsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1706,6 +1847,7 @@ export type ProductUpdateWithoutSaleItemsInput = {
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutSaleItemsInput = {
@@ -1718,6 +1860,8 @@ export type ProductUncheckedUpdateWithoutSaleItemsInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1731,6 +1875,7 @@ export type ProductUncheckedUpdateWithoutSaleItemsInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUncheckedUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateWithoutPurchaseItemsInput = {
@@ -1739,6 +1884,8 @@ export type ProductCreateWithoutPurchaseItemsInput = {
   description?: string | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1755,6 +1902,7 @@ export type ProductCreateWithoutPurchaseItemsInput = {
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutPurchaseItemsInput = {
@@ -1767,6 +1915,8 @@ export type ProductUncheckedCreateWithoutPurchaseItemsInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1780,6 +1930,7 @@ export type ProductUncheckedCreateWithoutPurchaseItemsInput = {
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionUncheckedCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutPurchaseItemsInput = {
@@ -1804,6 +1955,8 @@ export type ProductUpdateWithoutPurchaseItemsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1820,6 +1973,7 @@ export type ProductUpdateWithoutPurchaseItemsInput = {
   saleItems?: Prisma.SaleItemUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutPurchaseItemsInput = {
@@ -1832,6 +1986,8 @@ export type ProductUncheckedUpdateWithoutPurchaseItemsInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1845,6 +2001,7 @@ export type ProductUncheckedUpdateWithoutPurchaseItemsInput = {
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUncheckedUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateWithoutSaleReturnItemsInput = {
@@ -1853,6 +2010,8 @@ export type ProductCreateWithoutSaleReturnItemsInput = {
   description?: string | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1869,6 +2028,7 @@ export type ProductCreateWithoutSaleReturnItemsInput = {
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutProductInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutSaleReturnItemsInput = {
@@ -1881,6 +2041,8 @@ export type ProductUncheckedCreateWithoutSaleReturnItemsInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1894,6 +2056,7 @@ export type ProductUncheckedCreateWithoutSaleReturnItemsInput = {
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutProductInput
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutProductInput
   promotions?: Prisma.PromotionUncheckedCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutSaleReturnItemsInput = {
@@ -1918,6 +2081,8 @@ export type ProductUpdateWithoutSaleReturnItemsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1934,6 +2099,7 @@ export type ProductUpdateWithoutSaleReturnItemsInput = {
   saleItems?: Prisma.SaleItemUpdateManyWithoutProductNestedInput
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutSaleReturnItemsInput = {
@@ -1946,6 +2112,8 @@ export type ProductUncheckedUpdateWithoutSaleReturnItemsInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1959,6 +2127,7 @@ export type ProductUncheckedUpdateWithoutSaleReturnItemsInput = {
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutProductNestedInput
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUncheckedUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateWithoutPromotionsInput = {
@@ -1967,6 +2136,8 @@ export type ProductCreateWithoutPromotionsInput = {
   description?: string | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -1983,6 +2154,7 @@ export type ProductCreateWithoutPromotionsInput = {
   saleItems?: Prisma.SaleItemCreateNestedManyWithoutProductInput
   purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutPromotionsInput = {
@@ -1995,6 +2167,8 @@ export type ProductUncheckedCreateWithoutPromotionsInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -2008,6 +2182,7 @@ export type ProductUncheckedCreateWithoutPromotionsInput = {
   saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutProductInput
   purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutProductInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedCreateNestedManyWithoutProductInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutPromotionsInput = {
@@ -2032,6 +2207,8 @@ export type ProductUpdateWithoutPromotionsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2048,6 +2225,7 @@ export type ProductUpdateWithoutPromotionsInput = {
   saleItems?: Prisma.SaleItemUpdateManyWithoutProductNestedInput
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutPromotionsInput = {
@@ -2060,6 +2238,8 @@ export type ProductUncheckedUpdateWithoutPromotionsInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2073,31 +2253,88 @@ export type ProductUncheckedUpdateWithoutPromotionsInput = {
   saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutProductNestedInput
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
-export type ProductCreateManyTaxInput = {
-  id?: number
+export type ProductCreateWithoutPrescriptionItemsInput = {
   sku: string
   name: string
   description?: string | null
-  categoryId?: number | null
-  unitId: number
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   createdById?: number | null
   updatedById?: number | null
+  category?: Prisma.CategoryCreateNestedOneWithoutProductsInput
+  unit: Prisma.UnitCreateNestedOneWithoutProductsInput
+  tax?: Prisma.TaxCreateNestedOneWithoutProductsInput
+  barcodes?: Prisma.ProductBarcodeCreateNestedManyWithoutProductInput
+  prices?: Prisma.ProductPriceCreateNestedManyWithoutProductInput
+  stockLevels?: Prisma.StockLevelCreateNestedManyWithoutProductInput
+  stockMovements?: Prisma.StockMovementCreateNestedManyWithoutProductInput
+  saleItems?: Prisma.SaleItemCreateNestedManyWithoutProductInput
+  purchaseItems?: Prisma.PurchaseItemCreateNestedManyWithoutProductInput
+  saleReturnItems?: Prisma.SaleReturnItemCreateNestedManyWithoutProductInput
+  promotions?: Prisma.PromotionCreateNestedManyWithoutProductInput
 }
 
-export type ProductUpdateWithoutTaxInput = {
+export type ProductUncheckedCreateWithoutPrescriptionItemsInput = {
+  id?: number
+  sku: string
+  name: string
+  description?: string | null
+  categoryId?: number | null
+  unitId: number
+  taxId?: number | null
+  sellType?: string
+  trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
+  isActive?: boolean
+  imageUrl?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
+  barcodes?: Prisma.ProductBarcodeUncheckedCreateNestedManyWithoutProductInput
+  prices?: Prisma.ProductPriceUncheckedCreateNestedManyWithoutProductInput
+  stockLevels?: Prisma.StockLevelUncheckedCreateNestedManyWithoutProductInput
+  stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutProductInput
+  saleItems?: Prisma.SaleItemUncheckedCreateNestedManyWithoutProductInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedCreateNestedManyWithoutProductInput
+  saleReturnItems?: Prisma.SaleReturnItemUncheckedCreateNestedManyWithoutProductInput
+  promotions?: Prisma.PromotionUncheckedCreateNestedManyWithoutProductInput
+}
+
+export type ProductCreateOrConnectWithoutPrescriptionItemsInput = {
+  where: Prisma.ProductWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductCreateWithoutPrescriptionItemsInput, Prisma.ProductUncheckedCreateWithoutPrescriptionItemsInput>
+}
+
+export type ProductUpsertWithoutPrescriptionItemsInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutPrescriptionItemsInput, Prisma.ProductUncheckedUpdateWithoutPrescriptionItemsInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutPrescriptionItemsInput, Prisma.ProductUncheckedCreateWithoutPrescriptionItemsInput>
+  where?: Prisma.ProductWhereInput
+}
+
+export type ProductUpdateToOneWithWhereWithoutPrescriptionItemsInput = {
+  where?: Prisma.ProductWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutPrescriptionItemsInput, Prisma.ProductUncheckedUpdateWithoutPrescriptionItemsInput>
+}
+
+export type ProductUpdateWithoutPrescriptionItemsInput = {
   sku?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2106,6 +2343,7 @@ export type ProductUpdateWithoutTaxInput = {
   updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.CategoryUpdateOneWithoutProductsNestedInput
   unit?: Prisma.UnitUpdateOneRequiredWithoutProductsNestedInput
+  tax?: Prisma.TaxUpdateOneWithoutProductsNestedInput
   barcodes?: Prisma.ProductBarcodeUpdateManyWithoutProductNestedInput
   prices?: Prisma.ProductPriceUpdateManyWithoutProductNestedInput
   stockLevels?: Prisma.StockLevelUpdateManyWithoutProductNestedInput
@@ -2116,15 +2354,18 @@ export type ProductUpdateWithoutTaxInput = {
   promotions?: Prisma.PromotionUpdateManyWithoutProductNestedInput
 }
 
-export type ProductUncheckedUpdateWithoutTaxInput = {
+export type ProductUncheckedUpdateWithoutPrescriptionItemsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   sku?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   categoryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   unitId?: Prisma.IntFieldUpdateOperationsInput | number
+  taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2141,6 +2382,80 @@ export type ProductUncheckedUpdateWithoutTaxInput = {
   promotions?: Prisma.PromotionUncheckedUpdateManyWithoutProductNestedInput
 }
 
+export type ProductCreateManyTaxInput = {
+  id?: number
+  sku: string
+  name: string
+  description?: string | null
+  categoryId?: number | null
+  unitId: number
+  sellType?: string
+  trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
+  isActive?: boolean
+  imageUrl?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdById?: number | null
+  updatedById?: number | null
+}
+
+export type ProductUpdateWithoutTaxInput = {
+  sku?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sellType?: Prisma.StringFieldUpdateOperationsInput | string
+  trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  category?: Prisma.CategoryUpdateOneWithoutProductsNestedInput
+  unit?: Prisma.UnitUpdateOneRequiredWithoutProductsNestedInput
+  barcodes?: Prisma.ProductBarcodeUpdateManyWithoutProductNestedInput
+  prices?: Prisma.ProductPriceUpdateManyWithoutProductNestedInput
+  stockLevels?: Prisma.StockLevelUpdateManyWithoutProductNestedInput
+  stockMovements?: Prisma.StockMovementUpdateManyWithoutProductNestedInput
+  saleItems?: Prisma.SaleItemUpdateManyWithoutProductNestedInput
+  purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutProductNestedInput
+  saleReturnItems?: Prisma.SaleReturnItemUpdateManyWithoutProductNestedInput
+  promotions?: Prisma.PromotionUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUpdateManyWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutTaxInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  sku?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  categoryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  unitId?: Prisma.IntFieldUpdateOperationsInput | number
+  sellType?: Prisma.StringFieldUpdateOperationsInput | string
+  trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  updatedById?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  barcodes?: Prisma.ProductBarcodeUncheckedUpdateManyWithoutProductNestedInput
+  prices?: Prisma.ProductPriceUncheckedUpdateManyWithoutProductNestedInput
+  stockLevels?: Prisma.StockLevelUncheckedUpdateManyWithoutProductNestedInput
+  stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutProductNestedInput
+  saleItems?: Prisma.SaleItemUncheckedUpdateManyWithoutProductNestedInput
+  purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutProductNestedInput
+  saleReturnItems?: Prisma.SaleReturnItemUncheckedUpdateManyWithoutProductNestedInput
+  promotions?: Prisma.PromotionUncheckedUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedUpdateManyWithoutProductNestedInput
+}
+
 export type ProductUncheckedUpdateManyWithoutTaxInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   sku?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2150,6 +2465,8 @@ export type ProductUncheckedUpdateManyWithoutTaxInput = {
   unitId?: Prisma.IntFieldUpdateOperationsInput | number
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2167,6 +2484,8 @@ export type ProductCreateManyCategoryInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -2181,6 +2500,8 @@ export type ProductUpdateWithoutCategoryInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2197,6 +2518,7 @@ export type ProductUpdateWithoutCategoryInput = {
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutCategoryInput = {
@@ -2208,6 +2530,8 @@ export type ProductUncheckedUpdateWithoutCategoryInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2222,6 +2546,7 @@ export type ProductUncheckedUpdateWithoutCategoryInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUncheckedUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateManyWithoutCategoryInput = {
@@ -2233,6 +2558,8 @@ export type ProductUncheckedUpdateManyWithoutCategoryInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2250,6 +2577,8 @@ export type ProductCreateManyUnitInput = {
   taxId?: number | null
   sellType?: string
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: string | null
   isActive?: boolean
   imageUrl?: string | null
   createdAt?: Date | string
@@ -2264,6 +2593,8 @@ export type ProductUpdateWithoutUnitInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2280,6 +2611,7 @@ export type ProductUpdateWithoutUnitInput = {
   purchaseItems?: Prisma.PurchaseItemUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutUnitInput = {
@@ -2291,6 +2623,8 @@ export type ProductUncheckedUpdateWithoutUnitInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2305,6 +2639,7 @@ export type ProductUncheckedUpdateWithoutUnitInput = {
   purchaseItems?: Prisma.PurchaseItemUncheckedUpdateManyWithoutProductNestedInput
   saleReturnItems?: Prisma.SaleReturnItemUncheckedUpdateManyWithoutProductNestedInput
   promotions?: Prisma.PromotionUncheckedUpdateManyWithoutProductNestedInput
+  prescriptionItems?: Prisma.PrescriptionItemUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateManyWithoutUnitInput = {
@@ -2316,6 +2651,8 @@ export type ProductUncheckedUpdateManyWithoutUnitInput = {
   taxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sellType?: Prisma.StringFieldUpdateOperationsInput | string
   trackStock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  requiresPrescription?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  controlledGroup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2338,6 +2675,7 @@ export type ProductCountOutputType = {
   purchaseItems: number
   saleReturnItems: number
   promotions: number
+  prescriptionItems: number
 }
 
 export type ProductCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2349,6 +2687,7 @@ export type ProductCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   purchaseItems?: boolean | ProductCountOutputTypeCountPurchaseItemsArgs
   saleReturnItems?: boolean | ProductCountOutputTypeCountSaleReturnItemsArgs
   promotions?: boolean | ProductCountOutputTypeCountPromotionsArgs
+  prescriptionItems?: boolean | ProductCountOutputTypeCountPrescriptionItemsArgs
 }
 
 /**
@@ -2417,6 +2756,13 @@ export type ProductCountOutputTypeCountPromotionsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.PromotionWhereInput
 }
 
+/**
+ * ProductCountOutputType without action
+ */
+export type ProductCountOutputTypeCountPrescriptionItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PrescriptionItemWhereInput
+}
+
 
 export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2428,6 +2774,8 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   taxId?: boolean
   sellType?: boolean
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: boolean
   isActive?: boolean
   imageUrl?: boolean
   createdAt?: boolean
@@ -2445,6 +2793,7 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   purchaseItems?: boolean | Prisma.Product$purchaseItemsArgs<ExtArgs>
   saleReturnItems?: boolean | Prisma.Product$saleReturnItemsArgs<ExtArgs>
   promotions?: boolean | Prisma.Product$promotionsArgs<ExtArgs>
+  prescriptionItems?: boolean | Prisma.Product$prescriptionItemsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
@@ -2458,6 +2807,8 @@ export type ProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   taxId?: boolean
   sellType?: boolean
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: boolean
   isActive?: boolean
   imageUrl?: boolean
   createdAt?: boolean
@@ -2479,6 +2830,8 @@ export type ProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   taxId?: boolean
   sellType?: boolean
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: boolean
   isActive?: boolean
   imageUrl?: boolean
   createdAt?: boolean
@@ -2500,6 +2853,8 @@ export type ProductSelectScalar = {
   taxId?: boolean
   sellType?: boolean
   trackStock?: boolean
+  requiresPrescription?: boolean
+  controlledGroup?: boolean
   isActive?: boolean
   imageUrl?: boolean
   createdAt?: boolean
@@ -2508,7 +2863,7 @@ export type ProductSelectScalar = {
   updatedById?: boolean
 }
 
-export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sku" | "name" | "description" | "categoryId" | "unitId" | "taxId" | "sellType" | "trackStock" | "isActive" | "imageUrl" | "createdAt" | "updatedAt" | "createdById" | "updatedById", ExtArgs["result"]["product"]>
+export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sku" | "name" | "description" | "categoryId" | "unitId" | "taxId" | "sellType" | "trackStock" | "requiresPrescription" | "controlledGroup" | "isActive" | "imageUrl" | "createdAt" | "updatedAt" | "createdById" | "updatedById", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   category?: boolean | Prisma.Product$categoryArgs<ExtArgs>
   unit?: boolean | Prisma.UnitDefaultArgs<ExtArgs>
@@ -2521,6 +2876,7 @@ export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   purchaseItems?: boolean | Prisma.Product$purchaseItemsArgs<ExtArgs>
   saleReturnItems?: boolean | Prisma.Product$saleReturnItemsArgs<ExtArgs>
   promotions?: boolean | Prisma.Product$promotionsArgs<ExtArgs>
+  prescriptionItems?: boolean | Prisma.Product$prescriptionItemsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProductIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2548,6 +2904,7 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     purchaseItems: Prisma.$PurchaseItemPayload<ExtArgs>[]
     saleReturnItems: Prisma.$SaleReturnItemPayload<ExtArgs>[]
     promotions: Prisma.$PromotionPayload<ExtArgs>[]
+    prescriptionItems: Prisma.$PrescriptionItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -2559,6 +2916,8 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     taxId: number | null
     sellType: string
     trackStock: boolean
+    requiresPrescription: boolean
+    controlledGroup: string | null
     isActive: boolean
     imageUrl: string | null
     createdAt: Date
@@ -2970,6 +3329,7 @@ export interface Prisma__ProductClient<T, Null = never, ExtArgs extends runtime.
   purchaseItems<T extends Prisma.Product$purchaseItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$purchaseItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PurchaseItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   saleReturnItems<T extends Prisma.Product$saleReturnItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$saleReturnItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SaleReturnItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   promotions<T extends Prisma.Product$promotionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$promotionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PromotionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  prescriptionItems<T extends Prisma.Product$prescriptionItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$prescriptionItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PrescriptionItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3008,6 +3368,8 @@ export interface ProductFieldRefs {
   readonly taxId: Prisma.FieldRef<"Product", 'Int'>
   readonly sellType: Prisma.FieldRef<"Product", 'String'>
   readonly trackStock: Prisma.FieldRef<"Product", 'Boolean'>
+  readonly requiresPrescription: Prisma.FieldRef<"Product", 'Boolean'>
+  readonly controlledGroup: Prisma.FieldRef<"Product", 'String'>
   readonly isActive: Prisma.FieldRef<"Product", 'Boolean'>
   readonly imageUrl: Prisma.FieldRef<"Product", 'String'>
   readonly createdAt: Prisma.FieldRef<"Product", 'DateTime'>
@@ -3637,6 +3999,30 @@ export type Product$promotionsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.PromotionScalarFieldEnum | Prisma.PromotionScalarFieldEnum[]
+}
+
+/**
+ * Product.prescriptionItems
+ */
+export type Product$prescriptionItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PrescriptionItem
+   */
+  select?: Prisma.PrescriptionItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PrescriptionItem
+   */
+  omit?: Prisma.PrescriptionItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PrescriptionItemInclude<ExtArgs> | null
+  where?: Prisma.PrescriptionItemWhereInput
+  orderBy?: Prisma.PrescriptionItemOrderByWithRelationInput | Prisma.PrescriptionItemOrderByWithRelationInput[]
+  cursor?: Prisma.PrescriptionItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PrescriptionItemScalarFieldEnum | Prisma.PrescriptionItemScalarFieldEnum[]
 }
 
 /**

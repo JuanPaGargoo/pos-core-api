@@ -84,7 +84,10 @@ export const ModelName = {
   CustomerCreditEntry: 'CustomerCreditEntry',
   SaleReturn: 'SaleReturn',
   SaleReturnItem: 'SaleReturnItem',
-  Promotion: 'Promotion'
+  Promotion: 'Promotion',
+  Doctor: 'Doctor',
+  Prescription: 'Prescription',
+  PrescriptionItem: 'PrescriptionItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -336,6 +339,8 @@ export const ProductScalarFieldEnum = {
   taxId: 'taxId',
   sellType: 'sellType',
   trackStock: 'trackStock',
+  requiresPrescription: 'requiresPrescription',
+  controlledGroup: 'controlledGroup',
   isActive: 'isActive',
   imageUrl: 'imageUrl',
   createdAt: 'createdAt',
@@ -637,6 +642,53 @@ export const PromotionScalarFieldEnum = {
 } as const
 
 export type PromotionScalarFieldEnum = (typeof PromotionScalarFieldEnum)[keyof typeof PromotionScalarFieldEnum]
+
+
+export const DoctorScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  license: 'license',
+  specialty: 'specialty',
+  phone: 'phone',
+  email: 'email',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  createdById: 'createdById',
+  updatedById: 'updatedById'
+} as const
+
+export type DoctorScalarFieldEnum = (typeof DoctorScalarFieldEnum)[keyof typeof DoctorScalarFieldEnum]
+
+
+export const PrescriptionScalarFieldEnum = {
+  id: 'id',
+  folio: 'folio',
+  branchId: 'branchId',
+  doctorId: 'doctorId',
+  customerId: 'customerId',
+  patientName: 'patientName',
+  diagnosis: 'diagnosis',
+  notes: 'notes',
+  issuedAt: 'issuedAt',
+  status: 'status',
+  saleId: 'saleId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type PrescriptionScalarFieldEnum = (typeof PrescriptionScalarFieldEnum)[keyof typeof PrescriptionScalarFieldEnum]
+
+
+export const PrescriptionItemScalarFieldEnum = {
+  id: 'id',
+  prescriptionId: 'prescriptionId',
+  productId: 'productId',
+  quantity: 'quantity',
+  dosage: 'dosage'
+} as const
+
+export type PrescriptionItemScalarFieldEnum = (typeof PrescriptionItemScalarFieldEnum)[keyof typeof PrescriptionItemScalarFieldEnum]
 
 
 export const SortOrder = {

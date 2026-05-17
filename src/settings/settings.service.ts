@@ -22,6 +22,23 @@ export class SettingsService {
   constructor(private readonly prisma: PrismaService) {}
 
   // ──────────────────────────────────────────────
+  // GET /settings/public — flags globales legibles por cualquier
+  // usuario autenticado (navegación, POS, formularios).
+  // ──────────────────────────────────────────────
+  async getPublicFlags() {
+    const flags = await this.prisma.setting.findMany({
+      where: { scope: 'global', key: { in: ['pharmacy.enabled'] } },
+    });
+    const byKey = new Map(flags.map((f) => [f.key, f.valueJson]));
+    return {
+      data: {
+        pharmacyEnabled: byKey.get('pharmacy.enabled') === true,
+      },
+      meta: {},
+    };
+  }
+
+  // ──────────────────────────────────────────────
   // GET /settings — fetch settings with fallback logic
   //
   // Fallback: when branchId is provided, the response merges global

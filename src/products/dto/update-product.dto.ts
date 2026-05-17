@@ -69,6 +69,20 @@ export class UpdateProductDto {
   @IsOptional()
   trackStock?: boolean;
 
+  @ApiPropertyOptional({ description: 'Requiere receta médica para su venta' })
+  @IsBoolean()
+  @IsOptional()
+  requiresPrescription?: boolean;
+
+  @ApiPropertyOptional({
+    description:
+      'Grupo/fracción de control COFEPRIS. Enviar null para quitarlo.',
+  })
+  @IsString()
+  @IsOptional()
+  @MaxLength(10)
+  controlledGroup?: string | null;
+
   @ApiPropertyOptional({ description: 'URL de la imagen del producto' })
   @IsString()
   @IsOptional()

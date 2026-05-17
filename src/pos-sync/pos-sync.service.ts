@@ -44,6 +44,7 @@ export class PosSyncService {
       categoryId: p.categoryId,
       taxRate: p.tax ? Number(p.tax.rate) : 0,
       taxName: p.tax?.name ?? null,
+      requiresPrescription: p.requiresPrescription,
       price: resolved ? Number(resolved.price) : 0,
       cost: resolved ? Number(resolved.cost) : 0,
       updatedAt: p.updatedAt,

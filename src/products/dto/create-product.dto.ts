@@ -74,6 +74,23 @@ export class CreateProductDto {
   @IsOptional()
   trackStock?: boolean;
 
+  @ApiPropertyOptional({
+    description: 'Requiere receta médica para su venta',
+    default: false,
+  })
+  @IsBoolean()
+  @IsOptional()
+  requiresPrescription?: boolean;
+
+  @ApiPropertyOptional({
+    description: 'Grupo/fracción de control COFEPRIS (medicamento controlado)',
+    example: 'III',
+  })
+  @IsString()
+  @IsOptional()
+  @MaxLength(10)
+  controlledGroup?: string;
+
   @ApiPropertyOptional({ description: 'Estado activo', default: true })
   @IsBoolean()
   @IsOptional()

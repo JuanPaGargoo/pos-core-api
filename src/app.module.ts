@@ -31,6 +31,8 @@ import { PromotionsModule } from './promotions/promotions.module';
 import { PosSyncModule } from './pos-sync/pos-sync.module';
 import { ReportsModule } from './reports/reports.module';
 import { TaxesModule } from './taxes/taxes.module';
+import { DoctorsModule } from './doctors/doctors.module';
+import { PrescriptionsModule } from './prescriptions/prescriptions.module';
 import { validate } from './config/env.validation';
 
 @Module({
@@ -75,6 +77,8 @@ import { validate } from './config/env.validation';
     PosSyncModule,
     ReportsModule,
     TaxesModule,
+    DoctorsModule,
+    PrescriptionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

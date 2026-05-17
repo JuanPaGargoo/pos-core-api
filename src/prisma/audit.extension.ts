@@ -24,6 +24,7 @@ const AUDITED_MODELS = new Set<string>([
   'Supplier',
   'Customer',
   'Promotion',
+  'Doctor',
 ]);
 
 type QueryCtx = {

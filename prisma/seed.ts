@@ -120,6 +120,14 @@ const ALL_PERMISSIONS: { key: string; description: string }[] = [
   { key: 'taxes.create', description: 'Crear impuestos' },
   { key: 'taxes.read', description: 'Ver impuestos' },
   { key: 'taxes.update', description: 'Actualizar impuestos' },
+  // farmacia · médicos
+  { key: 'doctors.create', description: 'Registrar médicos' },
+  { key: 'doctors.read', description: 'Ver médicos' },
+  { key: 'doctors.update', description: 'Actualizar médicos' },
+  // farmacia · recetas
+  { key: 'prescriptions.create', description: 'Registrar recetas médicas' },
+  { key: 'prescriptions.read', description: 'Ver recetas y libro de control' },
+  { key: 'prescriptions.update', description: 'Actualizar estado de recetas' },
 ];
 
 // ============================================================
@@ -200,6 +208,12 @@ const ROLES: { name: string; description: string; permissionKeys: string[] }[] =
         'taxes.create',
         'taxes.read',
         'taxes.update',
+        'doctors.create',
+        'doctors.read',
+        'doctors.update',
+        'prescriptions.create',
+        'prescriptions.read',
+        'prescriptions.update',
       ],
     },
     {
@@ -228,6 +242,9 @@ const ROLES: { name: string; description: string; permissionKeys: string[] }[] =
         'promotions.read',
         'pos.sync',
         'reports.read',
+        'doctors.read',
+        'prescriptions.create',
+        'prescriptions.read',
       ],
     },
     {
@@ -312,6 +329,11 @@ const BASE_SETTINGS: {
     key: 'invoice.defaultTaxRate',
     valueJson: 16,
     description: 'Tasa de impuesto por defecto (%)',
+  },
+  {
+    key: 'pharmacy.enabled',
+    valueJson: false,
+    description: 'Activa el módulo de farmacia (recetas, médicos, control)',
   },
   {
     key: 'invoice.footer',

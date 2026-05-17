@@ -211,3 +211,18 @@ export type SaleReturnItem = Prisma.SaleReturnItemModel
  * 
  */
 export type Promotion = Prisma.PromotionModel
+/**
+ * Model Doctor
+ * 
+ */
+export type Doctor = Prisma.DoctorModel
+/**
+ * Model Prescription
+ * 
+ */
+export type Prescription = Prisma.PrescriptionModel
+/**
+ * Model PrescriptionItem
+ * 
+ */
+export type PrescriptionItem = Prisma.PrescriptionItemModel
