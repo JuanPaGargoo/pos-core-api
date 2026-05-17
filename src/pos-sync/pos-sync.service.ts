@@ -6,7 +6,7 @@ const productInclude = {
   unit: {
     select: { id: true, name: true, abbreviation: true, allowsDecimal: true },
   },
-  tax: { select: { id: true, rate: true } },
+  tax: { select: { id: true, rate: true, name: true } },
   barcodes: true,
   prices: true,
 } satisfies Prisma.ProductInclude;
@@ -43,6 +43,7 @@ export class PosSyncService {
       allowsDecimal: p.unit.allowsDecimal,
       categoryId: p.categoryId,
       taxRate: p.tax ? Number(p.tax.rate) : 0,
+      taxName: p.tax?.name ?? null,
       price: resolved ? Number(resolved.price) : 0,
       cost: resolved ? Number(resolved.cost) : 0,
       updatedAt: p.updatedAt,
