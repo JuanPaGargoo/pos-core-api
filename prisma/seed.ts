@@ -110,6 +110,10 @@ const ALL_PERMISSIONS: { key: string; description: string }[] = [
     key: 'pos.sync',
     description: 'Sincronizar el punto de venta offline',
   },
+  {
+    key: 'pos.override',
+    description: 'Modificar precios y descuentos en el punto de venta',
+  },
   // reports
   { key: 'reports.read', description: 'Ver reportes' },
   // taxes
@@ -191,6 +195,7 @@ const ROLES: { name: string; description: string; permissionKeys: string[] }[] =
         'promotions.read',
         'promotions.update',
         'pos.sync',
+        'pos.override',
         'reports.read',
         'taxes.create',
         'taxes.read',
