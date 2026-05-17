@@ -74,6 +74,16 @@ export class QueryAuditLogsDto {
   entity?: string;
 
   @ApiPropertyOptional({
+    description: 'Filtrar por ID del registro afectado',
+    example: 5,
+  })
+  @Type(() => Number)
+  @IsInt()
+  @IsPositive()
+  @IsOptional()
+  entityId?: number;
+
+  @ApiPropertyOptional({
     description: 'Fecha de inicio (ISO 8601)',
     example: '2026-01-01T00:00:00.000Z',
   })

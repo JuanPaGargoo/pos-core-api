@@ -15,23 +15,18 @@ export interface LogPayload {
   payload?: unknown;
 }
 
-function mapLog(log: {
-  id: number;
-  createdAt: Date;
-  userId: number | null;
-  branchId: number | null;
-  action: string;
-  entity: string;
-  entityId: number | null;
-  message: string;
-  ip: string | null;
-  userAgent: string | null;
-  payloadJson: Prisma.JsonValue;
-}) {
+const logInclude = {
+  user: { select: { id: true, name: true } },
+} satisfies Prisma.AuditLogInclude;
+
+type LogWithUser = Prisma.AuditLogGetPayload<{ include: typeof logInclude }>;
+
+function mapLog(log: LogWithUser) {
   return {
     id: log.id,
     createdAt: log.createdAt,
     userId: log.userId,
+    user: log.user,
     branchId: log.branchId,
     action: log.action,
     entity: log.entity,
@@ -79,6 +74,7 @@ export class AuditLogsService {
     if (query.branchId) where.branchId = query.branchId;
     if (query.action) where.action = query.action;
     if (query.entity) where.entity = query.entity;
+    if (query.entityId) where.entityId = query.entityId;
     if (query.from || query.to) {
       where.createdAt = {
         ...(query.from && { gte: new Date(query.from) }),
@@ -89,6 +85,7 @@ export class AuditLogsService {
     const [logs, total] = await Promise.all([
       this.prisma.auditLog.findMany({
         where,
+        include: logInclude,
         skip,
         take: limit,
         orderBy: { createdAt: 'desc' },
@@ -106,7 +103,10 @@ export class AuditLogsService {
   // GET /audit-logs/:id — get single log detail
   // ──────────────────────────────────────────────
   async getLogById(id: number) {
-    const log = await this.prisma.auditLog.findUnique({ where: { id } });
+    const log = await this.prisma.auditLog.findUnique({
+      where: { id },
+      include: logInclude,
+    });
     if (!log) {
       throw new NotFoundException(`AuditLog con id ${id} no encontrado`);
     }
