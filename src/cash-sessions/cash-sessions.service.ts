@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   ConflictException,
+  ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -130,8 +131,34 @@ export class CashSessionsService {
     return { data: mapSession(session), meta: {} };
   }
 
+  /**
+   * Una caja solo la opera (cierra / movimientos) quien la abrió. Un rol con
+   * el permiso `cash-sessions.override` (gerente/admin) puede forzarlo.
+   */
+  private async assertCanManageSession(
+    sessionUserId: number,
+    userId: number,
+  ): Promise<void> {
+    if (sessionUserId === userId) return;
+    const override = await this.prisma.userRole.findFirst({
+      where: {
+        userId,
+        role: {
+          rolePermissions: {
+            some: { permission: { key: 'cash-sessions.override' } },
+          },
+        },
+      },
+    });
+    if (!override) {
+      throw new ForbiddenException(
+        'Solo el cajero que abrió la caja puede operarla. Un gerente con permiso puede forzarlo.',
+      );
+    }
+  }
+
   // ── POST /cash-sessions/:id/close ─────────────────────────
-  async closeSession(id: number, dto: CloseSessionDto) {
+  async closeSession(id: number, dto: CloseSessionDto, userId: number) {
     const session = await this.prisma.cashSession.findUnique({ where: { id } });
     if (!session) {
       throw new NotFoundException(`Caja con id ${id} no encontrada`);
@@ -139,6 +166,7 @@ export class CashSessionsService {
     if (session.status === 'CLOSED') {
       throw new ConflictException('La caja ya está cerrada');
     }
+    await this.assertCanManageSession(session.userId, userId);
 
     const totals = await this.computeTotals(id, Number(session.openingAmount));
     const difference = dto.closingAmount - totals.expectedCash;
@@ -168,6 +196,7 @@ export class CashSessionsService {
         'No se pueden registrar movimientos en una caja cerrada',
       );
     }
+    await this.assertCanManageSession(session.userId, userId);
 
     const movement = await this.prisma.cashMovement.create({
       data: {

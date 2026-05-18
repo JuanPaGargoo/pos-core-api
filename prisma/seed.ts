@@ -85,6 +85,10 @@ const ALL_PERMISSIONS: { key: string; description: string }[] = [
   { key: 'cash-sessions.read', description: 'Ver cortes de caja' },
   { key: 'cash-sessions.open', description: 'Abrir caja' },
   { key: 'cash-sessions.close', description: 'Cerrar caja' },
+  {
+    key: 'cash-sessions.override',
+    description: 'Cerrar o mover la caja de otro cajero',
+  },
   // suppliers
   { key: 'suppliers.create', description: 'Crear proveedores' },
   { key: 'suppliers.read', description: 'Ver proveedores' },
@@ -187,6 +191,7 @@ const ROLES: { name: string; description: string; permissionKeys: string[] }[] =
         'cash-sessions.read',
         'cash-sessions.open',
         'cash-sessions.close',
+        'cash-sessions.override',
         'suppliers.create',
         'suppliers.read',
         'suppliers.update',

@@ -86,8 +86,12 @@ export class CashSessionsController {
     description: 'Caja cerrada con el reporte de corte',
   })
   @ApiResponse({ status: 409, description: 'La caja ya está cerrada' })
-  close(@Param('id', ParseIntPipe) id: number, @Body() dto: CloseSessionDto) {
-    return this.cashSessionsService.closeSession(id, dto);
+  close(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: CloseSessionDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    return this.cashSessionsService.closeSession(id, dto, req.user.id);
   }
 
   @Post(':id/movements')
