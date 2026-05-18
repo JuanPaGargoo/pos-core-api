@@ -3,6 +3,9 @@
 # ───────────────────────── build ─────────────────────────
 FROM node:22-bookworm-slim AS build
 WORKDIR /app
+# Corepack usa la versión de pnpm fijada en package.json ("packageManager"),
+# la misma que generó el lockfile. Sin prompt para descargarla.
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 RUN corepack enable
 
 # Dependencias (capa cacheada mientras no cambien los manifiestos).
