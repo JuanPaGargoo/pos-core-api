@@ -6,6 +6,10 @@ WORKDIR /app
 # Corepack usa la versión de pnpm fijada en package.json ("packageManager"),
 # la misma que generó el lockfile. Sin prompt para descargarla.
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+# Prisma necesita openssl para sus motores.
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends openssl ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
 RUN corepack enable
 
 # Dependencias (capa cacheada mientras no cambien los manifiestos).
@@ -22,12 +26,20 @@ FROM node:22-bookworm-slim AS runtime
 ENV NODE_ENV=production
 WORKDIR /app
 
+# openssl también en runtime: el contenedor ejecuta `prisma migrate deploy`.
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends openssl ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+
 # Se conservan todas las dependencias: el contenedor también ejecuta
 # `prisma migrate deploy` (CLI) y, puntualmente, el seed (tsx).
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/prisma ./prisma
 COPY --from=build /app/package.json ./package.json
+# prisma.config.ts define datasource.url (lee DATABASE_URL del entorno).
+# Es imprescindible para que `prisma migrate deploy` sepa a qué base conectarse.
+COPY --from=build /app/prisma.config.ts ./prisma.config.ts
 COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
 
