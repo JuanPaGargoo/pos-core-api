@@ -42,11 +42,14 @@ import { validate } from './config/env.validation';
       validate,
       envFilePath: '.env',
     }),
-    // Rate limiting global: 60 requests per 60 seconds per IP
+    // Rate limiting global. Detrás del BFF de Next todo el tráfico llega
+    // desde una sola IP (el contenedor web), así que este límite es por
+    // toda la app, no por usuario. El default es amplio para no bloquear el
+    // uso normal; se puede ajustar con THROTTLE_TTL / THROTTLE_LIMIT.
     ThrottlerModule.forRoot([
       {
-        ttl: 60_000,
-        limit: 60,
+        ttl: Number(process.env.THROTTLE_TTL ?? 60_000),
+        limit: Number(process.env.THROTTLE_LIMIT ?? 1000),
       },
     ]),
     PrismaModule,
