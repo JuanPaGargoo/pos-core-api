@@ -213,9 +213,18 @@ export class ReportsService {
 
   // ── GET /reports/low-stock ────────────────────────────────
   async lowStock(query: ReportQueryDto) {
-    const where: Prisma.StockLevelWhereInput = {
-      reorderPoint: { gt: 0 },
-    };
+    // Umbral global aplicado a productos sin punto de reorden propio.
+    const thresholdSetting = await this.prisma.setting.findFirst({
+      where: {
+        scope: 'global',
+        branchId: null,
+        key: 'inventory.lowStockThreshold',
+      },
+    });
+    const tv = thresholdSetting?.valueJson;
+    const lowStockThreshold = typeof tv === 'number' && tv >= 0 ? tv : 5;
+
+    const where: Prisma.StockLevelWhereInput = {};
     if (query.branchId) where.branchId = query.branchId;
 
     const levels = await this.prisma.stockLevel.findMany({
@@ -228,7 +237,10 @@ export class ReportsService {
     });
 
     const rows = levels
-      .filter((l) => num(l.quantity) <= num(l.reorderPoint))
+      .filter((l) => {
+        const rp = num(l.reorderPoint);
+        return num(l.quantity) <= (rp > 0 ? rp : lowStockThreshold);
+      })
       .map((l) => ({
         productId: l.productId,
         productName: l.product.name,

@@ -47,9 +47,18 @@ type MovementWithRelations = Prisma.StockMovementGetPayload<{
   include: typeof movementInclude;
 }>;
 
-function mapStockLevel(s: StockLevelWithRelations) {
+/**
+ * `lowStockThreshold` es el umbral global configurable que se aplica a los
+ * productos que no tienen un punto de reorden propio (reorderPoint = 0).
+ */
+function mapStockLevel(
+  s: StockLevelWithRelations,
+  lowStockThreshold: number,
+) {
   const quantity = Number(s.quantity);
   const reorderPoint = Number(s.reorderPoint);
+  const effectiveThreshold =
+    reorderPoint > 0 ? reorderPoint : lowStockThreshold;
   return {
     id: s.id,
     productId: s.productId,
@@ -64,7 +73,7 @@ function mapStockLevel(s: StockLevelWithRelations) {
     branchId: s.branchId,
     quantity,
     reorderPoint,
-    lowStock: reorderPoint > 0 && quantity <= reorderPoint,
+    lowStock: quantity <= effectiveThreshold,
   };
 }
 
@@ -151,10 +160,27 @@ export class InventoryService {
   }
 
   // ── GET /inventory/stock ──────────────────────────────────
+  /**
+   * Umbral global de stock bajo (Ajustes → Inventario). Se aplica a los
+   * productos sin punto de reorden propio. Por defecto 5.
+   */
+  async getLowStockThreshold(): Promise<number> {
+    const setting = await this.prisma.setting.findFirst({
+      where: {
+        scope: 'global',
+        branchId: null,
+        key: 'inventory.lowStockThreshold',
+      },
+    });
+    const value = setting?.valueJson;
+    return typeof value === 'number' && value >= 0 ? value : 5;
+  }
+
   async getStock(query: StockQueryDto) {
     const page = query.page ?? 1;
     const limit = query.limit ?? 25;
     const skip = (page - 1) * limit;
+    const lowStockThreshold = await this.getLowStockThreshold();
 
     const where: Prisma.StockLevelWhereInput = {};
     if (query.branchId) where.branchId = query.branchId;
@@ -177,7 +203,9 @@ export class InventoryService {
         include: stockInclude,
         orderBy: { product: { name: 'asc' } },
       });
-      const low = all.map(mapStockLevel).filter((s) => s.lowStock);
+      const low = all
+        .map((s) => mapStockLevel(s, lowStockThreshold))
+        .filter((s) => s.lowStock);
       return {
         data: low.slice(skip, skip + limit),
         meta: { page, limit, total: low.length },
@@ -196,7 +224,7 @@ export class InventoryService {
     ]);
 
     return {
-      data: levels.map(mapStockLevel),
+      data: levels.map((l) => mapStockLevel(l, lowStockThreshold)),
       meta: { page, limit, total },
     };
   }
@@ -359,7 +387,8 @@ export class InventoryService {
       include: stockInclude,
     });
 
-    return { data: mapStockLevel(level), meta: {} };
+    const lowStockThreshold = await this.getLowStockThreshold();
+    return { data: mapStockLevel(level, lowStockThreshold), meta: {} };
   }
 }
 

@@ -346,6 +346,12 @@ const BASE_SETTINGS: {
     description: 'Permitir stock negativo',
   },
   {
+    key: 'inventory.lowStockThreshold',
+    valueJson: 5,
+    description:
+      'Umbral de stock bajo para productos sin punto de reorden propio',
+  },
+  {
     key: 'inventory.defaultWarehouseStrategy',
     valueJson: 'FIFO',
     description: 'Estrategia de salida de inventario (FIFO/LIFO)',
