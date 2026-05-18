@@ -31,6 +31,8 @@ export interface UserWithPermissions {
     id: number;
     name: string;
     code: string;
+    address: string | null;
+    phone: string | null;
     isDefault: boolean;
   }[];
 }
@@ -195,6 +197,8 @@ export class AuthService {
         id: ub.branch.id,
         name: ub.branch.name,
         code: ub.branch.code,
+        address: ub.branch.address,
+        phone: ub.branch.phone,
         isDefault: ub.isDefault,
       })),
     };

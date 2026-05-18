@@ -27,12 +27,28 @@ export class SettingsService {
   // ──────────────────────────────────────────────
   async getPublicFlags() {
     const flags = await this.prisma.setting.findMany({
-      where: { scope: 'global', key: { in: ['pharmacy.enabled'] } },
+      where: {
+        scope: 'global',
+        key: {
+          in: [
+            'pharmacy.enabled',
+            'inventory.lowStockThreshold',
+            'invoice.footer',
+          ],
+        },
+      },
     });
     const byKey = new Map(flags.map((f) => [f.key, f.valueJson]));
+    const rawThreshold = byKey.get('inventory.lowStockThreshold');
+    const lowStockThreshold =
+      typeof rawThreshold === 'number' && rawThreshold >= 0 ? rawThreshold : 5;
+    const rawFooter = byKey.get('invoice.footer');
+    const receiptFooter = typeof rawFooter === 'string' ? rawFooter : '';
     return {
       data: {
         pharmacyEnabled: byKey.get('pharmacy.enabled') === true,
+        lowStockThreshold,
+        receiptFooter,
       },
       meta: {},
     };
