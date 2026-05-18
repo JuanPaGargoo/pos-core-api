@@ -243,10 +243,19 @@ export class AuthService {
   }
 
   /**
-   * Compare password with hash
+   * Compare password with hash.
+   *
+   * Los hashes generados por PHP (`password_hash`) llevan el prefijo `$2y$`,
+   * que la librería `bcrypt` de Node no reconoce y rechaza siempre. Como
+   * `$2y$` y `$2b$` son el mismo algoritmo (solo cambia el marcador de
+   * versión), normalizamos el prefijo antes de comparar. Esto permite el
+   * login de usuarios migrados desde sistemas en PHP (p. ej. FarmaPronto).
    */
   async comparePassword(password: string, hash: string): Promise<boolean> {
-    return bcrypt.compare(password, hash);
+    const normalized = hash.startsWith('$2y$')
+      ? `$2b$${hash.slice(4)}`
+      : hash;
+    return bcrypt.compare(password, normalized);
   }
 
   /**

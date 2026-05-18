@@ -605,7 +605,12 @@ async function main() {
     const oldId = Number(row[0]);
     const name = row[1] ?? `Usuario ${oldId}`;
     const username = row[2] ?? `user${oldId}`;
-    const passwordHash = row[3] ?? '';
+    // PHP genera hashes con prefijo `$2y$`; se normaliza a `$2b$` (mismo
+    // algoritmo) para que la librería bcrypt de Node los acepte.
+    const rawHash = row[3] ?? '';
+    const passwordHash = rawHash.startsWith('$2y$')
+      ? `$2b$${rawHash.slice(4)}`
+      : rawHash;
     const isAdmin = row[4] === 't' || row[4] === 'true';
 
     // El usuario "admin" ya existe (seed): se reutiliza.
